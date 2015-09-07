@@ -1,2 +1,0 @@
-# hackor
-Hack Oregon
