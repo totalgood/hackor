@@ -35,6 +35,8 @@ coverage.xml
 build/*
 dist/*
 sdist/*
+data/*.csv
+data/*.gz
 docs/_rst/*
 docs/_build/*
 cover/*
