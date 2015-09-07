@@ -1,4 +1,9 @@
-# Add your requirements here like:
 # numpy
 # scipy>=0.9
-django
+pip>=7.1.2
+django>=1.8.1
+django_extensions
+djangorestframework
+djangorestframework-csv
+psycopg2
+pandas
