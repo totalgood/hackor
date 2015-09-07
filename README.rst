@@ -3,17 +3,13 @@ hackor
 ======
 
 
-Add a short description here!
+Hack Oregon Battle of the Scientists!
 
 
 Description
 ===========
 
-A LONGER DESCRIPTION OF YOUR PROJECT GOES HERE...
+This web API to the Hack Oregon campaign finance data for the Behind The Curtain project is intended for use by competitors in the First ever battle of the Portland Data Science Meetup Groups.
 
 
-Note
-====
 
-This project has been set up using PyScaffold 2.3. For details and usage
-information on PyScaffold see http://pyscaffold.readthedocs.org/.

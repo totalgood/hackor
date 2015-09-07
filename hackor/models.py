@@ -117,7 +117,7 @@ class AuthUserUserPermissions(models.Model):
 
 
 class CampaignDetail(models.Model):
-    candidate_name = models.TextField(blank=True, null=True)
+    candidate_name = models.TextField(blank=True, primary_key=True)
     committee_name = models.CharField(max_length=-1, blank=True, null=True)
     race = models.TextField(blank=True, null=True)
     website = models.TextField(blank=True, null=True)
