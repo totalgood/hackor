@@ -1,6 +1,5 @@
 # This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
 #   * Make sure each model has one field with primary_key=True
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
@@ -8,12 +7,18 @@
 # Also note: You'll have to insert the output of 'django-admin sqlcustom [app_label]'
 # into your database.
 from __future__ import unicode_literals
-
-from django.db import models
-
-
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+
+
+def representation(model, field_names=[]):
+    """Unicode representation of Django model instance (object/record/row)"""
+    if not field_names:
+        field_names = getattr(model, 'IMPORTANT_FIELDS', ['pk'])
+    retval = model.__class__.__name__ + u'('
+    retval += ', '.join("%s" % (repr(getattr(model, s, '') or '')) for s in field_names[:min(len(field_names), representation.max_fields)])
+    return retval + u')'
+representation.max_fields = 5
 
 
 class LongCharField(models.CharField):
@@ -53,6 +58,9 @@ class AcGrassRootsInState(models.Model):
     percent_instate = models.FloatField(blank=True, null=True)
     total_money_out = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'ac_grass_roots_in_state'
@@ -61,6 +69,9 @@ class AcGrassRootsInState(models.Model):
 class AccessLog(models.Model):
     committee_id = models.IntegerField(blank=True, primary_key=True)
     date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -100,6 +111,9 @@ class CampaignDetail(models.Model):
     committee_subtype = models.LongCharField(max_length=-1, blank=True, null=True)
     db_update_status = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'campaign_detail'
@@ -112,6 +126,9 @@ class CandidateByState(models.Model):
     direction = models.CharField(max_length=7, blank=True, null=True)
     value = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'candidate_by_state'
@@ -122,6 +139,9 @@ class CandidateSumByDate(models.Model):
     tran_date = models.DateField(blank=True, null=True)
     total_in = models.FloatField(blank=True, null=True)
     total_out = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -139,6 +159,9 @@ class CcGrassRootsInState(models.Model):
     total_money_out = models.FloatField(blank=True, null=True)
     percent_grass_roots = models.FloatField(blank=True, null=True)
     percent_in_state = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -166,6 +189,9 @@ class CcWorkingTransactions(models.Model):
     direction = models.CharField(max_length=7, blank=True, null=True)
     contributor_payee_class = models.LongCharField(max_length=-1, blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'cc_working_transactions'
@@ -174,6 +200,9 @@ class CcWorkingTransactions(models.Model):
 class DirectionCodes(models.Model):
     sub_type = models.LongCharField(max_length=-1, blank=True, primary_key=True)
     direction = models.CharField(max_length=7, blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -184,6 +213,9 @@ class Documentation(models.Model):
     title = models.TextField(blank=True, null=True)
     endpoint_name = models.TextField(blank=True, null=True)
     txt = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -223,6 +255,9 @@ class HackOregonDbStatus(models.Model):
     access_log = models.FloatField(blank=True, null=True)
     search_log = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'hack_oregon_db_status'
@@ -233,6 +268,9 @@ class ImportDates(models.Model):
     scrape_date = models.DateField(blank=True, null=True)
     file_name = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'import_dates'
@@ -241,6 +279,9 @@ class ImportDates(models.Model):
 class OregonByContributions(models.Model):
     contribution_type = models.LongCharField(max_length=-1, blank=True, primary_key=True)
     total = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -251,6 +292,9 @@ class OregonByPurposeCodes(models.Model):
     purpose_code = models.TextField(blank=True, primary_key=True)
     total = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'oregon_by_purpose_codes'
@@ -260,6 +304,9 @@ class OregonCommitteeAgg(models.Model):
     contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
     contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
     sum = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -320,6 +367,9 @@ class RawCandidateFilings(models.Model):
     work_phone = models.TextField(blank=True, null=True)
     web_address = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'raw_candidate_filings'
@@ -368,6 +418,9 @@ class RawCommitteeTransactions(models.Model):
     county = models.LongCharField(max_length=-1, blank=True, null=True)
     purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
     exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -418,6 +471,9 @@ class RawCommitteeTransactionsAmmendedTransactions(models.Model):
     purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
     exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'raw_committee_transactions_ammended_transactions'
@@ -467,9 +523,14 @@ class RawCommitteeTransactionsErrors(models.Model):
     purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
     exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'raw_committee_transactions_errors'
+
+
 
 
 class RawCommittees(models.Model):
@@ -496,6 +557,9 @@ class RawCommittees(models.Model):
     candidate_email = models.LongCharField(max_length=-1, blank=True, null=True)
     active_election = models.LongCharField(max_length=-1, blank=True, null=True)
     measure = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -529,6 +593,9 @@ class RawCommitteesScraped(models.Model):
     measure_details = models.TextField(blank=True, null=True)
     committee_type = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'raw_committees_scraped'
@@ -537,6 +604,9 @@ class RawCommitteesScraped(models.Model):
 class SearchLog(models.Model):
     search_term = models.TextField(blank=True, null=True)
     date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -554,6 +624,9 @@ class StateSumByDate(models.Model):
     total_grass_roots = models.FloatField(blank=True, null=True)
     total_from_in_state = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'state_sum_by_date'
@@ -563,6 +636,9 @@ class StateTranslation(models.Model):
     statefull = models.LongCharField(max_length=-1, blank=True, null=True)
     abbreviation = models.CharField(max_length=3, blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'state_translation'
@@ -570,6 +646,9 @@ class StateTranslation(models.Model):
 
 class SubTypeFromContributorPayee(models.Model):
     contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -584,6 +663,9 @@ class WorkingCandidateCommittees(models.Model):
     phone = models.TextField(blank=True, null=True)
     party_affiliation = models.TextField(blank=True, null=True)
     web_address = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -644,6 +726,9 @@ class WorkingCandidateFilings(models.Model):
     work_phone = models.TextField(blank=True, null=True)
     web_address = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'working_candidate_filings'
@@ -668,6 +753,9 @@ class WorkingCommittees(models.Model):
     measure = models.LongCharField(max_length=-1, blank=True, null=True)
     simple_election = models.TextField(blank=True, null=True)
     db_update_status = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -694,6 +782,9 @@ class WorkingTransactions(models.Model):
     purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
     direction = models.CharField(max_length=7, blank=True, null=True)
     contributor_payee_class = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
