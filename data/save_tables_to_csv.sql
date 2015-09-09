@@ -10,7 +10,7 @@ begin
     WHERE t.table_schema NOT IN ('pg_catalog', 'information_schema', 'configuration')
     ORDER BY schema_table
   LOOP
-    statement := 'COPY ' || tables.schema_table || ' TO ''' || path || '/' || tables.schema_table || '.csv' ||''' DELIMITER '';'' CSV HEADER';
+    statement := 'COPY ' || tables.schema_table || ' TO ''' || path || '/' || tables.schema_table || '.csv' ||''' DELIMITER '','' CSV HEADER';
     EXECUTE statement;
   END LOOP;
   return;
