@@ -21,6 +21,10 @@ def representation(model, field_names=[]):
 representation.max_fields = 5
 
 
+def name_similarity():
+    """Compute the similarity (inverse distance) matrix between committe names"""
+    pass
+
 class LongCharField(models.CharField):
     "An unlimited-length CharField to satisfy by Django and postgreSQL varchar."
     description = _("Unlimited-length string")
@@ -568,7 +572,7 @@ class RawCommittees(models.Model):
         return representation(self)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'raw_committees'
 
 
