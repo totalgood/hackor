@@ -539,8 +539,6 @@ class RawCommitteeTransactionsErrors(models.Model):
         db_table = 'raw_committee_transactions_errors'
 
 
-
-
 class RawCommittees(models.Model):
     committee_id = models.IntegerField(blank=True, primary_key=True)
     committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -570,7 +568,7 @@ class RawCommittees(models.Model):
         return representation(self)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'raw_committees'
 
 
