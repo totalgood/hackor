@@ -21,6 +21,10 @@ def representation(model, field_names=[]):
 representation.max_fields = 5
 
 
+def name_similarity():
+    """Compute the similarity (inverse distance) matrix between committe names"""
+    pass
+
 class LongCharField(models.CharField):
     "An unlimited-length CharField to satisfy by Django and postgreSQL varchar."
     description = _("Unlimited-length string")
@@ -140,6 +144,8 @@ class CandidateSumByDate(models.Model):
     total_in = models.FloatField(blank=True, null=True)
     total_out = models.FloatField(blank=True, null=True)
 
+    IMPORTANT_FIELDS = ['filer_id', 'total_in']
+
     def __str__(self):
         return representation(self)
 
@@ -159,6 +165,8 @@ class CcGrassRootsInState(models.Model):
     total_money_out = models.FloatField(blank=True, null=True)
     percent_grass_roots = models.FloatField(blank=True, null=True)
     percent_in_state = models.FloatField(blank=True, null=True)
+
+    IMPORTANT_FIELDS = ['filer_id', 'filer', 'total_money', 'percent_grass_roots', 'percent_in_state']
 
     def __str__(self):
         return representation(self)
@@ -188,6 +196,8 @@ class CcWorkingTransactions(models.Model):
     purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
     direction = models.CharField(max_length=7, blank=True, null=True)
     contributor_payee_class = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    IMPORTANT_FIELDS = ['tran_id', 'tran_date', 'filer', 'amount', 'direction', 'purpose_codes']
 
     def __str__(self):
         return representation(self)
@@ -419,6 +429,8 @@ class RawCommitteeTransactions(models.Model):
     purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
     exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
 
+    IMPORTANT_FIELDS = ['tran_id', 'tran_date', 'filer', 'contributor_payee', 'amount', 'direction', 'purpose_codes']
+
     def __str__(self):
         return representation(self)
 
@@ -529,8 +541,6 @@ class RawCommitteeTransactionsErrors(models.Model):
     class Meta:
         managed = False
         db_table = 'raw_committee_transactions_errors'
-
-
 
 
 class RawCommittees(models.Model):
