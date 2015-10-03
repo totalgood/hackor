@@ -61,11 +61,12 @@ WSGI_APPLICATION = 'hackor.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'hackor',
+        'NAME': 'hackoregon',
         'HOST': 'localhost',
         'PORT': '5432',
         'USER': 'postgres',
-        'PASSWORD': os.getenv('HACKOR_PG_PW')
+        #'PASSWORD': os.getenv('HACKOR_PG_PW')
+        'PASSWORD': 'postgres',
     }
 }
 
