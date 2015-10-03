@@ -1,12 +1,9 @@
 from django.contrib import admin
-#<<<<<<< HEAD
 from .models import RawCommitteeTransactions 
 
 admin.site.register(RawCommitteeTransactions)
-#=======
 from django.apps import apps
 from django import forms
-#>>>>>>> master
 
 excluded_models = []
 unsearchable_field_types = ['ForeignKey', 'OneToOneField', 'TimeField', 'DateTimeField', 'DateField', 'AutoField']
