@@ -1,7 +1,7 @@
-from django.conf.urls import patterns, include, url
-import pacs.urls
-from pacs import views
+from django.conf.urls import include, url
 from django.contrib import admin
+from pacs import views
+from rest_framework.routers import DefaultRouter
 
 admin.autodiscover()
 
@@ -15,7 +15,15 @@ admin.autodiscover()
     # url(r'^$', pacs.views.RawCommitteeTransactionsViewSet.as_view({'get':'list'})),
 )
 '''
+
+# Create a router and register our viewsets with it.
+router = DefaultRouter()
+router.register(r'pacs', views.RawCommitteeTransactionsViewSet)
+
+# The API URLs are now determined automatically by the router.
+
 urlpatterns = [
 	url(r'^admin/', include(admin.site.urls)),
-    url(r'^pacs/$', views.RawCommitteeTransactions_list),
+    url(r'^', include(router.urls)),
 ]
+
