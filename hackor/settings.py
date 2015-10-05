@@ -97,8 +97,11 @@ STATIC_ROOT = os.path.join('/webapps', 'collected-static')
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
-        'PAGE_SIZE': 10,
-
-        
-
+    'PAGE_SIZE': 10,
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        ),
 }
