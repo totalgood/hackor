@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'django_extensions',
     'pacs',
+    'url_filter',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -96,6 +97,8 @@ STATIC_ROOT = os.path.join('/webapps', 'collected-static')
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
-        'PAGE_SIZE': 10
+        'PAGE_SIZE': 10,
+
+        
 
 }
