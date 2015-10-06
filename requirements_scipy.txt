@@ -1,0 +1,9 @@
+matplotlib==1.4.3
+nltk==3.0.5
+nlup==0.5
+numpy==1.9.2
+pandas==0.16.2
+progressbar2==2.7.3
+python-Levenshtein==0.12.0
+scipy==0.16.0
+seaborn==0.6.0
