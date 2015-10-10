@@ -40,8 +40,8 @@ INSTALLED_APPS = (
 
     'rest_framework',
     'django_extensions',
-    'pacs',
     'url_filter',
+    'pacs',
 )
 
 MIDDLEWARE_CLASSES = (
