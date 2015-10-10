@@ -1,0 +1,76 @@
+---
+title: "Hack Oregon - Exploring Committee Transactions"
+author: "John D. Smith and Allan Grimm"
+date: "October 6-8, 2015"
+output: html_document
+---
+We had a very open-ended invitation to explore one of several datasets on 
+
+  http://totalgood.github.io/hackor/
+  
+We chose to explore the Raw Committe Transactions table.
+
+The following describes more or less where our exploration ended up, rather than showing the *many* false starts and dead ends that we encountered.
+```{r}
+library(dplyr)
+library(lubridate)
+raw_trans  <- read.delim("/Users/jds/Desktop/hackor/raw_committee_transactions.csv", stringsAsFactors = F, sep = ",")
+```
+The raw dataset has `r dim(raw_trans)[1]` rows and  `r dim(raw_trans)[2]` columns.
+
+```{r}
+#  Correct the data types and add a flag for negative amounts.
+raw_trans <- raw_trans %>% 
+  mutate(tran_id = as.character(tran_id),
+         original_id = as.character(original_id),
+         atteset_date = ymd(attest_date),
+         review_date = ymd(review_date),
+         due_date = ymd(due_date),
+         neg_amt_flag = ifelse(amount < 0, "Y", "N")
+         )
+
+# have a look at the raw data:
+head(raw_trans)
+
+# have a look at negative transactions, because that sound peculiar:
+filter(raw_trans, neg_amt_flag == "Y")  %>%  head()
+
+# count by transaction status and neg_amt_flag:
+raw_trans %>% group_by(tran_status, neg_amt_flag) %>% summarise(count = n())
+
+# Separate two quite different kinds of records:
+am_trans <-  raw_trans %>% filter(tran_status == "Amended")
+or_trans <-  raw_trans %>% filter(tran_status == "Original")
+
+last_ammendment <- am_trans %>% group_by(original_id) %>% 
+  filter(min_rank(desc(filed_date)) == 1) %>% ungroup()
+
+check_am_trans <- am_trans  %>% filter(original_id == "1555159" | original_id == "1881696" |
+                        tran_id == "1555159" | tran_id == "1881696") %>% arrange(original_id)
+select(check_am_trans, tran_id, original_id, attest_date, filed_date)
+
+check_last_ammendment <- last_ammendment %>% filter(original_id == "1555159" | original_id == "1881696" |
+                        tran_id == "1555159" | tran_id == "1881696") %>% arrange(original_id)
+
+select(check_last_ammendment, tran_id, original_id, attest_date, filed_date)
+# conculsion: indeedd the correct record was selected.
+```
+It's still puzzling why "Ammended" records all point to an "original" but the original transaction ID doesn't seem appear in the dataset.
+
+Because some transactions have been ammended more than once, the filter on the "last transaction" reduces the total number of ammended transactions by `r dim(am_trans)[1] - dim(last_ammendment)[1]` to `r dim(last_ammendment)[1]`.  Should the rows with the "last ammended transaction" be added back to the *un-ammended* transactions?  Probably so.
+
+```{r}
+
+subsequently_ammended <- am_trans %>% group_by(original_id) %>% 
+  filter(min_rank(desc(filed_date)) != 1) %>% ungroup()
+
+# check whether multiple ammendments are for negative amounts and count up the total:
+subsequently_ammended %>% group_by(neg_amt_flag) %>%  summarise(total = sum(amount))
+
+x <- subsequently_ammended %>%  summarise(total = sum(amount))
+```
+The original dataset has `r dim(subsequently_ammended)[1]` extra records that should be eliminated as suggested in this exploration. Without filtering out the duplicated adjusted records, total amounts are overstated by $ `r prettyNum(x$total, big.mark = ",", format = "d")`.
+
+```{r}
+
+```
