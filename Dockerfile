@@ -27,6 +27,8 @@ RUN apt-get update -y
 RUN apt-get install -y postgresql
 RUN apt-get install -y postgresql-client
 
+# Switch to the postgres user and setup the environment
+USER postgres
 ENV PG_VERSION=9.4 \
     PG_USER=postgres \
     PG_HOME=/var/lib/postgresql \
@@ -36,16 +38,14 @@ ENV PG_CONFDIR="/etc/postgresql/${PG_VERSION}/main" \
      PG_BINDIR="/usr/lib/postgresql/${PG_VERSION}/bin" \
      PG_DATADIR="${PG_HOME}/${PG_VERSION}/main"
 
-USER postgres
-
 # Copy an export of the HackOR data into the Docker machine for loading into the postgresql DB
 COPY $HACKORDATA /tmp/hackor-dbdata
 
 # Create the empty postgres database then load the HackOR data,
 RUN /etc/init.d/postgresql start &&\
    psql --command "CREATE USER hackor WITH SUPERUSER PASSWORD 'hackor';" &&\
-   createdb -O hackor hackordb &&\
-   psql hackordb < /tmp/hackor-dbdata &&\
+   createdb -O hackor totalgood &&\
+   psql totalgood < /tmp/hackor-dbdata &&\
    /etc/init.d/postgresql stop
 
 # Now let's clean up our mess
@@ -78,12 +78,14 @@ RUN chown -R django:apps /usr/src/app
 # Expose the port where the app is listening
 EXPOSE 4567
 
-# Switch to the restricted user
-#USER django
+# Switch to the django user and setup the environment
+USER django
+ENV DATABASE_USER=hackor
+ENV DATABASE_PASSWORD=hackor
 
 # Move to the app directory
 WORKDIR /usr/src/app
 
-USER root
+#USER root
 
-ENTRYPOINT service postgresql restart && bash
+#ENTRYPOINT service postgresql restart && bash
