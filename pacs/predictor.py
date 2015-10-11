@@ -77,7 +77,7 @@ class PACClassifier(SGDClassifier):
             self.tfidf_matrix, self.label_ints, test_size=.25)
         # alpha: learning rate (default 1e-4, but other TFIDF classifier examples use 1e-5 to 1e-6)
         # penalty: 'none', 'l2', 'l1', or 'elasticnet'  # regularization penalty on the feature weights
-        self.svn_matrix = self.fit(self.train_tfidf, self.train_labels)
+        self.svm_matrix = self.fit(self.train_tfidf, self.train_labels)
         if verbosity > 0:
             print(self.score(self.train_tfidf, self.train_labels))
             # Typically > 98% recall (accuracy on training set)
