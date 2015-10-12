@@ -1,7 +1,6 @@
 import pandas as pd
 
 import matplotlib
-%matplotlib inline
 np = pd.np
 np.norm = np.linalg.norm
 import sklearn
@@ -24,7 +23,10 @@ corpus = [' '.join(str(f) for f in fields) for fields in
           zip(*[df[col] for col in df.columns if df[col].dtype == pd.np.dtype('O')])]
 print(corpus[:3])
 vectorizer = TfidfVectorizer(analyzer='word', ngram_range=(1, 1), stop_words='english')
-tfidf = vectorizer.fit_transform(corpus)
+# rows should be documents, columns should be "words"
+vectors = vectorizer.fit(corpus)
+tfidf = vectors.transform()
+tfidf_df = pd.DataFrame(tfidf.todense(), index=names)
 print(dir(tfidf))
 cov = tfidf * tfidf.T
-
+cov_df = pd.DataFrame(cov.todense(), columns=names, index=names)
