@@ -91,16 +91,7 @@ RUN pip install -r /usr/src/app/requirements.txt
 # Expose the port where the app is listening
 EXPOSE 8000
 
-# Switch to the django user and setup the environment
-# USER django
-# ENV DATABASE_USER=hackor
-# ENV DATABASE_PASSWORD=hackor
-# RUN export DJANGO_SECRET_KEY=`python gen-secret.py`
-
-#USER root
-
 # Move to the app directory
 WORKDIR /usr/src/app
 
-ENTRYPOINT service postgresql restart && bash
-# && ./entrypoint.sh
+ENTRYPOINT service postgresql restart && ./entrypoint.sh
