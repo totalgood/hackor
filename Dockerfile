@@ -26,6 +26,7 @@ ENV HACKORDATA https://dl.dropboxusercontent.com/u/27181407/hackoregon_dump_by_w
 # Install and configure postgres
 RUN apt-get update -y
 RUN apt-get install -y \
+   apt-utils \
    postgresql \
    postgresql-client \
    curl &&\
@@ -60,11 +61,14 @@ RUN /etc/init.d/postgresql start &&\
 USER root
 
 RUN apt-get install -y \
-   apt-utils \
-#   build-essential \
+   build-essential \
    python \
-   #python-dev
-   python-pip &&\
+   python-dev \
+   python-pip \
+   python-psycopg2 \
+   libffi-dev \
+   libssl-dev \
+   libpq-dev &&\
    apt-get clean
 
 RUN pip install --upgrade pip
@@ -81,17 +85,22 @@ RUN chown -R django:apps /usr/src/app
 # Copy app files
 COPY . /usr/src/app/
 
+# Install all the Python dependencies
+RUN pip install -r /usr/src/app/requirements.txt
+
 # Expose the port where the app is listening
-EXPOSE 4567
+EXPOSE 8000
 
 # Switch to the django user and setup the environment
-USER django
-ENV DATABASE_USER=hackor
-ENV DATABASE_PASSWORD=hackor
+# USER django
+# ENV DATABASE_USER=hackor
+# ENV DATABASE_PASSWORD=hackor
+# RUN export DJANGO_SECRET_KEY=`python gen-secret.py`
+
+#USER root
 
 # Move to the app directory
 WORKDIR /usr/src/app
 
-USER root
-
 ENTRYPOINT service postgresql restart && bash
+# && ./entrypoint.sh
