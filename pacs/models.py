@@ -386,6 +386,66 @@ class RawCandidateFilings(models.Model):
 
 
 class RawCommitteeTransactions(models.Model):
+    """
+    The absolute rawest comittee transaction data is here.
+    """
+    tran_id = models.IntegerField(blank=True, primary_key=True)
+    original_id = models.IntegerField(blank=True)
+    tran_date = models.DateField(blank=True, null=True)
+    tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
+    filer = models.LongCharField(max_length=-1, blank=True, null=True)
+    contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
+    sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    amount = models.FloatField(blank=True, null=True)
+    aggregate_amount = models.FloatField(blank=True, null=True)
+    contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
+    filer_id = models.IntegerField(blank=True, null=True)
+    attest_by_name = models.LongCharField(max_length=-1)
+    attest_date = models.DateField()
+    review_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    review_date = models.DateField(blank=True, null=True)
+    due_date = models.DateField(blank=True, null=True)
+    occptn_ltr_date = models.LongCharField(max_length=-1, blank=True, null=True)
+    pymt_sched_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    purp_desc = models.LongCharField(max_length=-1, blank=True, null=True)
+    intrst_rate = models.LongCharField(max_length=-1, blank=True, null=True)
+    check_nbr = models.LongCharField(max_length=-1, blank=True, null=True)
+    tran_stsfd_ind = models.NullBooleanField()
+    filed_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    filed_date = models.DateField(blank=True, null=True)
+    addr_book_agent_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    book_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    title_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    occptn_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_city = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_state = models.LongCharField(max_length=-1, blank=True, null=True)
+    employ_ind = models.NullBooleanField()
+    self_employ_ind = models.NullBooleanField()
+    addr_line1 = models.LongCharField(max_length=-1, blank=True, null=True)
+    addr_line2 = models.LongCharField(max_length=-1, blank=True, null=True)
+    city = models.LongCharField(max_length=-1, blank=True, null=True)
+    state = models.LongCharField(max_length=-1, blank=True, null=True)
+    zip = models.IntegerField(blank=True, null=True)
+    zip_plus_four = models.IntegerField(blank=True, null=True)
+    county = models.LongCharField(max_length=-1, blank=True, null=True)
+    purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
+    exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    IMPORTANT_FIELDS = ['tran_id', 'tran_date', 'filer', 'contributor_payee', 'amount', 'direction', 'purpose_codes']
+
+    def __str__(self):
+        return representation(self)
+
+    class Meta:
+        db_table = 'raw_committee_transactions'
+
+
+class CommitteeTransactions(models.Model):
+    """
+        The final version of committee transactions to use.  All other versions are raw,
+    depricated, or possibly used for intermediate processing.
+    """
     tran_id = models.IntegerField(blank=True, primary_key=True)
     original_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
@@ -431,15 +491,9 @@ class RawCommitteeTransactions(models.Model):
 
     IMPORTANT_FIELDS = ['tran_id', 'tran_date', 'filer', 'contributor_payee', 'amount', 'direction', 'purpose_codes']
 
-    def __str__(self):
-        return representation(self)
-
-    class Meta:
-        managed = False
-        db_table = 'raw_committee_transactions'
-
 
 class RawCommitteeTransactionsAmmendedTransactions(models.Model):
+    #TODO:  what does 'amended' mean?  Any reason to keep this table?
     tran_id = models.IntegerField(blank=True, primary_key=True)
     original_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
