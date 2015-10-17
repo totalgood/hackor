@@ -8,17 +8,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import random
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
+def random_str(n=50):
+    import string
+    chars = ''.join([string.ascii_letters, string.digits, string.punctuation]
+                    ).replace('\'', '').replace('"', '').replace('\\', '')
+    return ''.join([random.SystemRandom().choice(chars) for i in range(n)])
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+if not SECRET_KEY:
+    # need to store the new key somehwere that the other gunicorn instances can find it too!
+    os.environ["SECRET_KEY"] = random_str()
+    SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -102,9 +111,10 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         ),
     'DEFAULT_PARSER_CLASSES': (
-        'rest_framework.parsers.JSONParser',
-        ),
+        'rest_framework.parsers.JSONParser',),
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework.filters.DjangoFilterBackend',)
 }
 
 
-from local_settings import *
+from local_settings import SECRET_KEY, DATABASES

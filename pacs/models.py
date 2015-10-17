@@ -412,9 +412,7 @@ class RawCandidateFilings(models.Model):
 
 
 class RawCommitteeTransactions(models.Model):
-    """
-    The absolute rawest comittee transaction data is here.
-    """
+    """The absolute rawest comittee transaction data is here (directly from OR-Star)."""
     tran_id = models.IntegerField(blank=True, primary_key=True)
     original_id = models.IntegerField(blank=True)
     tran_date = models.DateField(blank=True, null=True)
@@ -470,9 +468,9 @@ class RawCommitteeTransactions(models.Model):
 
 
 class CommitteeTransactions(models.Model):
-    """
-        The final version of committee transactions to use.  All other versions are raw,
-    depricated, or possibly used for intermediate processing.
+    """Cleaned committee transactions to use for all UX elements.
+
+    Other transactions tables are dirty (contain duplicates, etc).
     """
     tran_id = models.IntegerField(blank=True, primary_key=True)
     original_id = models.IntegerField(blank=True)
