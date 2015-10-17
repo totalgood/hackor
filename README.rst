@@ -19,6 +19,6 @@ Kudos to the Hack Oregon "Backend" contributors:
 
 - Hobson Lane [@hobson](github.com/hobson)
 - Thunder Shiviah [@ThunderShiviah](//github.com/ThunderShiviah)
-- Alan Grimm [@TheGrimmScientist](//github.com/TheGrimmScientist)
+- Allen Grimm [@TheGrimmScientist](//github.com/TheGrimmScientist)
 - Wil Langford [@Wil-Langford](//github.com/Wil Langford)
 - Sam Higgins [@?](//github.com/)
