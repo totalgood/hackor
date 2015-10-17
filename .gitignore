@@ -43,5 +43,9 @@ docs/_build/*
 cover/*
 MANIFEST
 
+collected-static/
+.ipynb_checkpoints/
+
+# SECRETS!
 # hackor/settings.py
 local_settings.py
