@@ -447,7 +447,7 @@ class CommitteeTransactions(models.Model):
     depricated, or possibly used for intermediate processing.
     """
     tran_id = models.IntegerField(blank=True, primary_key=True)
-    original_id = models.IntegerField(blank=True, null=True)
+    original_id = models.IntegerField(blank=True)
     tran_date = models.DateField(blank=True, null=True)
     tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
     filer = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -457,8 +457,8 @@ class CommitteeTransactions(models.Model):
     aggregate_amount = models.FloatField(blank=True, null=True)
     contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
     filer_id = models.IntegerField(blank=True, null=True)
-    attest_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
-    attest_date = models.DateField(blank=True, null=True)
+    attest_by_name = models.LongCharField(max_length=-1)
+    attest_date = models.DateField()
     review_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
     review_date = models.DateField(blank=True, null=True)
     due_date = models.DateField(blank=True, null=True)
