@@ -1,4 +1,9 @@
 pacs/
 data/*.csv
 data/*.sql
+collected-static/
+hackor/
+.ipynb_checkpoints/
+*.gz
+*.tgz
 
