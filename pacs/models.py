@@ -25,6 +25,7 @@ def name_similarity():
     """Compute the similarity (inverse distance) matrix between committe names"""
     pass
 
+
 class LongCharField(models.CharField):
     "An unlimited-length CharField to satisfy by Django and postgreSQL varchar."
     description = _("Unlimited-length string")
@@ -134,6 +135,7 @@ class CandidateByState(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name_plural = 'candidates by state'
         managed = False
         db_table = 'candidate_by_state'
 
@@ -150,6 +152,7 @@ class CandidateSumByDate(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name_plural = 'candidate sums by date'
         managed = False
         db_table = 'candidate_sum_by_date'
 
@@ -172,6 +175,9 @@ class CcGrassRootsInState(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'grass roots in-state total'
+        verbose_name_plural = 'grass roots in-state totals'
+
         managed = False
         db_table = 'cc_grass_roots_in_state'
 
@@ -203,6 +209,8 @@ class CcWorkingTransactions(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'working transaction'
+        verbose_name_plural = 'working transactions'
         managed = False
         db_table = 'cc_working_transactions'
 
@@ -215,6 +223,8 @@ class DirectionCodes(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'direction'
+        verbose_name_plural = 'directions'
         managed = False
         db_table = 'direction_codes'
 
@@ -228,6 +238,8 @@ class Documentation(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'document'
+        verbose_name_plural = 'documents'
         managed = False
         db_table = 'documentation'
 
@@ -269,6 +281,8 @@ class HackOregonDbStatus(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'database status'
+        verbose_name_plural = 'database status'
         managed = False
         db_table = 'hack_oregon_db_status'
 
@@ -282,6 +296,8 @@ class ImportDates(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'file import date'
+        verbose_name_plural = 'file import dates'
         managed = False
         db_table = 'import_dates'
 
@@ -294,6 +310,8 @@ class OregonByContributions(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'contribution type'
+        verbose_name_plural = 'contribution types'
         managed = False
         db_table = 'oregon_by_contributions'
 
@@ -306,6 +324,9 @@ class OregonByPurposeCodes(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'purpose'
+        verbose_name_plural = 'purposes'
+
         managed = False
         db_table = 'oregon_by_purpose_codes'
 
@@ -319,6 +340,9 @@ class OregonCommitteeAgg(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'pac aggregate'
+        verbose_name_plural = 'pac aggregates'
+
         managed = False
         db_table = 'oregon_committee_agg'
 
@@ -381,6 +405,8 @@ class RawCandidateFilings(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'candidate filing'
+        verbose_name_plural = 'candidate filings'
         managed = False
         db_table = 'raw_candidate_filings'
 
@@ -438,6 +464,8 @@ class RawCommitteeTransactions(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'raw transaction'
+        verbose_name_plural = 'raw transactions'
         db_table = 'raw_committee_transactions'
 
 
@@ -491,6 +519,14 @@ class CommitteeTransactions(models.Model):
 
     IMPORTANT_FIELDS = ['tran_id', 'tran_date', 'filer', 'contributor_payee', 'amount', 'direction', 'purpose_codes']
 
+    def __str__(self):
+        return representation(self)
+
+    class Meta:
+        verbose_name = 'transaction'
+        verbose_name_plural = 'transactions'
+        managed = True
+
 
 class RawCommitteeTransactionsAmmendedTransactions(models.Model):
     #TODO:  what does 'amended' mean?  Any reason to keep this table?
@@ -541,6 +577,8 @@ class RawCommitteeTransactionsAmmendedTransactions(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'ammended transaction'
+        verbose_name_plural = 'ammended transactions'
         managed = False
         db_table = 'raw_committee_transactions_ammended_transactions'
 
@@ -593,6 +631,8 @@ class RawCommitteeTransactionsErrors(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'transaction error'
+        verbose_name_plural = 'transaction errors'
         managed = False
         db_table = 'raw_committee_transactions_errors'
 
@@ -626,6 +666,8 @@ class RawCommittees(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'committee'
+        verbose_name_plural = 'committees'
         managed = False
         db_table = 'raw_committees'
 
