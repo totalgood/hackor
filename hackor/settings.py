@@ -115,6 +115,7 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'rest_framework.filters.DjangoFilterBackend',)
 }
+APPS_TO_REST = ('pacs',)
 
 
 from local_settings import SECRET_KEY, DATABASES

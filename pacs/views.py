@@ -1,26 +1,23 @@
-
+from django.apps import apps
 from rest_framework import viewsets
+from rest_framework import filters
+from django.conf import settings
 
-from pacs.models import RawCommitteeTransactions, CommitteeTransactions
-from pacs.serializers import RawCommitteeTransactionsSerializer, CommitteeTransactionsSerializer
+from pacs.factory import create_class
+import pacs.serializers
 
-
-class RawCommitteeTransactionsViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    This viewset automatically provides 'list' and 'detail' actions.
-    """
-    queryset = RawCommitteeTransactions.objects.all()
-    serializer_class = RawCommitteeTransactionsSerializer
-
-class CommitteeTransactionsViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    This viewset automatically provides 'list' and 'detail' actions.
-    """
-    queryset = CommitteeTransactions.objects.all()
-    serializer_class = CommitteeTransactionsSerializer
-
-        
+unfilterable_field_types = ('OneToOneField', 'ForeignKey', 'ManyToManyField')
 
 
-
-
+for app_name in settings.APPS_TO_REST:
+    app = apps.get_app_config('pacs')
+    for model_name, Model in app.models.iteritems():
+        viewset_class_name = model_name + 'ViewSet'
+        if viewset_class_name not in globals():
+            viewset_class = create_class(viewset_class_name, viewsets.ReadOnlyModelViewSet)
+        viewset_class.serializer_class = pacs.serializers.get(model_name + 'Serializer')
+        viewset_class.filter_backends = (filters.DjangoFilterBackend,)
+        viewset_class.filter_fields = tuple([field.name for field in Model._meta.fields
+                                            if not field.get_internal_type() in unfilterable_field_types])
+        viewset_class.filter_fields = tuple(['categoria', 'categoria__titulo'])
+        globals()[viewset_class_name] = viewset_class
