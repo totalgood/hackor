@@ -66,7 +66,7 @@ WSGI_APPLICATION = 'hackor.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'totalgood',
+        'NAME': os.getenv('DATABASE_NAME'),
         'HOST': 'localhost',
         'PORT': '5432',
         'USER': os.getenv('DATABASE_USER'),
@@ -105,3 +105,6 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser',
         ),
 }
+
+
+from local_settings import *
