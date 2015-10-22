@@ -47,9 +47,14 @@ cov = tfidf * tfidf.T
 cov_df = pd.DataFrame(cov.todense(), columns=names, index=names)
 
 
-def graph_from_cov_df(df=cov_df, threshold=.5, gain=20., n=400):
+parties = ["", "Whig", "Dem", "Rep", "Dem-Rep", "Fed", "Indie"]
+groups = {"": 0, "Whig": 1, "Dem": 2, "Rep": 3, "Dem-Rep": 4, "Fed": 5, "Indie": 6}
+
+
+def graph_from_cov_df(df=cov_df, threshold=.5, gain=2., n=300):
     """Compose pair of lists of dicts (nodes, edges) for the graph described by a DataFrame"""
-    nodes = [{'group': 1, "name": name} for name in df.index.values][:n]
+
+    nodes = [{'group': 0, "name": name} for name in df.index.values][:n]
     edges = []
     for i, (row_name, row) in enumerate(df.iterrows()):
         for j, value in enumerate(row.values):
@@ -58,7 +63,7 @@ def graph_from_cov_df(df=cov_df, threshold=.5, gain=20., n=400):
     return nodes, edges
 
 
-def json_from_cov_df(df=cov_df, threshold=.5, gain=10., n=400, indent=1):
+def json_from_cov_df(df=cov_df, threshold=.5, gain=2., n=300, indent=1):
     """Produce a json string describing the graph (list of edges) from a square auto-correlation/covariance matrix
 
        { "nodes": [{"group": 1, "name": "the"},
@@ -69,7 +74,7 @@ def json_from_cov_df(df=cov_df, threshold=.5, gain=10., n=400, indent=1):
                    {"source": 0, "target": 1, "value": 1.343999676850537}, ...
     """
     nodes, edges = graph_from_cov_df(df=df, threshold=threshold, gain=gain, n=n)
-    return json.dumps([{'nodes': nodes, 'links': edges}], indent=indent)
+    return json.dumps({'nodes': nodes, 'links': edges}, indent=indent)
 
 
 def main(filename='nlp_similarity_graph.json', verbosity=1):
