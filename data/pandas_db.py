@@ -20,9 +20,10 @@ from sklearn.cross_validation import train_test_split
 # print(candidates.info())
 # df = pacs_scraped
 
+pacs = pd.DataFrame.from_csv('data/public.raw_committees_scraped.csv')
 
-def corpus_from_table(df=pd.DataFrame.from_csv('data/public.raw_committees_scraped.csv'),
-                      verbosity=None):
+
+def corpus_from_table(df=pacs, verbosity=None):
     names = df.index.values
     corpus = [' '.join(str(f) for f in fields) for fields in
               zip(*[df[col] for col in df.columns if df[col].dtype == pd.np.dtype('O')])]
@@ -81,7 +82,11 @@ def cov_from_tfidf(tfidf, names=None, verbosity=None):
 # party in raw_candidate_filings
 
 
-def json_from_cov_df(df=cov_from_corpus(corpus_from_table()), threshold=.5):
+corpus = corpus_from_table(verbosity=1)
+cov = cov_from_corpus(corpus)
+
+
+def json_from_cov_df(df=cov, threshold=.5):
     """Produce a json string describing the graph (list of edges) from a square auto-correlation/covariance matrix
 
        { "nodes": [{"group": 1, "name": "the"},
@@ -101,5 +106,5 @@ def json_from_cov_df(df=cov_from_corpus(corpus_from_table()), threshold=.5):
 
 
 if __name__ == '__main__':
-    corpus = corpus_from_table(verbosity=1)
-    print(corpus)
+    pass
+    # print(corpus)
