@@ -298,13 +298,14 @@ class HackOregonDbStatus(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'hack_oregon_db_status'
 
 
 class ImportDates(models.Model):
     file_hash = models.DecimalField(primary_key=True, db_column='id', default=0,
-                                    max_digits=65535, decimal_places=65535, blank=True, null=False)
+                                    max_digits=1000, decimal_places=1000, blank=True, null=False)
     scrape_date = models.DateField(blank=True, null=True)
     file_name = models.TextField(blank=True, null=True)
 
