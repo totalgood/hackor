@@ -158,7 +158,7 @@ class CcGrassRootsInState(models.Model):
 
 
 class CcWorkingTransactions(models.Model):
-    tran_id = models.IntegerField(blank=True, null=True)
+    tran_id = models.IntegerField(blank=True, primary_key=True)
     tran_date = models.DateField(blank=True, null=True)
     filer = models.LongCharField(max_length=-1, blank=True, null=True)
     contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -178,17 +178,27 @@ class CcWorkingTransactions(models.Model):
     direction = models.CharField(max_length=7, blank=True, null=True)
     contributor_payee_class = models.LongCharField(max_length=-1, blank=True, null=True)
 
+    IMPORTANT_FIELDS = ['tran_id', 'tran_date', 'filer_id', 'filer', 'filed_date', 'amount', 'direction', 'purpose_codes']
+
+    def __str__(self):
+        return representation(self)
+
     class Meta:
+        verbose_name = 'working transaction'
         managed = True
         app_label = 'pacs'
         db_table = 'cc_working_transactions'
 
 
 class DirectionCodes(models.Model):
-    sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    sub_type = models.LongCharField(max_length=-1, blank=True, primary_key=True)
     direction = models.CharField(max_length=7, blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
+        verbose_name = 'direction'
         managed = True
         app_label = 'pacs'
         db_table = 'direction_codes'
@@ -199,7 +209,11 @@ class Documentation(models.Model):
     endpoint_name = models.TextField(blank=True, null=True)
     txt = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
+        verbose_name = 'document'
         managed = True
         app_label = 'pacs'
         db_table = 'documentation'
@@ -238,7 +252,12 @@ class HackOregonDbStatus(models.Model):
     access_log = models.FloatField(blank=True, null=True)
     search_log = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
+        verbose_name = 'database status'
+        verbose_name_plural = 'database statuses'
         managed = True
         app_label = 'pacs'
         db_table = 'hack_oregon_db_status'
@@ -249,17 +268,26 @@ class ImportDates(models.Model):
     scrape_date = models.DateField(blank=True, null=True)
     file_name = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
+        verbose_name = 'file import date'
         managed = True
         app_label = 'pacs'
         db_table = 'import_dates'
 
 
 class OregonByContributions(models.Model):
-    contribution_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    contribution_type = models.LongCharField(max_length=-1, blank=True, primary_key=True)
     total = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
+        verbose_name = 'contribution type'
+        verbose_name_plural = 'contribution types'
         managed = True
         app_label = 'pacs'
         db_table = 'oregon_by_contributions'
