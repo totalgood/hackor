@@ -69,6 +69,7 @@ class AllOregonSums(models.Model):
 
 
 class CampaignDetail(models.Model):
+    filer_id = models.IntegerField(primary_key=True)
     candidate_name = models.TextField(blank=True, null=True)
     committee_name = models.CharField(max_length=-1, blank=True, null=True)
     race = models.TextField(blank=True, null=True)
@@ -78,7 +79,6 @@ class CampaignDetail(models.Model):
     total_spent = models.FloatField(blank=True, null=True)
     grassroots = models.FloatField(blank=True, null=True)
     instate = models.FloatField(blank=True, null=True)
-    filer_id = models.IntegerField(primary_key=True)
     election = models.TextField(blank=True, null=True)
     party = models.TextField(blank=True, null=True)
     num_transactions = models.BigIntegerField(blank=True, null=True)
@@ -87,7 +87,7 @@ class CampaignDetail(models.Model):
     db_update_status = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'campaign_detail'
 
 
@@ -392,7 +392,7 @@ class RawCommitteeTransactions(models.Model):
     exp_date = models.CharField(max_length=-1, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'raw_committee_transactions'
 
 
