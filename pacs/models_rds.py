@@ -729,7 +729,8 @@ class RawCommitteeTransactionsErrors(models.Model):
 
 
 class RawCommittees(models.Model):
-    committee_id = models.IntegerField(blank=True, null=True)
+    """Committee details"""
+    committee_id = models.IntegerField(primary_key=True, default=0, blank=True, null=False)
     committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     committee_type = models.LongCharField(max_length=-1, blank=True, null=True)
     committee_subtype = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -744,7 +745,7 @@ class RawCommittees(models.Model):
     treasurer_fax = models.LongCharField(max_length=-1, blank=True, null=True)
     candidate_first_name = models.LongCharField(max_length=-1, blank=True, null=True)
     candidate_last_name = models.LongCharField(max_length=-1, blank=True, null=True)
-    candidate_maling_address = models.LongCharField(max_length=-1, blank=True, null=True)
+    candidate_mailing_address = models.LongCharField(db_column='maling_address', max_length=-1, blank=True, null=True)
     candidate_work_phone = models.LongCharField(max_length=-1, blank=True, null=True)
     candidate_residence_phone = models.LongCharField(max_length=-1, blank=True, null=True)
     candidate_fax = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -752,6 +753,8 @@ class RawCommittees(models.Model):
     active_election = models.LongCharField(max_length=-1, blank=True, null=True)
     measure = models.LongCharField(max_length=-1, blank=True, null=True)
 
+    IMPORTANT_FIELDS = ['committee_id', 'committee_name', 'committee_type', 'candidate_office', 'filing_date',
+                        'candidate_first_name', 'candidate_last_name', 'measure']
     def __str__(self):
         return representation(self)
 
