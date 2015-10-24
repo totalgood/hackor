@@ -9,7 +9,7 @@
 # into your database.
 from __future__ import unicode_literals
 
-from django.db import models
+from model_utils import models, representation
 
 
 class AcGrassRootsInState(models.Model):
@@ -21,6 +21,9 @@ class AcGrassRootsInState(models.Model):
     percent_instate = models.FloatField(blank=True, null=True)
     total_money_out = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'ac_grass_roots_in_state'
@@ -29,6 +32,9 @@ class AcGrassRootsInState(models.Model):
 class AccessLog(models.Model):
     committee_id = models.IntegerField(blank=True, null=True)
     date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -39,13 +45,17 @@ class AccessLogs(models.Model):
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'access_logs'
 
 
 class AllOregonSum(models.Model):
-    in_field = models.FloatField(db_column='in', blank=True, null=True)  # Field renamed because it was a Python reserved word.
+    # Field renamed because it was a Python reserved word.
+    in_field = models.FloatField(db_column='in', blank=True, null=True)
     out = models.FloatField(blank=True, null=True)
     from_within = models.FloatField(blank=True, null=True)
     to_within = models.FloatField(blank=True, null=True)
@@ -53,6 +63,9 @@ class AllOregonSum(models.Model):
     to_outside = models.FloatField(blank=True, null=True)
     total_grass_roots = models.FloatField(blank=True, null=True)
     total_from_in_state = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -63,6 +76,9 @@ class AllOregonSums(models.Model):
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'all_oregon_sums'
@@ -71,10 +87,10 @@ class AllOregonSums(models.Model):
 class CampaignDetail(models.Model):
     filer_id = models.IntegerField(primary_key=True)
     candidate_name = models.TextField(blank=True, null=True)
-    committee_name = models.CharField(max_length=-1, blank=True, null=True)
+    committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     race = models.TextField(blank=True, null=True)
     website = models.TextField(blank=True, null=True)
-    phone = models.CharField(max_length=-1, blank=True, null=True)
+    phone = models.LongCharField(max_length=-1, blank=True, null=True)
     total = models.FloatField(blank=True, null=True)
     total_spent = models.FloatField(blank=True, null=True)
     grassroots = models.FloatField(blank=True, null=True)
@@ -82,9 +98,12 @@ class CampaignDetail(models.Model):
     election = models.TextField(blank=True, null=True)
     party = models.TextField(blank=True, null=True)
     num_transactions = models.BigIntegerField(blank=True, null=True)
-    committee_type = models.CharField(max_length=-1, blank=True, null=True)
-    committee_subtype = models.CharField(max_length=-1, blank=True, null=True)
+    committee_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    committee_subtype = models.LongCharField(max_length=-1, blank=True, null=True)
     db_update_status = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = True
@@ -95,6 +114,9 @@ class CampaignDetails(models.Model):
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'campaign_details'
@@ -103,9 +125,12 @@ class CampaignDetails(models.Model):
 class CandidateByState(models.Model):
     candidate_name = models.TextField(blank=True, null=True)
     filer_id = models.IntegerField(blank=True, null=True)
-    state = models.CharField(max_length=-1, blank=True, null=True)
+    state = models.LongCharField(max_length=-1, blank=True, null=True)
     direction = models.CharField(max_length=7, blank=True, null=True)
     value = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -115,6 +140,9 @@ class CandidateByState(models.Model):
 class CandidateByStates(models.Model):
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -127,6 +155,9 @@ class CandidateSumByDate(models.Model):
     total_in = models.FloatField(blank=True, null=True)
     total_out = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'candidate_sum_by_date'
@@ -136,6 +167,9 @@ class CandidateSumByDates(models.Model):
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'candidate_sum_by_dates'
@@ -143,7 +177,7 @@ class CandidateSumByDates(models.Model):
 
 class CcGrassRootsInState(models.Model):
     filer_id = models.IntegerField(blank=True, null=True)
-    filer = models.CharField(max_length=-1, blank=True, null=True)
+    filer = models.LongCharField(max_length=-1, blank=True, null=True)
     num_transactions = models.BigIntegerField(blank=True, null=True)
     in_state = models.FloatField(blank=True, null=True)
     grass_roots = models.FloatField(blank=True, null=True)
@@ -152,6 +186,9 @@ class CcGrassRootsInState(models.Model):
     total_money_out = models.FloatField(blank=True, null=True)
     percent_grass_roots = models.FloatField(blank=True, null=True)
     percent_in_state = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -162,6 +199,9 @@ class CcGrassRootsInStates(models.Model):
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'cc_grass_roots_in_states'
@@ -170,23 +210,26 @@ class CcGrassRootsInStates(models.Model):
 class CcWorkingTransactions(models.Model):
     tran_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
-    filer = models.CharField(max_length=-1, blank=True, null=True)
-    contributor_payee = models.CharField(max_length=-1, blank=True, null=True)
-    sub_type = models.CharField(max_length=-1, blank=True, null=True)
+    filer = models.LongCharField(max_length=-1, blank=True, null=True)
+    contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
+    sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
     amount = models.FloatField(blank=True, null=True)
     contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
     filer_id = models.IntegerField(blank=True, null=True)
-    purp_desc = models.CharField(max_length=-1, blank=True, null=True)
-    book_type = models.CharField(max_length=-1, blank=True, null=True)
-    addr_line1 = models.CharField(max_length=-1, blank=True, null=True)
+    purp_desc = models.LongCharField(max_length=-1, blank=True, null=True)
+    book_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    addr_line1 = models.LongCharField(max_length=-1, blank=True, null=True)
     filed_date = models.DateField(blank=True, null=True)
-    addr_line2 = models.CharField(max_length=-1, blank=True, null=True)
-    city = models.CharField(max_length=-1, blank=True, null=True)
-    state = models.CharField(max_length=-1, blank=True, null=True)
+    addr_line2 = models.LongCharField(max_length=-1, blank=True, null=True)
+    city = models.LongCharField(max_length=-1, blank=True, null=True)
+    state = models.LongCharField(max_length=-1, blank=True, null=True)
     zip = models.IntegerField(blank=True, null=True)
-    purpose_codes = models.CharField(max_length=-1, blank=True, null=True)
+    purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
     direction = models.CharField(max_length=7, blank=True, null=True)
-    contributor_payee_class = models.CharField(max_length=-1, blank=True, null=True)
+    contributor_payee_class = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -194,8 +237,11 @@ class CcWorkingTransactions(models.Model):
 
 
 class DirectionCodes(models.Model):
-    sub_type = models.CharField(max_length=-1, blank=True, null=True)
+    sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
     direction = models.CharField(max_length=7, blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -206,6 +252,9 @@ class Documentation(models.Model):
     title = models.TextField(blank=True, null=True)
     endpoint_name = models.TextField(blank=True, null=True)
     txt = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -245,6 +294,9 @@ class HackOregonDbStatus(models.Model):
     access_log = models.FloatField(blank=True, null=True)
     search_log = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'hack_oregon_db_status'
@@ -255,14 +307,20 @@ class ImportDates(models.Model):
     scrape_date = models.DateField(blank=True, null=True)
     file_name = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'import_dates'
 
 
 class OregonByContributions(models.Model):
-    contribution_type = models.CharField(max_length=-1, blank=True, null=True)
+    contribution_type = models.LongCharField(max_length=-1, blank=True, null=True)
     total = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -273,15 +331,21 @@ class OregonByPurposeCodes(models.Model):
     purpose_code = models.TextField(blank=True, null=True)
     total = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'oregon_by_purpose_codes'
 
 
 class OregonCommitteeAgg(models.Model):
-    contributor_payee = models.CharField(max_length=-1, blank=True, null=True)
+    contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
     contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
     sum = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -342,6 +406,9 @@ class RawCandidateFilings(models.Model):
     work_phone = models.TextField(blank=True, null=True)
     web_address = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'raw_candidate_filings'
@@ -351,45 +418,48 @@ class RawCommitteeTransactions(models.Model):
     tran_id = models.IntegerField(primary_key=True)
     original_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
-    tran_status = models.CharField(max_length=-1, blank=True, null=True)
-    filer = models.CharField(max_length=-1, blank=True, null=True)
-    contributor_payee = models.CharField(max_length=-1, blank=True, null=True)
-    sub_type = models.CharField(max_length=-1, blank=True, null=True)
+    tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
+    filer = models.LongCharField(max_length=-1, blank=True, null=True)
+    contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
+    sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
     amount = models.FloatField(blank=True, null=True)
     aggregate_amount = models.FloatField(blank=True, null=True)
     contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
     filer_id = models.IntegerField(blank=True, null=True)
-    attest_by_name = models.CharField(max_length=-1, blank=True, null=True)
+    attest_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
     attest_date = models.DateField(blank=True, null=True)
-    review_by_name = models.CharField(max_length=-1, blank=True, null=True)
+    review_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
     review_date = models.DateField(blank=True, null=True)
     due_date = models.DateField(blank=True, null=True)
-    occptn_ltr_date = models.CharField(max_length=-1, blank=True, null=True)
-    pymt_sched_txt = models.CharField(max_length=-1, blank=True, null=True)
-    purp_desc = models.CharField(max_length=-1, blank=True, null=True)
-    intrst_rate = models.CharField(max_length=-1, blank=True, null=True)
-    check_nbr = models.CharField(max_length=-1, blank=True, null=True)
+    occptn_ltr_date = models.LongCharField(max_length=-1, blank=True, null=True)
+    pymt_sched_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    purp_desc = models.LongCharField(max_length=-1, blank=True, null=True)
+    intrst_rate = models.LongCharField(max_length=-1, blank=True, null=True)
+    check_nbr = models.LongCharField(max_length=-1, blank=True, null=True)
     tran_stsfd_ind = models.NullBooleanField()
-    filed_by_name = models.CharField(max_length=-1, blank=True, null=True)
+    filed_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
     filed_date = models.DateField(blank=True, null=True)
-    addr_book_agent_name = models.CharField(max_length=-1, blank=True, null=True)
-    book_type = models.CharField(max_length=-1, blank=True, null=True)
-    title_txt = models.CharField(max_length=-1, blank=True, null=True)
-    occptn_txt = models.CharField(max_length=-1, blank=True, null=True)
-    emp_name = models.CharField(max_length=-1, blank=True, null=True)
-    emp_city = models.CharField(max_length=-1, blank=True, null=True)
-    emp_state = models.CharField(max_length=-1, blank=True, null=True)
+    addr_book_agent_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    book_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    title_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    occptn_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_city = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_state = models.LongCharField(max_length=-1, blank=True, null=True)
     employ_ind = models.NullBooleanField()
     self_employ_ind = models.NullBooleanField()
-    addr_line1 = models.CharField(max_length=-1, blank=True, null=True)
-    addr_line2 = models.CharField(max_length=-1, blank=True, null=True)
-    city = models.CharField(max_length=-1, blank=True, null=True)
-    state = models.CharField(max_length=-1, blank=True, null=True)
+    addr_line1 = models.LongCharField(max_length=-1, blank=True, null=True)
+    addr_line2 = models.LongCharField(max_length=-1, blank=True, null=True)
+    city = models.LongCharField(max_length=-1, blank=True, null=True)
+    state = models.LongCharField(max_length=-1, blank=True, null=True)
     zip = models.IntegerField(blank=True, null=True)
     zip_plus_four = models.IntegerField(blank=True, null=True)
-    county = models.CharField(max_length=-1, blank=True, null=True)
-    purpose_codes = models.CharField(max_length=-1, blank=True, null=True)
-    exp_date = models.CharField(max_length=-1, blank=True, null=True)
+    county = models.LongCharField(max_length=-1, blank=True, null=True)
+    purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
+    exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = True
@@ -400,45 +470,48 @@ class RawCommitteeTransactionsAmmendedTransactions(models.Model):
     tran_id = models.IntegerField(blank=True, null=True)
     original_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
-    tran_status = models.CharField(max_length=-1, blank=True, null=True)
-    filer = models.CharField(max_length=-1, blank=True, null=True)
-    contributor_payee = models.CharField(max_length=-1, blank=True, null=True)
-    sub_type = models.CharField(max_length=-1, blank=True, null=True)
+    tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
+    filer = models.LongCharField(max_length=-1, blank=True, null=True)
+    contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
+    sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
     amount = models.FloatField(blank=True, null=True)
     aggregate_amount = models.FloatField(blank=True, null=True)
     contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
     filer_id = models.IntegerField(blank=True, null=True)
-    attest_by_name = models.CharField(max_length=-1, blank=True, null=True)
+    attest_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
     attest_date = models.DateField(blank=True, null=True)
-    review_by_name = models.CharField(max_length=-1, blank=True, null=True)
+    review_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
     review_date = models.DateField(blank=True, null=True)
     due_date = models.DateField(blank=True, null=True)
-    occptn_ltr_date = models.CharField(max_length=-1, blank=True, null=True)
-    pymt_sched_txt = models.CharField(max_length=-1, blank=True, null=True)
-    purp_desc = models.CharField(max_length=-1, blank=True, null=True)
-    intrst_rate = models.CharField(max_length=-1, blank=True, null=True)
-    check_nbr = models.CharField(max_length=-1, blank=True, null=True)
+    occptn_ltr_date = models.LongCharField(max_length=-1, blank=True, null=True)
+    pymt_sched_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    purp_desc = models.LongCharField(max_length=-1, blank=True, null=True)
+    intrst_rate = models.LongCharField(max_length=-1, blank=True, null=True)
+    check_nbr = models.LongCharField(max_length=-1, blank=True, null=True)
     tran_stsfd_ind = models.NullBooleanField()
-    filed_by_name = models.CharField(max_length=-1, blank=True, null=True)
+    filed_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
     filed_date = models.DateField(blank=True, null=True)
-    addr_book_agent_name = models.CharField(max_length=-1, blank=True, null=True)
-    book_type = models.CharField(max_length=-1, blank=True, null=True)
-    title_txt = models.CharField(max_length=-1, blank=True, null=True)
-    occptn_txt = models.CharField(max_length=-1, blank=True, null=True)
-    emp_name = models.CharField(max_length=-1, blank=True, null=True)
-    emp_city = models.CharField(max_length=-1, blank=True, null=True)
-    emp_state = models.CharField(max_length=-1, blank=True, null=True)
+    addr_book_agent_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    book_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    title_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    occptn_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_city = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_state = models.LongCharField(max_length=-1, blank=True, null=True)
     employ_ind = models.NullBooleanField()
     self_employ_ind = models.NullBooleanField()
-    addr_line1 = models.CharField(max_length=-1, blank=True, null=True)
-    addr_line2 = models.CharField(max_length=-1, blank=True, null=True)
-    city = models.CharField(max_length=-1, blank=True, null=True)
-    state = models.CharField(max_length=-1, blank=True, null=True)
+    addr_line1 = models.LongCharField(max_length=-1, blank=True, null=True)
+    addr_line2 = models.LongCharField(max_length=-1, blank=True, null=True)
+    city = models.LongCharField(max_length=-1, blank=True, null=True)
+    state = models.LongCharField(max_length=-1, blank=True, null=True)
     zip = models.IntegerField(blank=True, null=True)
     zip_plus_four = models.IntegerField(blank=True, null=True)
-    county = models.CharField(max_length=-1, blank=True, null=True)
-    purpose_codes = models.CharField(max_length=-1, blank=True, null=True)
-    exp_date = models.CharField(max_length=-1, blank=True, null=True)
+    county = models.LongCharField(max_length=-1, blank=True, null=True)
+    purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
+    exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -449,45 +522,48 @@ class RawCommitteeTransactionsErrors(models.Model):
     tran_id = models.IntegerField(blank=True, null=True)
     original_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
-    tran_status = models.CharField(max_length=-1, blank=True, null=True)
-    filer = models.CharField(max_length=-1, blank=True, null=True)
-    contributor_payee = models.CharField(max_length=-1, blank=True, null=True)
-    sub_type = models.CharField(max_length=-1, blank=True, null=True)
+    tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
+    filer = models.LongCharField(max_length=-1, blank=True, null=True)
+    contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
+    sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
     amount = models.FloatField(blank=True, null=True)
     aggregate_amount = models.FloatField(blank=True, null=True)
     contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
     filer_id = models.IntegerField(blank=True, null=True)
-    attest_by_name = models.CharField(max_length=-1, blank=True, null=True)
+    attest_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
     attest_date = models.DateField(blank=True, null=True)
-    review_by_name = models.CharField(max_length=-1, blank=True, null=True)
+    review_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
     review_date = models.DateField(blank=True, null=True)
     due_date = models.DateField(blank=True, null=True)
-    occptn_ltr_date = models.CharField(max_length=-1, blank=True, null=True)
-    pymt_sched_txt = models.CharField(max_length=-1, blank=True, null=True)
-    purp_desc = models.CharField(max_length=-1, blank=True, null=True)
-    intrst_rate = models.CharField(max_length=-1, blank=True, null=True)
-    check_nbr = models.CharField(max_length=-1, blank=True, null=True)
+    occptn_ltr_date = models.LongCharField(max_length=-1, blank=True, null=True)
+    pymt_sched_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    purp_desc = models.LongCharField(max_length=-1, blank=True, null=True)
+    intrst_rate = models.LongCharField(max_length=-1, blank=True, null=True)
+    check_nbr = models.LongCharField(max_length=-1, blank=True, null=True)
     tran_stsfd_ind = models.NullBooleanField()
-    filed_by_name = models.CharField(max_length=-1, blank=True, null=True)
+    filed_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
     filed_date = models.DateField(blank=True, null=True)
-    addr_book_agent_name = models.CharField(max_length=-1, blank=True, null=True)
-    book_type = models.CharField(max_length=-1, blank=True, null=True)
-    title_txt = models.CharField(max_length=-1, blank=True, null=True)
-    occptn_txt = models.CharField(max_length=-1, blank=True, null=True)
-    emp_name = models.CharField(max_length=-1, blank=True, null=True)
-    emp_city = models.CharField(max_length=-1, blank=True, null=True)
-    emp_state = models.CharField(max_length=-1, blank=True, null=True)
+    addr_book_agent_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    book_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    title_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    occptn_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_city = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_state = models.LongCharField(max_length=-1, blank=True, null=True)
     employ_ind = models.NullBooleanField()
     self_employ_ind = models.NullBooleanField()
-    addr_line1 = models.CharField(max_length=-1, blank=True, null=True)
-    addr_line2 = models.CharField(max_length=-1, blank=True, null=True)
-    city = models.CharField(max_length=-1, blank=True, null=True)
-    state = models.CharField(max_length=-1, blank=True, null=True)
+    addr_line1 = models.LongCharField(max_length=-1, blank=True, null=True)
+    addr_line2 = models.LongCharField(max_length=-1, blank=True, null=True)
+    city = models.LongCharField(max_length=-1, blank=True, null=True)
+    state = models.LongCharField(max_length=-1, blank=True, null=True)
     zip = models.IntegerField(blank=True, null=True)
     zip_plus_four = models.IntegerField(blank=True, null=True)
-    county = models.CharField(max_length=-1, blank=True, null=True)
-    purpose_codes = models.CharField(max_length=-1, blank=True, null=True)
-    exp_date = models.CharField(max_length=-1, blank=True, null=True)
+    county = models.LongCharField(max_length=-1, blank=True, null=True)
+    purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
+    exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -496,27 +572,30 @@ class RawCommitteeTransactionsErrors(models.Model):
 
 class RawCommittees(models.Model):
     committee_id = models.IntegerField(blank=True, null=True)
-    committee_name = models.CharField(max_length=-1, blank=True, null=True)
-    committee_type = models.CharField(max_length=-1, blank=True, null=True)
-    committee_subtype = models.CharField(max_length=-1, blank=True, null=True)
-    candidate_office = models.CharField(max_length=-1, blank=True, null=True)
-    candidate_office_group = models.CharField(max_length=-1, blank=True, null=True)
+    committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    committee_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    committee_subtype = models.LongCharField(max_length=-1, blank=True, null=True)
+    candidate_office = models.LongCharField(max_length=-1, blank=True, null=True)
+    candidate_office_group = models.LongCharField(max_length=-1, blank=True, null=True)
     filing_date = models.DateField(blank=True, null=True)
     organization_filing_date = models.DateField(db_column='organization_filing Date', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    treasurer_first_name = models.CharField(max_length=-1, blank=True, null=True)
-    treasurer_last_name = models.CharField(max_length=-1, blank=True, null=True)
-    treasurer_mailing_address = models.CharField(max_length=-1, blank=True, null=True)
-    treasurer_work_phone = models.CharField(max_length=-1, blank=True, null=True)
-    treasurer_fax = models.CharField(max_length=-1, blank=True, null=True)
-    candidate_first_name = models.CharField(max_length=-1, blank=True, null=True)
-    candidate_last_name = models.CharField(max_length=-1, blank=True, null=True)
-    candidate_maling_address = models.CharField(max_length=-1, blank=True, null=True)
-    candidate_work_phone = models.CharField(max_length=-1, blank=True, null=True)
-    candidate_residence_phone = models.CharField(max_length=-1, blank=True, null=True)
-    candidate_fax = models.CharField(max_length=-1, blank=True, null=True)
-    candidate_email = models.CharField(max_length=-1, blank=True, null=True)
-    active_election = models.CharField(max_length=-1, blank=True, null=True)
-    measure = models.CharField(max_length=-1, blank=True, null=True)
+    treasurer_first_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    treasurer_last_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    treasurer_mailing_address = models.LongCharField(max_length=-1, blank=True, null=True)
+    treasurer_work_phone = models.LongCharField(max_length=-1, blank=True, null=True)
+    treasurer_fax = models.LongCharField(max_length=-1, blank=True, null=True)
+    candidate_first_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    candidate_last_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    candidate_maling_address = models.LongCharField(max_length=-1, blank=True, null=True)
+    candidate_work_phone = models.LongCharField(max_length=-1, blank=True, null=True)
+    candidate_residence_phone = models.LongCharField(max_length=-1, blank=True, null=True)
+    candidate_fax = models.LongCharField(max_length=-1, blank=True, null=True)
+    candidate_email = models.LongCharField(max_length=-1, blank=True, null=True)
+    active_election = models.LongCharField(max_length=-1, blank=True, null=True)
+    measure = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -550,6 +629,9 @@ class RawCommitteesScraped(models.Model):
     measure_details = models.TextField(blank=True, null=True)
     committee_type = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'raw_committees_scraped'
@@ -557,6 +639,9 @@ class RawCommitteesScraped(models.Model):
 
 class SchemaMigrations(models.Model):
     version = models.CharField(unique=True, max_length=-1)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -566,6 +651,9 @@ class SchemaMigrations(models.Model):
 class SearchLog(models.Model):
     search_term = models.TextField(blank=True, null=True)
     date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -583,14 +671,20 @@ class StateSumByDate(models.Model):
     total_grass_roots = models.FloatField(blank=True, null=True)
     total_from_in_state = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'state_sum_by_date'
 
 
 class StateTranslation(models.Model):
-    statefull = models.CharField(max_length=-1, blank=True, null=True)
+    statefull = models.LongCharField(max_length=-1, blank=True, null=True)
     abbreviation = models.CharField(max_length=3, blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -598,7 +692,10 @@ class StateTranslation(models.Model):
 
 
 class SubTypeFromContributorPayee(models.Model):
-    contributor_payee = models.CharField(max_length=-1, blank=True, null=True)
+    contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -608,11 +705,14 @@ class SubTypeFromContributorPayee(models.Model):
 class WorkingCandidateCommittees(models.Model):
     candidate_name = models.TextField(blank=True, null=True)
     committee_id = models.IntegerField(blank=True, null=True)
-    committee_name = models.CharField(max_length=-1, blank=True, null=True)
+    committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     election_office = models.TextField(blank=True, null=True)
     phone = models.TextField(blank=True, null=True)
     party_affiliation = models.TextField(blank=True, null=True)
     web_address = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -673,6 +773,9 @@ class WorkingCandidateFilings(models.Model):
     work_phone = models.TextField(blank=True, null=True)
     web_address = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = False
         db_table = 'working_candidate_filings'
@@ -680,23 +783,26 @@ class WorkingCandidateFilings(models.Model):
 
 class WorkingCommittees(models.Model):
     committee_id = models.IntegerField(blank=True, null=True)
-    committee_name = models.CharField(max_length=-1, blank=True, null=True)
-    committee_type = models.CharField(max_length=-1, blank=True, null=True)
-    committee_subtype = models.CharField(max_length=-1, blank=True, null=True)
+    committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    committee_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    committee_subtype = models.LongCharField(max_length=-1, blank=True, null=True)
     party_affiliation = models.TextField(blank=True, null=True)
-    phone = models.CharField(max_length=-1, blank=True, null=True)
+    phone = models.LongCharField(max_length=-1, blank=True, null=True)
     election_office = models.TextField(blank=True, null=True)
     candidate_name = models.TextField(blank=True, null=True)
-    candidate_email_address = models.CharField(max_length=-1, blank=True, null=True)
+    candidate_email_address = models.LongCharField(max_length=-1, blank=True, null=True)
     candidate_work_phone_home_phone_fax = models.TextField(blank=True, null=True)
-    candidate_address = models.CharField(max_length=-1, blank=True, null=True)
+    candidate_address = models.LongCharField(max_length=-1, blank=True, null=True)
     treasurer_name = models.TextField(blank=True, null=True)
     treasurer_work_phone_home_phone_fax = models.TextField(blank=True, null=True)
-    treasurer_mailing_address = models.CharField(max_length=-1, blank=True, null=True)
+    treasurer_mailing_address = models.LongCharField(max_length=-1, blank=True, null=True)
     web_address = models.TextField(blank=True, null=True)
-    measure = models.CharField(max_length=-1, blank=True, null=True)
+    measure = models.LongCharField(max_length=-1, blank=True, null=True)
     simple_election = models.TextField(blank=True, null=True)
     db_update_status = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
@@ -706,23 +812,26 @@ class WorkingCommittees(models.Model):
 class WorkingTransactions(models.Model):
     tran_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
-    filer = models.CharField(max_length=-1, blank=True, null=True)
-    contributor_payee = models.CharField(max_length=-1, blank=True, null=True)
-    sub_type = models.CharField(max_length=-1, blank=True, null=True)
+    filer = models.LongCharField(max_length=-1, blank=True, null=True)
+    contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
+    sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
     amount = models.FloatField(blank=True, null=True)
     contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
     filer_id = models.IntegerField(blank=True, null=True)
-    purp_desc = models.CharField(max_length=-1, blank=True, null=True)
-    book_type = models.CharField(max_length=-1, blank=True, null=True)
-    addr_line1 = models.CharField(max_length=-1, blank=True, null=True)
+    purp_desc = models.LongCharField(max_length=-1, blank=True, null=True)
+    book_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    addr_line1 = models.LongCharField(max_length=-1, blank=True, null=True)
     filed_date = models.DateField(blank=True, null=True)
-    addr_line2 = models.CharField(max_length=-1, blank=True, null=True)
-    city = models.CharField(max_length=-1, blank=True, null=True)
-    state = models.CharField(max_length=-1, blank=True, null=True)
+    addr_line2 = models.LongCharField(max_length=-1, blank=True, null=True)
+    city = models.LongCharField(max_length=-1, blank=True, null=True)
+    state = models.LongCharField(max_length=-1, blank=True, null=True)
     zip = models.IntegerField(blank=True, null=True)
-    purpose_codes = models.CharField(max_length=-1, blank=True, null=True)
+    purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
     direction = models.CharField(max_length=7, blank=True, null=True)
-    contributor_payee_class = models.CharField(max_length=-1, blank=True, null=True)
+    contributor_payee_class = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = False
