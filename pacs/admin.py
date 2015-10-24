@@ -1,7 +1,4 @@
 from django.contrib import admin
-from .models import RawCommitteeTransactions 
-
-admin.site.register(RawCommitteeTransactions)
 from django.apps import apps
 from django import forms
 
