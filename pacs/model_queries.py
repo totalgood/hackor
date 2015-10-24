@@ -1,4 +1,4 @@
-from models_rds import RawCommitteeTransactions
+from pacs.models import RawCommitteeTransactions
 from django.db.models import Sum
 
 
