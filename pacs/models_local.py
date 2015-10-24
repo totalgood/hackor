@@ -1,17 +1,21 @@
-# Minimal cleanup of inspectdb models
+# 0001 - LongCharField; 2 id columns;
+# 0002 - representation; primary_keys; app_label
 from __future__ import unicode_literals
 
 from utils import models, representation
 
 
 class AcGrassRootsInState(models.Model):
-    filer_id = models.FloatField(blank=True, null=True)
+    filer_id = models.FloatField(blank=True, primary_key=True)
     filer = models.TextField(blank=True, null=True)
     candidate_name = models.TextField(blank=True, null=True)
     total_money = models.FloatField(blank=True, null=True)
     percent_grassroots = models.FloatField(blank=True, null=True)
     percent_instate = models.FloatField(blank=True, null=True)
     total_money_out = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = True
@@ -20,13 +24,30 @@ class AcGrassRootsInState(models.Model):
 
 
 class AccessLog(models.Model):
-    committee_id = models.IntegerField(blank=True, null=True)
+    committee_id = models.IntegerField(blank=True, primary_key=True, null=False)
     date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         managed = True
         app_label = 'pacs'
         db_table = 'access_log'
+
+
+class AccessLogUpdate(models.Model):
+    """Created by Daniel with rails ORM?"""
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
+
+    def __str__(self):
+        return representation(self)
+
+    class Meta:
+        app_label = 'pacs'
+        managed = False
+        db_table = 'access_logs'
 
 
 class AllOregonSum(models.Model):
@@ -46,6 +67,7 @@ class AllOregonSum(models.Model):
 
 
 class CampaignDetail(models.Model):
+    filer_id = models.IntegerField(primary_key=True, default=0)
     candidate_name = models.TextField(blank=True, null=True)
     committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     race = models.TextField(blank=True, null=True)
@@ -63,6 +85,12 @@ class CampaignDetail(models.Model):
     committee_subtype = models.LongCharField(max_length=-1, blank=True, null=True)
     db_update_status = models.TextField(blank=True, null=True)
 
+    IMPORTANT_FIELDS = ['filer_id', 'committee_name', 'committee_type', 'committee_subtype',
+                        'candidate_name', 'website', 'party', 'race']
+
+    def __str__(self):
+        return representation(self)
+
     class Meta:
         managed = True
         app_label = 'pacs'
@@ -76,26 +104,36 @@ class CandidateByState(models.Model):
     direction = models.CharField(max_length=7, blank=True, null=True)
     value = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return representation(self)
+
     class Meta:
+        verbose_name_plural = 'candidates by state'
         managed = True
         app_label = 'pacs'
         db_table = 'candidate_by_state'
 
 
 class CandidateSumByDate(models.Model):
-    filer_id = models.IntegerField(blank=True, null=True)
+    filer_id = models.IntegerField(blank=True, primary_key=True)
     tran_date = models.DateField(blank=True, null=True)
     total_in = models.FloatField(blank=True, null=True)
     total_out = models.FloatField(blank=True, null=True)
 
+    IMPORTANT_FIELDS = ['filer_id', 'total_in', 'total_out']
+
+    def __str__(self):
+        return representation(self)
+
     class Meta:
+        verbose_name_plural = 'candidate sums by date'
         managed = True
         app_label = 'pacs'
         db_table = 'candidate_sum_by_date'
 
 
 class CcGrassRootsInState(models.Model):
-    filer_id = models.IntegerField(blank=True, null=True)
+    filer_id = models.IntegerField(blank=True, primary_key=True)
     filer = models.LongCharField(max_length=-1, blank=True, null=True)
     num_transactions = models.BigIntegerField(blank=True, null=True)
     in_state = models.FloatField(blank=True, null=True)

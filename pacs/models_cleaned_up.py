@@ -1,11 +1,5 @@
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Make sure each model has one field with primary_key=True
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
-#
-# Also note: You'll have to insert the output of 'django-admin sqlcustom [app_label]'
-# into your database.
+# 0001 - LongCharField; 2 id columns;
+# 0002 - representation; primary_keys; app_label
 from __future__ import unicode_literals
 
 from utils import models, representation
@@ -24,7 +18,8 @@ class AcGrassRootsInState(models.Model):
         return representation(self)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'ac_grass_roots_in_state'
 
 
@@ -36,7 +31,8 @@ class AccessLog(models.Model):
         return representation(self)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'access_log'
 
 
@@ -53,19 +49,20 @@ class AccessLogUpdate(models.Model):
         db_table = 'access_logs'
 
 
-# class AllOregonSum(models.Model):
-#     in_field = models.FloatField(db_column='in', blank=True, null=True)
-#     out = models.FloatField(blank=True, null=True)
-#     from_within = models.FloatField(blank=True, null=True)
-#     to_within = models.FloatField(blank=True, null=True)
-#     from_outside = models.FloatField(blank=True, null=True)
-#     to_outside = models.FloatField(blank=True, null=True)
-#     total_grass_roots = models.FloatField(blank=True, null=True)
-#     total_from_in_state = models.FloatField(blank=True, null=True)
+class AllOregonSum(models.Model):
+    in_field = models.FloatField(db_column='in', blank=True, null=True)  # Field renamed because it was a Python reserved word.
+    out = models.FloatField(blank=True, null=True)
+    from_within = models.FloatField(blank=True, null=True)
+    to_within = models.FloatField(blank=True, null=True)
+    from_outside = models.FloatField(blank=True, null=True)
+    to_outside = models.FloatField(blank=True, null=True)
+    total_grass_roots = models.FloatField(blank=True, null=True)
+    total_from_in_state = models.FloatField(blank=True, null=True)
 
-#     class Meta:
-#         managed = False
-#         db_table = 'all_oregon_sum'
+    class Meta:
+        managed = True
+        app_label = 'pacs'
+        db_table = 'all_oregon_sum'
 
 
 class CampaignDetail(models.Model):
@@ -79,6 +76,7 @@ class CampaignDetail(models.Model):
     total_spent = models.FloatField(blank=True, null=True)
     grassroots = models.FloatField(blank=True, null=True)
     instate = models.FloatField(blank=True, null=True)
+    filer_id = models.IntegerField(blank=True, null=True)
     election = models.TextField(blank=True, null=True)
     party = models.TextField(blank=True, null=True)
     num_transactions = models.BigIntegerField(blank=True, null=True)
@@ -93,8 +91,8 @@ class CampaignDetail(models.Model):
         return representation(self)
 
     class Meta:
-        app_label = 'pacs'
         managed = True
+        app_label = 'pacs'
         db_table = 'campaign_detail'
 
 
@@ -110,7 +108,8 @@ class CandidateByState(models.Model):
 
     class Meta:
         verbose_name_plural = 'candidates by state'
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'candidate_by_state'
 
 
@@ -127,7 +126,8 @@ class CandidateSumByDate(models.Model):
 
     class Meta:
         verbose_name_plural = 'candidate sums by date'
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'candidate_sum_by_date'
 
 
