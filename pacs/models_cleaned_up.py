@@ -45,7 +45,7 @@ class AccessLogUpdate(models.Model):
 
     class Meta:
         app_label = 'pacs'
-        managed = False
+        managed = True
         db_table = 'access_logs'
 
 
@@ -151,8 +151,8 @@ class CcGrassRootsInState(models.Model):
     class Meta:
         verbose_name = 'grass roots in-state total'
         verbose_name_plural = 'grass roots in-state totals'
-
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'cc_grass_roots_in_state'
 
 
@@ -185,7 +185,7 @@ class CcWorkingTransactions(models.Model):
     class Meta:
         verbose_name = 'working transaction'
         verbose_name_plural = 'working transactions'
-        managed = False
+        managed = True
         db_table = 'cc_working_transactions'
 
 
@@ -199,7 +199,7 @@ class DirectionCodes(models.Model):
     class Meta:
         verbose_name = 'direction'
         verbose_name_plural = 'directions'
-        managed = False
+        managed = True
         db_table = 'direction_codes'
 
 
@@ -214,7 +214,7 @@ class Documentation(models.Model):
     class Meta:
         verbose_name = 'document'
         verbose_name_plural = 'documents'
-        managed = False
+        managed = True
         db_table = 'documentation'
 
 
@@ -257,7 +257,7 @@ class HackOregonDbStatus(models.Model):
     class Meta:
         verbose_name = 'database status'
         verbose_name_plural = 'database status'
-        managed = False
+        managed = True
         db_table = 'hack_oregon_db_status'
 
 
@@ -272,7 +272,7 @@ class ImportDates(models.Model):
     class Meta:
         verbose_name = 'file import date'
         verbose_name_plural = 'file import dates'
-        managed = False
+        managed = True
         db_table = 'import_dates'
 
 
@@ -286,7 +286,7 @@ class OregonByContributions(models.Model):
     class Meta:
         verbose_name = 'contribution type'
         verbose_name_plural = 'contribution types'
-        managed = False
+        managed = True
         db_table = 'oregon_by_contributions'
 
 
@@ -301,7 +301,7 @@ class OregonByPurposeCodes(models.Model):
         verbose_name = 'purpose'
         verbose_name_plural = 'purposes'
 
-        managed = False
+        managed = True
         db_table = 'oregon_by_purpose_codes'
 
 
@@ -316,8 +316,7 @@ class OregonCommitteeAgg(models.Model):
     class Meta:
         verbose_name = 'pac aggregate'
         verbose_name_plural = 'pac aggregates'
-
-        managed = False
+        managed = True
         db_table = 'oregon_committee_agg'
 
 
@@ -562,7 +561,7 @@ class RawCommitteeTransactionsAmmendedTransactions(models.Model):
         app_label = 'pacs'
         verbose_name = 'ammended transaction'
         verbose_name_plural = 'ammended transactions'
-        managed = False
+        managed = True
         db_table = 'raw_committee_transactions_ammended_transactions'
 
 
@@ -616,7 +615,7 @@ class RawCommitteeTransactionsErrors(models.Model):
     class Meta:
         verbose_name = 'transaction error'
         verbose_name_plural = 'transaction errors'
-        managed = False
+        managed = True
         db_table = 'raw_committee_transactions_errors'
 
 
@@ -651,7 +650,7 @@ class RawCommittees(models.Model):
     class Meta:
         verbose_name = 'committee'
         verbose_name_plural = 'committees'
-        managed = False
+        managed = True
         db_table = 'raw_committees'
 
 
@@ -686,7 +685,7 @@ class RawCommitteesScraped(models.Model):
         return representation(self)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'raw_committees_scraped'
 
 
@@ -698,7 +697,7 @@ class SearchLog(models.Model):
         return representation(self)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'search_log'
 
 
@@ -717,7 +716,7 @@ class StateSumByDate(models.Model):
         return representation(self)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'state_sum_by_date'
 
 
@@ -729,7 +728,7 @@ class StateTranslation(models.Model):
         return representation(self)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'state_translation'
 
 
@@ -740,7 +739,7 @@ class SubTypeFromContributorPayee(models.Model):
         return representation(self)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'sub_type_from_contributor_payee'
 
 
@@ -757,7 +756,7 @@ class WorkingCandidateCommittees(models.Model):
         return representation(self)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'working_candidate_committees'
 
 
@@ -819,7 +818,7 @@ class WorkingCandidateFilings(models.Model):
         return representation(self)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'working_candidate_filings'
 
 
@@ -847,7 +846,7 @@ class WorkingCommittees(models.Model):
         return representation(self)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'working_committees'
 
 
@@ -876,5 +875,5 @@ class WorkingTransactions(models.Model):
         return representation(self)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'working_transactions'

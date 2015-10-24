@@ -144,7 +144,14 @@ class CcGrassRootsInState(models.Model):
     percent_grass_roots = models.FloatField(blank=True, null=True)
     percent_in_state = models.FloatField(blank=True, null=True)
 
+    IMPORTANT_FIELDS = ['filer_id', 'filer', 'total_money', 'percent_grass_roots', 'percent_in_state']
+
+    def __str__(self):
+        return representation(self)
+
     class Meta:
+        verbose_name = 'grass roots in-state total'
+        verbose_name_plural = 'grass roots in-state totals'
         managed = True
         app_label = 'pacs'
         db_table = 'cc_grass_roots_in_state'
