@@ -14,7 +14,8 @@ class AcGrassRootsInState(models.Model):
     total_money_out = models.FloatField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'ac_grass_roots_in_state'
 
 
@@ -23,7 +24,8 @@ class AccessLog(models.Model):
     date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'access_log'
 
 
@@ -38,7 +40,8 @@ class AllOregonSum(models.Model):
     total_from_in_state = models.FloatField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'all_oregon_sum'
 
 
@@ -61,7 +64,8 @@ class CampaignDetail(models.Model):
     db_update_status = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'campaign_detail'
 
 
@@ -73,7 +77,8 @@ class CandidateByState(models.Model):
     value = models.FloatField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'candidate_by_state'
 
 
@@ -84,7 +89,8 @@ class CandidateSumByDate(models.Model):
     total_out = models.FloatField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'candidate_sum_by_date'
 
 
@@ -101,7 +107,8 @@ class CcGrassRootsInState(models.Model):
     percent_in_state = models.FloatField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'cc_grass_roots_in_state'
 
 
@@ -127,7 +134,8 @@ class CcWorkingTransactions(models.Model):
     contributor_payee_class = models.LongCharField(max_length=-1, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'cc_working_transactions'
 
 
@@ -136,7 +144,8 @@ class DirectionCodes(models.Model):
     direction = models.CharField(max_length=7, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'direction_codes'
 
 
@@ -146,7 +155,8 @@ class Documentation(models.Model):
     txt = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'documentation'
 
 
@@ -184,17 +194,19 @@ class HackOregonDbStatus(models.Model):
     search_log = models.FloatField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'hack_oregon_db_status'
 
 
 class ImportDates(models.Model):
-    id = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+    file_id = models.DecimalField(db_column='id', max_digits=1000, decimal_places=1000, blank=True, default=0, primary_key=True)
     scrape_date = models.DateField(blank=True, null=True)
     file_name = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'import_dates'
 
 
@@ -203,7 +215,8 @@ class OregonByContributions(models.Model):
     total = models.FloatField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'oregon_by_contributions'
 
 
@@ -212,7 +225,8 @@ class OregonByPurposeCodes(models.Model):
     total = models.FloatField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'oregon_by_purpose_codes'
 
 
@@ -222,7 +236,8 @@ class OregonCommitteeAgg(models.Model):
     sum = models.FloatField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'oregon_committee_agg'
 
 
@@ -271,7 +286,8 @@ class PacsCommitteetransactions(models.Model):
     exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'pacs_committeetransactions'
 
 
@@ -330,7 +346,8 @@ class RawCandidateFilings(models.Model):
     web_address = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'raw_candidate_filings'
 
 
@@ -379,7 +396,8 @@ class RawCommitteeTransactions(models.Model):
     exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'raw_committee_transactions'
 
 
@@ -428,7 +446,8 @@ class RawCommitteeTransactionsAmmendedTransactions(models.Model):
     exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'raw_committee_transactions_ammended_transactions'
 
 
@@ -477,7 +496,8 @@ class RawCommitteeTransactionsErrors(models.Model):
     exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'raw_committee_transactions_errors'
 
 
@@ -506,13 +526,14 @@ class RawCommittees(models.Model):
     measure = models.LongCharField(max_length=-1, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'raw_committees'
 
 
 class RawCommitteesScraped(models.Model):
     name = models.TextField(blank=True, null=True)
-    id = models.IntegerField(blank=True, null=True)
+    committee_id = models.IntegerField(db_column='id', blank=True, null=False, default=0, primary_key=True)
     acronym = models.TextField(blank=True, null=True)
     pac_type = models.TextField(blank=True, null=True)
     filing_effective_from = models.TextField(blank=True, null=True)
@@ -538,7 +559,8 @@ class RawCommitteesScraped(models.Model):
     committee_type = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'raw_committees_scraped'
 
 
@@ -547,7 +569,8 @@ class SearchLog(models.Model):
     date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'search_log'
 
 
@@ -563,7 +586,8 @@ class StateSumByDate(models.Model):
     total_from_in_state = models.FloatField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'state_sum_by_date'
 
 
@@ -572,7 +596,8 @@ class StateTranslation(models.Model):
     abbreviation = models.CharField(max_length=3, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'state_translation'
 
 
@@ -580,7 +605,8 @@ class SubTypeFromContributorPayee(models.Model):
     contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'sub_type_from_contributor_payee'
 
 
@@ -594,7 +620,8 @@ class WorkingCandidateCommittees(models.Model):
     web_address = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'working_candidate_committees'
 
 
@@ -653,7 +680,8 @@ class WorkingCandidateFilings(models.Model):
     web_address = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'working_candidate_filings'
 
 
@@ -678,7 +706,8 @@ class WorkingCommittees(models.Model):
     db_update_status = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'working_committees'
 
 
@@ -704,5 +733,6 @@ class WorkingTransactions(models.Model):
     contributor_payee_class = models.LongCharField(max_length=-1, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'working_transactions'
