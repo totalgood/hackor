@@ -322,7 +322,7 @@ class OregonCommitteeAgg(models.Model):
 
 
 class RawCandidateFilings(models.Model):
-    candidate_file_rsn = models.IntegerField(blank=True, primary_key=True, default=0)
+    candidate_file_rsn = models.IntegerField(blank=True, primary_key=True)
     election_txt = models.TextField(blank=True, null=True)
     election_year = models.IntegerField(blank=True, null=True)
     office_group = models.TextField(blank=True, null=True)
