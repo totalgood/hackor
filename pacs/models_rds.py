@@ -8,6 +8,8 @@
 # into your database.
 from __future__ import unicode_literals
 
+print('Using models in {}'.format(__file__))
+
 from utils import models, representation
 
 

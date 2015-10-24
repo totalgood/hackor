@@ -2,6 +2,8 @@
 # 0002 - representation; primary_keys; app_label
 from __future__ import unicode_literals
 
+print('Using models in {}'.format(__file__))
+
 from utils import models, representation
 
 

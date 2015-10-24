@@ -2,6 +2,8 @@
 # 0002 - representation; primary_keys; app_label
 from __future__ import unicode_literals
 
+print('Using models in {}'.format(__file__))
+
 from utils import models, representation
 
 
@@ -37,6 +39,7 @@ class AccessLog(models.Model):
 
 
 class AccessLogUpdate(models.Model):
+    """Created by Daniel with rails ORM?"""
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
 
@@ -45,7 +48,7 @@ class AccessLogUpdate(models.Model):
 
     class Meta:
         app_label = 'pacs'
-        managed = True
+        managed = False
         db_table = 'access_logs'
 
 
@@ -184,8 +187,8 @@ class CcWorkingTransactions(models.Model):
 
     class Meta:
         verbose_name = 'working transaction'
-        verbose_name_plural = 'working transactions'
         managed = True
+        app_label = 'pacs'
         db_table = 'cc_working_transactions'
 
 
@@ -198,8 +201,8 @@ class DirectionCodes(models.Model):
 
     class Meta:
         verbose_name = 'direction'
-        verbose_name_plural = 'directions'
         managed = True
+        app_label = 'pacs'
         db_table = 'direction_codes'
 
 
@@ -213,8 +216,8 @@ class Documentation(models.Model):
 
     class Meta:
         verbose_name = 'document'
-        verbose_name_plural = 'documents'
         managed = True
+        app_label = 'pacs'
         db_table = 'documentation'
 
 
@@ -256,13 +259,14 @@ class HackOregonDbStatus(models.Model):
 
     class Meta:
         verbose_name = 'database status'
-        verbose_name_plural = 'database status'
+        verbose_name_plural = 'database statuses'
         managed = True
+        app_label = 'pacs'
         db_table = 'hack_oregon_db_status'
 
 
 class ImportDates(models.Model):
-    id = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, primary_key=True)
+    file_id = models.DecimalField(db_column='id', max_digits=1000, decimal_places=1000, blank=True, default=0, primary_key=True)
     scrape_date = models.DateField(blank=True, null=True)
     file_name = models.TextField(blank=True, null=True)
 
@@ -271,8 +275,8 @@ class ImportDates(models.Model):
 
     class Meta:
         verbose_name = 'file import date'
-        verbose_name_plural = 'file import dates'
         managed = True
+        app_label = 'pacs'
         db_table = 'import_dates'
 
 
@@ -287,6 +291,7 @@ class OregonByContributions(models.Model):
         verbose_name = 'contribution type'
         verbose_name_plural = 'contribution types'
         managed = True
+        app_label = 'pacs'
         db_table = 'oregon_by_contributions'
 
 
@@ -300,8 +305,8 @@ class OregonByPurposeCodes(models.Model):
     class Meta:
         verbose_name = 'purpose'
         verbose_name_plural = 'purposes'
-
         managed = True
+        app_label = 'pacs'
         db_table = 'oregon_by_purpose_codes'
 
 
@@ -315,9 +320,70 @@ class OregonCommitteeAgg(models.Model):
 
     class Meta:
         verbose_name = 'pac aggregate'
-        verbose_name_plural = 'pac aggregates'
         managed = True
+        app_label = 'pacs'
         db_table = 'oregon_committee_agg'
+
+
+class CommitteeTransactions(models.Model):
+    """Committee transactions cleaned with Grimm's migration
+
+    Intended to be used to compute aggregates displayed to the user.
+    Other transaction tables are dirty (contain transaction ammendments with the same "original_id").
+    """
+    tran_id = models.IntegerField(blank=True, primary_key=True)
+    original_id = models.IntegerField(blank=True)
+    tran_date = models.DateField(blank=True, null=True)
+    tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
+    filer = models.LongCharField(max_length=-1, blank=True, null=True)
+    contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
+    sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    amount = models.FloatField(blank=True, null=True)
+    aggregate_amount = models.FloatField(blank=True, null=True)
+    contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
+    filer_id = models.IntegerField(blank=True, null=True)
+    attest_by_name = models.LongCharField(max_length=-1)
+    attest_date = models.DateField()
+    review_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    review_date = models.DateField(blank=True, null=True)
+    due_date = models.DateField(blank=True, null=True)
+    occptn_ltr_date = models.LongCharField(max_length=-1, blank=True, null=True)
+    pymt_sched_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    purp_desc = models.LongCharField(max_length=-1, blank=True, null=True)
+    intrst_rate = models.LongCharField(max_length=-1, blank=True, null=True)
+    check_nbr = models.LongCharField(max_length=-1, blank=True, null=True)
+    tran_stsfd_ind = models.NullBooleanField()
+    filed_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    filed_date = models.DateField(blank=True, null=True)
+    addr_book_agent_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    book_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    title_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    occptn_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_city = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_state = models.LongCharField(max_length=-1, blank=True, null=True)
+    employ_ind = models.NullBooleanField()
+    self_employ_ind = models.NullBooleanField()
+    addr_line1 = models.LongCharField(max_length=-1, blank=True, null=True)
+    addr_line2 = models.LongCharField(max_length=-1, blank=True, null=True)
+    city = models.LongCharField(max_length=-1, blank=True, null=True)
+    state = models.LongCharField(max_length=-1, blank=True, null=True)
+    zip = models.IntegerField(blank=True, null=True)
+    zip_plus_four = models.IntegerField(blank=True, null=True)
+    county = models.LongCharField(max_length=-1, blank=True, null=True)
+    purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
+    exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    IMPORTANT_FIELDS = ['tran_id', 'tran_date', 'filer_id', 'filer', 'contributor_payee', 'amount',
+                        'direction', 'purpose_codes']
+
+    def __str__(self):
+        return representation(self)
+
+    class Meta:
+        managed = True
+        app_label = 'pacs'
+        db_table = 'pacs_committeetransactions'
 
 
 class RawCandidateFilings(models.Model):
@@ -328,7 +394,6 @@ class RawCandidateFilings(models.Model):
     id_nbr = models.IntegerField(blank=True, null=True)
     office = models.TextField(blank=True, null=True)
     candidate_office = models.TextField(blank=True, null=True)
-    candidate_file_rsn = models.IntegerField(blank=True, null=True)
     file_mthd_ind = models.TextField(blank=True, null=True)
     filetype_descr = models.TextField(blank=True, null=True)
     party_descr = models.TextField(blank=True, null=True)
@@ -440,77 +505,14 @@ class RawCommitteeTransactions(models.Model):
         return representation(self)
 
     class Meta:
+        managed = True
         app_label = 'pacs'
         verbose_name = 'raw transaction'
-        verbose_name_plural = 'raw transactions'
         db_table = 'raw_committee_transactions'
 
 
-
-class CommitteeTransactions(models.Model):
-    """Committee transactions cleaned with Grimm's migration
-
-    Intended for use in aggregates displayed to the user.
-    Other transaction tables are dirty (contain transaction ammendments with the same "original_id").
-    """
-    tran_id = models.IntegerField(blank=True, primary_key=True)
-    original_id = models.IntegerField(blank=True)
-    tran_date = models.DateField(blank=True, null=True)
-    tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
-    filer = models.LongCharField(max_length=-1, blank=True, null=True)
-    contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
-    sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
-    amount = models.FloatField(blank=True, null=True)
-    aggregate_amount = models.FloatField(blank=True, null=True)
-    contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
-    filer_id = models.IntegerField(blank=True, null=True)
-    attest_by_name = models.LongCharField(max_length=-1)
-    attest_date = models.DateField()
-    review_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
-    review_date = models.DateField(blank=True, null=True)
-    due_date = models.DateField(blank=True, null=True)
-    occptn_ltr_date = models.LongCharField(max_length=-1, blank=True, null=True)
-    pymt_sched_txt = models.LongCharField(max_length=-1, blank=True, null=True)
-    purp_desc = models.LongCharField(max_length=-1, blank=True, null=True)
-    intrst_rate = models.LongCharField(max_length=-1, blank=True, null=True)
-    check_nbr = models.LongCharField(max_length=-1, blank=True, null=True)
-    tran_stsfd_ind = models.NullBooleanField()
-    filed_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
-    filed_date = models.DateField(blank=True, null=True)
-    addr_book_agent_name = models.LongCharField(max_length=-1, blank=True, null=True)
-    book_type = models.LongCharField(max_length=-1, blank=True, null=True)
-    title_txt = models.LongCharField(max_length=-1, blank=True, null=True)
-    occptn_txt = models.LongCharField(max_length=-1, blank=True, null=True)
-    emp_name = models.LongCharField(max_length=-1, blank=True, null=True)
-    emp_city = models.LongCharField(max_length=-1, blank=True, null=True)
-    emp_state = models.LongCharField(max_length=-1, blank=True, null=True)
-    employ_ind = models.NullBooleanField()
-    self_employ_ind = models.NullBooleanField()
-    addr_line1 = models.LongCharField(max_length=-1, blank=True, null=True)
-    addr_line2 = models.LongCharField(max_length=-1, blank=True, null=True)
-    city = models.LongCharField(max_length=-1, blank=True, null=True)
-    state = models.LongCharField(max_length=-1, blank=True, null=True)
-    zip = models.IntegerField(blank=True, null=True)
-    zip_plus_four = models.IntegerField(blank=True, null=True)
-    county = models.LongCharField(max_length=-1, blank=True, null=True)
-    purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
-    exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
-
-    IMPORTANT_FIELDS = ['tran_id', 'tran_date', 'filer_id', 'filer', 'contributor_payee', 'amount',
-                        'direction', 'purpose_codes']
-
-    def __str__(self):
-        return representation(self)
-
-    class Meta:
-        app_label = 'pacs'
-        verbose_name = 'transaction'
-        verbose_name_plural = 'transactions'
-        managed = True
-
-
 class RawCommitteeTransactionsAmmendedTransactions(models.Model):
-    #TODO:  what does 'amended' mean?  Any reason to keep this table?
+    """Transactions have multiple tran_ids for the same original_id for auditing purposes"""
     tran_id = models.IntegerField(blank=True, primary_key=True)
     original_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
@@ -558,10 +560,9 @@ class RawCommitteeTransactionsAmmendedTransactions(models.Model):
         return representation(self)
 
     class Meta:
+        managed = True
         app_label = 'pacs'
         verbose_name = 'ammended transaction'
-        verbose_name_plural = 'ammended transactions'
-        managed = True
         db_table = 'raw_committee_transactions_ammended_transactions'
 
 
@@ -614,8 +615,8 @@ class RawCommitteeTransactionsErrors(models.Model):
 
     class Meta:
         verbose_name = 'transaction error'
-        verbose_name_plural = 'transaction errors'
         managed = True
+        app_label = 'pacs'
         db_table = 'raw_committee_transactions_errors'
 
 
@@ -649,13 +650,13 @@ class RawCommittees(models.Model):
 
     class Meta:
         verbose_name = 'committee'
-        verbose_name_plural = 'committees'
         managed = True
+        app_label = 'pacs'
         db_table = 'raw_committees'
 
 
 class RawCommitteesScraped(models.Model):
-    id = models.IntegerField(blank=True, primary_key=True)
+    committee_id = models.IntegerField(db_column='id', blank=True, null=False, default=0, primary_key=True)
     name = models.TextField(blank=True, null=True)
     acronym = models.TextField(blank=True, null=True)
     pac_type = models.TextField(blank=True, null=True)
@@ -686,6 +687,7 @@ class RawCommitteesScraped(models.Model):
 
     class Meta:
         managed = True
+        app_label = 'pacs'
         db_table = 'raw_committees_scraped'
 
 
@@ -698,6 +700,7 @@ class SearchLog(models.Model):
 
     class Meta:
         managed = True
+        app_label = 'pacs'
         db_table = 'search_log'
 
 
@@ -717,6 +720,7 @@ class StateSumByDate(models.Model):
 
     class Meta:
         managed = True
+        app_label = 'pacs'
         db_table = 'state_sum_by_date'
 
 
@@ -729,6 +733,7 @@ class StateTranslation(models.Model):
 
     class Meta:
         managed = True
+        app_label = 'pacs'
         db_table = 'state_translation'
 
 
@@ -740,11 +745,12 @@ class SubTypeFromContributorPayee(models.Model):
 
     class Meta:
         managed = True
+        app_label = 'pacs'
         db_table = 'sub_type_from_contributor_payee'
 
 
 class WorkingCandidateCommittees(models.Model):
-    committee_id = models.IntegerField(blank=True, null=True)
+    committee_id = models.IntegerField(blank=True, null=False, primary_key=True)
     candidate_name = models.TextField(blank=True, null=True)
     committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     election_office = models.TextField(blank=True, null=True)
@@ -757,6 +763,7 @@ class WorkingCandidateCommittees(models.Model):
 
     class Meta:
         managed = True
+        app_label = 'pacs'
         db_table = 'working_candidate_committees'
 
 
@@ -819,6 +826,7 @@ class WorkingCandidateFilings(models.Model):
 
     class Meta:
         managed = True
+        app_label = 'pacs'
         db_table = 'working_candidate_filings'
 
 
@@ -847,6 +855,7 @@ class WorkingCommittees(models.Model):
 
     class Meta:
         managed = True
+        app_label = 'pacs'
         db_table = 'working_committees'
 
 
@@ -876,4 +885,5 @@ class WorkingTransactions(models.Model):
 
     class Meta:
         managed = True
+        app_label = 'pacs'
         db_table = 'working_transactions'
