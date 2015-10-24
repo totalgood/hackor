@@ -12,7 +12,7 @@ def top_filer_ids(sign=+1, n=500, start_date=None, end_date=None, date_field=Non
       n (int): Maximum number of filer_ids to return
       table (Model): model to query (must have 'amount', 'filer_id', and 'tran_date' fields)
     """
-    date_field = date_field or (f for f in table.fields
+    date_field = date_field or (f for f in table._meta.fields
                                 if isinstance(f, (models.DateTimeField, models.DateField))).next()
     if not isinstance(date_field, basestring):
         date_field = date_field.name
@@ -27,4 +27,11 @@ def top_filer_ids(sign=+1, n=500, start_date=None, end_date=None, date_field=Non
     if end_date:
         kwargs = {date_field + '__lte': end_date}
         qs = qs.filter(**kwargs)
-    return qs.values('filer_id').annotate(total=Sum('amount')).order_by('-total').values()[:n]
+    qs = qs.values('filer_id').annotate(total=Sum('amount')).order_by('-total', 'filer_id').values()[:n]
+    # hack to acomplish distinct('filer_id') queryset filter
+    filers = []
+    prev_filer_id = None
+    for rec in qs:
+        if rec['filer_id'] != prev_filer_id:
+            filers += [rec]
+    return filers
