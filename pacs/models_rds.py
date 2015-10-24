@@ -303,7 +303,8 @@ class HackOregonDbStatus(models.Model):
 
 
 class ImportDates(models.Model):
-    id = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+    file_hash = models.DecimalField(primary_key=True, db_column='id',
+                                    max_digits=65535, decimal_places=65535, blank=True, null=False)
     scrape_date = models.DateField(blank=True, null=True)
     file_name = models.TextField(blank=True, null=True)
 
@@ -311,7 +312,7 @@ class ImportDates(models.Model):
         return representation(self)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'import_dates'
 
 
@@ -353,6 +354,7 @@ class OregonCommitteeAgg(models.Model):
 
 
 class RawCandidateFilings(models.Model):
+    candidate_file_rsn = models.IntegerField(blank=True, primary_key=True)
     election_txt = models.TextField(blank=True, null=True)
     election_year = models.IntegerField(blank=True, null=True)
     office_group = models.TextField(blank=True, null=True)
@@ -415,6 +417,7 @@ class RawCandidateFilings(models.Model):
 
 
 class RawCommitteeTransactions(models.Model):
+    """Comittee transactions scrapped directly from OR-Star without any cleaning/deduping."""
     tran_id = models.IntegerField(primary_key=True)
     original_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
@@ -464,6 +467,67 @@ class RawCommitteeTransactions(models.Model):
     class Meta:
         managed = True
         db_table = 'raw_committee_transactions'
+
+
+class CommitteeTransactions(models.Model):
+    """Committee transactions cleaned with Grimm's migration
+
+    Intended for use in aggregates displayed to the user.
+    Other transaction tables are dirty (contain transaction ammendments with the same "original_id").
+    """
+    tran_id = models.IntegerField(blank=True, primary_key=True)
+    original_id = models.IntegerField(blank=True)
+    tran_date = models.DateField(blank=True, null=True)
+    tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
+    filer = models.LongCharField(max_length=-1, blank=True, null=True)
+    contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
+    sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    amount = models.FloatField(blank=True, null=True)
+    aggregate_amount = models.FloatField(blank=True, null=True)
+    contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
+    filer_id = models.IntegerField(blank=True, null=True)
+    attest_by_name = models.LongCharField(max_length=-1)
+    attest_date = models.DateField()
+    review_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    review_date = models.DateField(blank=True, null=True)
+    due_date = models.DateField(blank=True, null=True)
+    occptn_ltr_date = models.LongCharField(max_length=-1, blank=True, null=True)
+    pymt_sched_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    purp_desc = models.LongCharField(max_length=-1, blank=True, null=True)
+    intrst_rate = models.LongCharField(max_length=-1, blank=True, null=True)
+    check_nbr = models.LongCharField(max_length=-1, blank=True, null=True)
+    tran_stsfd_ind = models.NullBooleanField()
+    filed_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    filed_date = models.DateField(blank=True, null=True)
+    addr_book_agent_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    book_type = models.LongCharField(max_length=-1, blank=True, null=True)
+    title_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    occptn_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_city = models.LongCharField(max_length=-1, blank=True, null=True)
+    emp_state = models.LongCharField(max_length=-1, blank=True, null=True)
+    employ_ind = models.NullBooleanField()
+    self_employ_ind = models.NullBooleanField()
+    addr_line1 = models.LongCharField(max_length=-1, blank=True, null=True)
+    addr_line2 = models.LongCharField(max_length=-1, blank=True, null=True)
+    city = models.LongCharField(max_length=-1, blank=True, null=True)
+    state = models.LongCharField(max_length=-1, blank=True, null=True)
+    zip = models.IntegerField(blank=True, null=True)
+    zip_plus_four = models.IntegerField(blank=True, null=True)
+    county = models.LongCharField(max_length=-1, blank=True, null=True)
+    purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
+    exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
+
+    IMPORTANT_FIELDS = ['tran_id', 'tran_date', 'filer', 'contributor_payee', 'amount', 'direction', 'purpose_codes']
+
+    def __str__(self):
+        return representation(self)
+
+    class Meta:
+        verbose_name = 'transaction'
+        verbose_name_plural = 'transactions'
+        managed = True
+
 
 
 class RawCommitteeTransactionsAmmendedTransactions(models.Model):
@@ -578,7 +642,7 @@ class RawCommittees(models.Model):
     candidate_office = models.LongCharField(max_length=-1, blank=True, null=True)
     candidate_office_group = models.LongCharField(max_length=-1, blank=True, null=True)
     filing_date = models.DateField(blank=True, null=True)
-    organization_filing_date = models.DateField(db_column='organization_filing Date', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    organization_filing_date = models.DateField(db_column='organization_filing Date', blank=True, null=True)
     treasurer_first_name = models.LongCharField(max_length=-1, blank=True, null=True)
     treasurer_last_name = models.LongCharField(max_length=-1, blank=True, null=True)
     treasurer_mailing_address = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -603,8 +667,8 @@ class RawCommittees(models.Model):
 
 
 class RawCommitteesScraped(models.Model):
+    committee_id = models.IntegerField(primary_key=True, db_column='id', blank=True, null=False)
     name = models.TextField(blank=True, null=True)
-    id = models.IntegerField(blank=True, null=True)
     acronym = models.TextField(blank=True, null=True)
     pac_type = models.TextField(blank=True, null=True)
     filing_effective_from = models.TextField(blank=True, null=True)
@@ -633,12 +697,12 @@ class RawCommitteesScraped(models.Model):
         return representation(self)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'raw_committees_scraped'
 
 
 class SchemaMigrations(models.Model):
-    version = models.CharField(unique=True, max_length=-1)
+    version = models.LongCharField(primary_key=True, unique=True, max_length=-1)
 
     def __str__(self):
         return representation(self)
@@ -720,13 +784,13 @@ class WorkingCandidateCommittees(models.Model):
 
 
 class WorkingCandidateFilings(models.Model):
+    candidate_file_rsn = models.IntegerField(primary_key=True, blank=True, null=False)
     election_txt = models.TextField(blank=True, null=True)
     election_year = models.IntegerField(blank=True, null=True)
     office_group = models.TextField(blank=True, null=True)
     id_nbr = models.IntegerField(blank=True, null=True)
     office = models.TextField(blank=True, null=True)
     candidate_office = models.TextField(blank=True, null=True)
-    candidate_file_rsn = models.IntegerField(blank=True, null=True)
     file_mthd_ind = models.TextField(blank=True, null=True)
     filetype_descr = models.TextField(blank=True, null=True)
     party_descr = models.TextField(blank=True, null=True)

@@ -32,7 +32,7 @@ class AcGrassRootsInState(models.Model):
 
 
 class AccessLog(models.Model):
-    committee_id = models.IntegerField(blank=True, primary_key=True)
+    committee_id = models.IntegerField(blank=True, primary_key=True, null=False)
     date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
@@ -308,13 +308,13 @@ class OregonCommitteeAgg(models.Model):
 
 
 class RawCandidateFilings(models.Model):
+    candidate_file_rsn = models.IntegerField(blank=True, primary_key=True)
     election_txt = models.TextField(blank=True, null=True)
     election_year = models.IntegerField(blank=True, null=True)
     office_group = models.TextField(blank=True, null=True)
     id_nbr = models.IntegerField(blank=True, null=True)
     office = models.TextField(blank=True, null=True)
     candidate_office = models.TextField(blank=True, null=True)
-    candidate_file_rsn = models.IntegerField(blank=True, primary_key=True)
     file_mthd_ind = models.TextField(blank=True, null=True)
     filetype_descr = models.TextField(blank=True, null=True)
     party_descr = models.TextField(blank=True, null=True)
@@ -428,9 +428,10 @@ class RawCommitteeTransactions(models.Model):
 
 
 class CommitteeTransactions(models.Model):
-    """Cleaned committee transactions to use for all UX elements.
+    """Committee transactions cleaned with Grimm's migration
 
-    Other transactions tables are dirty (contain duplicates, etc).
+    Intended for use in aggregates displayed to the user.
+    Other transaction tables are dirty (contain transaction ammendments with the same "original_id").
     """
     tran_id = models.IntegerField(blank=True, primary_key=True)
     original_id = models.IntegerField(blank=True)
@@ -596,7 +597,7 @@ class RawCommitteeTransactionsErrors(models.Model):
 
 
 class RawCommittees(models.Model):
-    committee_id = models.IntegerField(blank=True, primary_key=True)
+    committee_id = models.IntegerField(blank=True, primary_key=True, null=False)
     committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     committee_type = models.LongCharField(max_length=-1, blank=True, null=True)
     committee_subtype = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -720,8 +721,8 @@ class SubTypeFromContributorPayee(models.Model):
 
 
 class WorkingCandidateCommittees(models.Model):
-    candidate_name = models.TextField(blank=True, null=True)
     committee_id = models.IntegerField(blank=True, null=True)
+    candidate_name = models.TextField(blank=True, null=True)
     committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     election_office = models.TextField(blank=True, null=True)
     phone = models.TextField(blank=True, null=True)
@@ -799,7 +800,7 @@ class WorkingCandidateFilings(models.Model):
 
 
 class WorkingCommittees(models.Model):
-    committee_id = models.IntegerField(blank=True, primary_key=True)
+    committee_id = models.IntegerField(blank=True, primary_key=True, null=False)
     committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     committee_type = models.LongCharField(max_length=-1, blank=True, null=True)
     committee_subtype = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -827,7 +828,7 @@ class WorkingCommittees(models.Model):
 
 
 class WorkingTransactions(models.Model):
-    tran_id = models.IntegerField(blank=True, primary_key=True)
+    tran_id = models.IntegerField(blank=True, primary_key=True, null=False)
     tran_date = models.DateField(blank=True, null=True)
     filer = models.LongCharField(max_length=-1, blank=True, null=True)
     contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
