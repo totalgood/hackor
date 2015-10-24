@@ -25,6 +25,7 @@ class AcGrassRootsInState(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'ac_grass_roots_in_state'
 
@@ -37,6 +38,7 @@ class AccessLog(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'access_log'
 
@@ -49,6 +51,7 @@ class AccessLogs(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'access_logs'
 
@@ -68,6 +71,7 @@ class AllOregonSum(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'all_oregon_sum'
 
@@ -80,6 +84,7 @@ class AllOregonSums(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'all_oregon_sums'
 
@@ -106,6 +111,7 @@ class CampaignDetail(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = True
         db_table = 'campaign_detail'
 
@@ -118,6 +124,7 @@ class CampaignDetails(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'campaign_details'
 
@@ -133,6 +140,7 @@ class CandidateByState(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'candidate_by_state'
 
@@ -145,6 +153,7 @@ class CandidateByStates(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'candidate_by_states'
 
@@ -159,6 +168,7 @@ class CandidateSumByDate(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'candidate_sum_by_date'
 
@@ -171,6 +181,7 @@ class CandidateSumByDates(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'candidate_sum_by_dates'
 
@@ -191,6 +202,7 @@ class CcGrassRootsInState(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'cc_grass_roots_in_state'
 
@@ -203,6 +215,7 @@ class CcGrassRootsInStates(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'cc_grass_roots_in_states'
 
@@ -232,6 +245,7 @@ class CcWorkingTransactions(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'cc_working_transactions'
 
@@ -244,6 +258,7 @@ class DirectionCodes(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'direction_codes'
 
@@ -257,6 +272,7 @@ class Documentation(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'documentation'
 
@@ -313,6 +329,7 @@ class ImportDates(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = True
         db_table = 'import_dates'
 
@@ -325,6 +342,7 @@ class OregonByContributions(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'oregon_by_contributions'
 
@@ -337,6 +355,7 @@ class OregonByPurposeCodes(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'oregon_by_purpose_codes'
 
@@ -350,6 +369,7 @@ class OregonCommitteeAgg(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'oregon_committee_agg'
 
@@ -413,6 +433,7 @@ class RawCandidateFilings(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'raw_candidate_filings'
 
@@ -466,6 +487,7 @@ class RawCommitteeTransactions(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = True
         db_table = 'raw_committee_transactions'
 
@@ -525,6 +547,7 @@ class CommitteeTransactions(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         verbose_name = 'transaction'
         verbose_name_plural = 'transactions'
         managed = True
@@ -579,6 +602,7 @@ class RawCommitteeTransactionsAmmendedTransactions(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'raw_committee_transactions_ammended_transactions'
 
@@ -631,6 +655,7 @@ class RawCommitteeTransactionsErrors(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'raw_committee_transactions_errors'
 
@@ -663,6 +688,7 @@ class RawCommittees(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'raw_committees'
 
@@ -698,6 +724,7 @@ class RawCommitteesScraped(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = True
         db_table = 'raw_committees_scraped'
 
@@ -709,6 +736,7 @@ class SchemaMigrations(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'schema_migrations'
 
@@ -721,6 +749,7 @@ class SearchLog(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'search_log'
 
@@ -740,6 +769,7 @@ class StateSumByDate(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'state_sum_by_date'
 
@@ -752,6 +782,7 @@ class StateTranslation(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'state_translation'
 
@@ -763,6 +794,7 @@ class SubTypeFromContributorPayee(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'sub_type_from_contributor_payee'
 
@@ -780,6 +812,7 @@ class WorkingCandidateCommittees(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'working_candidate_committees'
 
@@ -842,6 +875,7 @@ class WorkingCandidateFilings(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'working_candidate_filings'
 
@@ -870,6 +904,7 @@ class WorkingCommittees(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'working_committees'
 
@@ -899,5 +934,6 @@ class WorkingTransactions(models.Model):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         managed = False
         db_table = 'working_transactions'
