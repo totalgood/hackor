@@ -8,7 +8,7 @@
 # into your database.
 from __future__ import unicode_literals
 
-from model_utils import models, representation
+from utils import models, representation
 
 
 class AcGrassRootsInState(models.Model):
