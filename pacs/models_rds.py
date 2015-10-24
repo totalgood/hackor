@@ -133,7 +133,7 @@ class RawCandidateFilings(models.Model):
 
 class RawCommitteeTransactions(models.Model):
     """Comittee transactions scrapped directly from OR-Star without any cleaning/deduping."""
-    tran_id = models.IntegerField(primary_key=True, default=0)
+    tran_id = models.IntegerField(primary_key=True, default=0, null=False)
     original_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
     tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -617,7 +617,7 @@ class CommitteeTransactions(models.Model):
 
 
 class RawCommitteeTransactionsAmmendedTransactions(models.Model):
-    tran_id = models.IntegerField(primary_key=True, default=0, blank=True, null=True)
+    tran_id = models.IntegerField(primary_key=True, default=0, blank=True, null=False)
     original_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
     tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -675,7 +675,7 @@ class RawCommitteeTransactionsAmmendedTransactions(models.Model):
 
 
 class RawCommitteeTransactionsErrors(models.Model):
-    tran_id = models.IntegerField(primary_key=True, default=0, blank=True, null=True)
+    tran_id = models.IntegerField(primary_key=True, default=0, blank=True, null=False)
     original_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
     tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -722,8 +722,9 @@ class RawCommitteeTransactionsErrors(models.Model):
         return representation(self)
 
     class Meta:
+        verbose_name = 'committee transaction error'
         app_label = 'pacs'
-        managed = False
+        managed = True
         db_table = 'raw_committee_transactions_errors'
 
 
