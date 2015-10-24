@@ -8,9 +8,7 @@
 # into your database.
 from __future__ import unicode_literals
 
-
-from model_utils import representation, LongCharField, models
-models.LongCharField = LongCharField
+from model_utils import models, representation
 
 
 class AcGrassRootsInState(models.Model):
@@ -42,6 +40,19 @@ class AccessLog(models.Model):
         db_table = 'access_log'
 
 
+class AccessLogUpdate(models.Model):
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
+
+    def __str__(self):
+        return representation(self)
+
+    class Meta:
+        app_label = 'pacs'
+        managed = False
+        db_table = 'access_logs'
+
+
 # class AllOregonSum(models.Model):
 #     in_field = models.FloatField(db_column='in', blank=True, null=True)
 #     out = models.FloatField(blank=True, null=True)
@@ -58,7 +69,8 @@ class AccessLog(models.Model):
 
 
 class CampaignDetail(models.Model):
-    candidate_name = models.TextField(blank=True, primary_key=True)
+    filer_id = models.IntegerField(primary_key=True, default=0)
+    candidate_name = models.TextField(blank=True, null=True)
     committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     race = models.TextField(blank=True, null=True)
     website = models.TextField(blank=True, null=True)
@@ -67,7 +79,6 @@ class CampaignDetail(models.Model):
     total_spent = models.FloatField(blank=True, null=True)
     grassroots = models.FloatField(blank=True, null=True)
     instate = models.FloatField(blank=True, null=True)
-    filer_id = models.IntegerField(blank=True, null=True)
     election = models.TextField(blank=True, null=True)
     party = models.TextField(blank=True, null=True)
     num_transactions = models.BigIntegerField(blank=True, null=True)
@@ -75,11 +86,15 @@ class CampaignDetail(models.Model):
     committee_subtype = models.LongCharField(max_length=-1, blank=True, null=True)
     db_update_status = models.TextField(blank=True, null=True)
 
+    IMPORTANT_FIELDS = ['filer_id', 'committee_name', 'committee_type', 'committee_subtype',
+                        'candidate_name', 'website', 'party', 'race']
+
     def __str__(self):
         return representation(self)
 
     class Meta:
-        managed = False
+        app_label = 'pacs'
+        managed = True
         db_table = 'campaign_detail'
 
 
@@ -307,13 +322,14 @@ class OregonCommitteeAgg(models.Model):
 
 
 class RawCandidateFilings(models.Model):
-    candidate_file_rsn = models.IntegerField(blank=True, primary_key=True)
+    candidate_file_rsn = models.IntegerField(blank=True, primary_key=True, default=0)
     election_txt = models.TextField(blank=True, null=True)
     election_year = models.IntegerField(blank=True, null=True)
     office_group = models.TextField(blank=True, null=True)
     id_nbr = models.IntegerField(blank=True, null=True)
     office = models.TextField(blank=True, null=True)
     candidate_office = models.TextField(blank=True, null=True)
+    candidate_file_rsn = models.IntegerField(blank=True, null=True)
     file_mthd_ind = models.TextField(blank=True, null=True)
     filetype_descr = models.TextField(blank=True, null=True)
     party_descr = models.TextField(blank=True, null=True)
@@ -360,20 +376,23 @@ class RawCandidateFilings(models.Model):
     work_phone = models.TextField(blank=True, null=True)
     web_address = models.TextField(blank=True, null=True)
 
+    IMPORTANT_FIELDS = ['filer_id', 'filer', 'party_descr', 'major_party_ind',
+                        'first_name', 'mdle_name', 'last_name', 'sufx_name']
+
     def __str__(self):
         return representation(self)
 
     class Meta:
         verbose_name = 'candidate filing'
-        verbose_name_plural = 'candidate filings'
-        managed = False
+        app_label = 'pacs'
+        managed = True
         db_table = 'raw_candidate_filings'
 
 
 class RawCommitteeTransactions(models.Model):
-    """The absolute rawest comittee transaction data is here (directly from OR-Star)."""
-    tran_id = models.IntegerField(blank=True, primary_key=True)
-    original_id = models.IntegerField(blank=True)
+    """Comittee transactions scrapped directly from OR-Star without any cleaning/deduping."""
+    tran_id = models.IntegerField(primary_key=True, default=0, null=False)
+    original_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
     tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
     filer = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -383,8 +402,8 @@ class RawCommitteeTransactions(models.Model):
     aggregate_amount = models.FloatField(blank=True, null=True)
     contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
     filer_id = models.IntegerField(blank=True, null=True)
-    attest_by_name = models.LongCharField(max_length=-1)
-    attest_date = models.DateField()
+    attest_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    attest_date = models.DateField(blank=True, null=True)
     review_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
     review_date = models.DateField(blank=True, null=True)
     due_date = models.DateField(blank=True, null=True)
@@ -415,15 +434,18 @@ class RawCommitteeTransactions(models.Model):
     purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
     exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
 
-    IMPORTANT_FIELDS = ['tran_id', 'tran_date', 'filer', 'contributor_payee', 'amount', 'direction', 'purpose_codes']
+    IMPORTANT_FIELDS = ['tran_id', 'tran_date', 'filer_id', 'filer', 'contributor_payee', 'amount',
+                        'direction', 'purpose_codes']
 
     def __str__(self):
         return representation(self)
 
     class Meta:
+        app_label = 'pacs'
         verbose_name = 'raw transaction'
         verbose_name_plural = 'raw transactions'
         db_table = 'raw_committee_transactions'
+
 
 
 class CommitteeTransactions(models.Model):
