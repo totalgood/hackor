@@ -85,7 +85,7 @@ class AllOregonSums(models.Model):
 
 
 class CampaignDetail(models.Model):
-    filer_id = models.IntegerField(primary_key=True)
+    filer_id = models.IntegerField(primary_key=True, default=0)
     candidate_name = models.TextField(blank=True, null=True)
     committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     race = models.TextField(blank=True, null=True)
@@ -303,7 +303,7 @@ class HackOregonDbStatus(models.Model):
 
 
 class ImportDates(models.Model):
-    file_hash = models.DecimalField(primary_key=True, db_column='id',
+    file_hash = models.DecimalField(primary_key=True, db_column='id', default=0,
                                     max_digits=65535, decimal_places=65535, blank=True, null=False)
     scrape_date = models.DateField(blank=True, null=True)
     file_name = models.TextField(blank=True, null=True)
@@ -354,7 +354,7 @@ class OregonCommitteeAgg(models.Model):
 
 
 class RawCandidateFilings(models.Model):
-    candidate_file_rsn = models.IntegerField(blank=True, primary_key=True)
+    candidate_file_rsn = models.IntegerField(blank=True, primary_key=True, default=0)
     election_txt = models.TextField(blank=True, null=True)
     election_year = models.IntegerField(blank=True, null=True)
     office_group = models.TextField(blank=True, null=True)
@@ -418,7 +418,7 @@ class RawCandidateFilings(models.Model):
 
 class RawCommitteeTransactions(models.Model):
     """Comittee transactions scrapped directly from OR-Star without any cleaning/deduping."""
-    tran_id = models.IntegerField(primary_key=True)
+    tran_id = models.IntegerField(primary_key=True, default=0)
     original_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
     tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -475,7 +475,7 @@ class CommitteeTransactions(models.Model):
     Intended for use in aggregates displayed to the user.
     Other transaction tables are dirty (contain transaction ammendments with the same "original_id").
     """
-    tran_id = models.IntegerField(blank=True, primary_key=True)
+    tran_id = models.IntegerField(blank=True, primary_key=True, default=0)
     original_id = models.IntegerField(blank=True)
     tran_date = models.DateField(blank=True, null=True)
     tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -667,7 +667,7 @@ class RawCommittees(models.Model):
 
 
 class RawCommitteesScraped(models.Model):
-    committee_id = models.IntegerField(primary_key=True, db_column='id', blank=True, null=False)
+    committee_id = models.IntegerField(primary_key=True, db_column='id', blank=True, default=0)
     name = models.TextField(blank=True, null=True)
     acronym = models.TextField(blank=True, null=True)
     pac_type = models.TextField(blank=True, null=True)
@@ -702,7 +702,7 @@ class RawCommitteesScraped(models.Model):
 
 
 class SchemaMigrations(models.Model):
-    version = models.LongCharField(primary_key=True, unique=True, max_length=-1)
+    version = models.LongCharField(primary_key=True, unique=True, max_length=-1, default=0)
 
     def __str__(self):
         return representation(self)
@@ -784,7 +784,7 @@ class WorkingCandidateCommittees(models.Model):
 
 
 class WorkingCandidateFilings(models.Model):
-    candidate_file_rsn = models.IntegerField(primary_key=True, blank=True, null=False)
+    candidate_file_rsn = models.IntegerField(primary_key=True, blank=True, null=False, default=0)
     election_txt = models.TextField(blank=True, null=True)
     election_year = models.IntegerField(blank=True, null=True)
     office_group = models.TextField(blank=True, null=True)
