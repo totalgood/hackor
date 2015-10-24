@@ -9,12 +9,14 @@ import pacs.serializers
 unfilterable_field_types = set(['OneToOneField', 'ForeignKey', 'ManyToManyField', 'AutoField'])
 unfilterable_field_names = set(['id', 'pk', 'primary_key'])
 
+
+print('Creating REST interface for...')
 for app_name in settings.APPS_TO_REST:
     app = apps.get_app_config(app_name)
-    print app_name
+    print('App: {}'.format(app_name))
     for lowercase_model_name, Model in app.models.iteritems():
         model_name = Model._meta.object_name
-        print '    ' + model_name
+        print('    Model: {}'.format(model_name))
         viewset_class_name = model_name + 'ViewSet'
         if viewset_class_name not in globals():
             viewset_class = create_class(viewset_class_name, viewsets.ReadOnlyModelViewSet)
