@@ -45,3 +45,5 @@ class LongCharField(models.CharField):
         # Don't pass max_length to form field like CharField does.
         return super(models.CharField, self).formfield(**kwargs)
 models.LongCharField = LongCharField
+
+

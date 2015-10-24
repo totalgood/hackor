@@ -9,7 +9,7 @@
 from __future__ import unicode_literals
 
 
-from model_utils import representation, LongCharField, models
+from utils import representation, LongCharField, models
 models.LongCharField = LongCharField
 
 

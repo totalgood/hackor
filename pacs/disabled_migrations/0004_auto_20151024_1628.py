@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import pacs.model_utils
+import pacs.utils
 
 
 class Migration(migrations.Migration):
@@ -105,7 +105,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='SchemaMigrations',
             fields=[
-                ('version', pacs.model_utils.LongCharField(max_length=1000000000, unique=True, serialize=False, primary_key=True)),
+                ('version', pacs.utils.LongCharField(max_length=1000000000, unique=True, serialize=False, primary_key=True)),
             ],
             options={
                 'db_table': 'schema_migrations',
@@ -135,7 +135,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='rawcommitteetransactions',
             name='attest_by_name',
-            field=pacs.model_utils.LongCharField(max_length=1000000000, null=True, blank=True),
+            field=pacs.utils.LongCharField(max_length=1000000000, null=True, blank=True),
         ),
         migrations.AlterField(
             model_name='rawcommitteetransactions',

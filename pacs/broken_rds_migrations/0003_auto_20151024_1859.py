@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import pacs.model_utils
+import pacs.utils
 
 
 class Migration(migrations.Migration):
@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='rawcommittees',
             name='candidate_mailing_address',
-            field=pacs.model_utils.LongCharField(max_length=1000000000, null=True, db_column='maling_address', blank=True),
+            field=pacs.utils.LongCharField(max_length=1000000000, null=True, db_column='maling_address', blank=True),
         ),
         migrations.AlterField(
             model_name='rawcommittees',

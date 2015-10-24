@@ -1,6 +1,6 @@
 from django.conf import settings
-from model_utils import models
-from model_utils import LongCharField
+from utils import models
+from utils import LongCharField
 
 host = settings.DATABASES['default']['HOST'].lower()
 

@@ -43,8 +43,12 @@ docs/_build/*
 cover/*
 MANIFEST
 
-collected-static/
+# Large data files
+nlp_similarity_graph.json
 .ipynb_checkpoints/
+
+# Copies of static files
+collected-static/
 
 # SECRETS!
 # hackor/settings.py
