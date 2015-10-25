@@ -264,7 +264,7 @@ class OregonCommitteeAgg(models.Model):
 
 class PacsCommitteetransactions(models.Model):
     tran_id = models.IntegerField(primary_key=True)
-     original_id = models.IntegerField()
+    original_id = models.IntegerField()
     tran_date = models.DateField(blank=True, null=True)
     tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
     filer = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -305,7 +305,8 @@ class PacsCommitteetransactions(models.Model):
     county = models.LongCharField(max_length=-1, blank=True, null=True)
     purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
     exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
-     class Meta:
+
+    class Meta:
         managed = True
         app_label = 'pacs'
         db_table = 'pacs_committeetransactions'
