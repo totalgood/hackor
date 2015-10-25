@@ -428,6 +428,7 @@ class RawCandidateFilings(models.Model):
 
 class RawCommitteeTransactions(models.Model):
     tran_id = models.IntegerField(blank=True, null=True)
+    contributor_payee_committee_id = models.ForeignKey('RawCommitteesScraped', blank=True, null=True)
     original_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
     tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -436,7 +437,6 @@ class RawCommitteeTransactions(models.Model):
     sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
     amount = models.FloatField(blank=True, null=True)
     aggregate_amount = models.FloatField(blank=True, null=True)
-    contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
     filer_id = models.IntegerField(blank=True, null=True)
     attest_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
     attest_date = models.DateField(blank=True, null=True)
@@ -584,7 +584,7 @@ class RawCommittees(models.Model):
     candidate_office = models.LongCharField(max_length=-1, blank=True, null=True)
     candidate_office_group = models.LongCharField(max_length=-1, blank=True, null=True)
     filing_date = models.DateField(blank=True, null=True)
-    organization_filing_date = models.DateField(db_column='organization_filing Date', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    organization_filing_date = models.DateField(db_column='organization_filing Date', blank=True, null=True)
     treasurer_first_name = models.LongCharField(max_length=-1, blank=True, null=True)
     treasurer_last_name = models.LongCharField(max_length=-1, blank=True, null=True)
     treasurer_mailing_address = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -607,8 +607,8 @@ class RawCommittees(models.Model):
 
 
 class RawCommitteesScraped(models.Model):
+    committee_id = models.IntegerField(primary_key=True, db_column='id', blank=True, null=False, default=0)
     name = models.TextField(blank=True, null=True)
-    committee_id = models.IntegerField(db_column='id', blank=True, null=False, default=0, primary_key=True)
     acronym = models.TextField(blank=True, null=True)
     pac_type = models.TextField(blank=True, null=True)
     filing_effective_from = models.TextField(blank=True, null=True)

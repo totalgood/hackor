@@ -9,7 +9,8 @@ search_related_id = False
 search_related_pk = True
 
 apps_to_admin = ['pacs']
-link_suffix = '____'
+# This breaks the admin table view if the field with the link suffix name doesn't exist
+link_suffix = ''
 
 # register some admin interface managers for each app in the app_names list
 for app_name in apps_to_admin:
@@ -30,8 +31,10 @@ for app_name in apps_to_admin:
             list_display = []
             for field in Model._meta.fields:
                 if field.get_internal_type() == 'ForeignKey':
+                    pass
                     list_display += [field.name + link_suffix]
                 elif field.get_internal_type() == 'OneToOneField':
+                    pass
                     list_display += [field.name + link_suffix]
                 else:
                     list_display += [field.name]
