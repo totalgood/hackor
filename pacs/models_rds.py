@@ -34,7 +34,8 @@ class AccessLogs(models.Model):
     updated_at = models.DateTimeField()
 
     class Meta:
-        managed = False
+        managed = True
+        app_label = 'pacs'
         db_table = 'access_logs'
 
 
