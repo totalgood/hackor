@@ -46,12 +46,9 @@ class AllOregonSum(models.Model):
 
 
 class CampaignDetail(models.Model):
-    filer_id = models.IntegerField(primary_key=True, default=0,
-                                   help_text="2384 unique integers identifying each committee.")
-    candidate_name = models.TextField(blank=True, null=True,
-                                      help_text="Not unique_together (candidate_name, committee_name, race).")
-    committee_name = models.LongCharField(max_length=-1, blank=True, null=True,
-                                          help_text='Nonunique identifying name.')
+    filer_id = models.IntegerField(primary_key=True, default=0)
+    candidate_name = models.TextField(blank=True, null=True)
+    committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     race = models.TextField(blank=True, null=True)
     website = models.TextField(blank=True, null=True)
     phone = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -203,7 +200,7 @@ class HackOregonDbStatus(models.Model):
 
 
 class ImportDates(models.Model):
-    file_id = models.DecimalField(max_digits=256, decimal_places=256, blank=True, null=True)
+    file_id = models.DecimalField(max_digits=1000, decimal_places=1000, blank=True, default=0, primary_key=True)
     scrape_date = models.DateField(blank=True, null=True)
     file_name = models.TextField(blank=True, null=True)
 
@@ -246,7 +243,7 @@ class OregonCommitteeAgg(models.Model):
 
 class PacsCommitteetransactions(models.Model):
     tran_id = models.IntegerField(primary_key=True)
-     original_id = models.IntegerField()
+    original_id = models.IntegerField()
     tran_date = models.DateField(blank=True, null=True)
     tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
     filer = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -287,7 +284,8 @@ class PacsCommitteetransactions(models.Model):
     county = models.LongCharField(max_length=-1, blank=True, null=True)
     purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
     exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
-     class Meta:
+
+    class Meta:
         managed = True
         app_label = 'pacs'
         db_table = 'pacs_committeetransactions'
@@ -354,10 +352,8 @@ class RawCandidateFilings(models.Model):
 
 
 class RawCommitteeTransactions(models.Model):
-    tran_id = models.IntegerField(blank=True, null=True,
-        help_text='A single transaction can have multiple tran_ids due to revisions/corrections.')
-    original_id = models.IntegerField(blank=True, null=True,
-        help_text='Nonunique because amendments/corrections must refer to the same original_id.')
+    tran_id = models.IntegerField(blank=True, null=True)
+    original_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
     tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
     filer = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -366,8 +362,7 @@ class RawCommitteeTransactions(models.Model):
     amount = models.FloatField(blank=True, null=True)
     aggregate_amount = models.FloatField(blank=True, null=True)
     contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
-    filer_id = models.IntegerField(blank=True, null=True,
-                                   help_text="Unique identifier of a Committee (CommitteeDetail FK)")
+    filer_id = models.IntegerField(blank=True, null=True)
     attest_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
     attest_date = models.DateField(blank=True, null=True)
     review_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -537,8 +532,8 @@ class RawCommittees(models.Model):
 
 
 class RawCommitteesScraped(models.Model):
-    committee_id = models.IntegerField(blank=True, null=True)
     name = models.TextField(blank=True, null=True)
+    committee_id = models.IntegerField(blank=True, null=False, default=0, primary_key=True)
     acronym = models.TextField(blank=True, null=True)
     pac_type = models.TextField(blank=True, null=True)
     filing_effective_from = models.TextField(blank=True, null=True)
