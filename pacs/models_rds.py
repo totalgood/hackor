@@ -29,6 +29,15 @@ class AccessLog(models.Model):
         db_table = 'access_log'
 
 
+class AccessLogs(models.Model):
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'access_logs'
+
+
 class AllOregonSum(models.Model):
     in_field = models.FloatField(db_column='in', blank=True, null=True)  # Field renamed because it was a Python reserved word.
     out = models.FloatField(blank=True, null=True)
@@ -43,6 +52,15 @@ class AllOregonSum(models.Model):
         managed = True
         app_label = 'pacs'
         db_table = 'all_oregon_sum'
+
+
+class AllOregonSums(models.Model):
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'all_oregon_sums'
 
 
 class CampaignDetail(models.Model):
