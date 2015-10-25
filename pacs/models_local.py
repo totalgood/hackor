@@ -200,7 +200,7 @@ class HackOregonDbStatus(models.Model):
 
 
 class ImportDates(models.Model):
-    file_id = models.DecimalField(db_column='id', max_digits=1000, decimal_places=1000, blank=True, default=0, primary_key=True)
+    file_id = models.DecimalField(max_digits=1000, decimal_places=1000, blank=True)  #, default=0)  #, primary_key=True)
     scrape_date = models.DateField(blank=True, null=True)
     file_name = models.TextField(blank=True, null=True)
 
@@ -533,7 +533,7 @@ class RawCommittees(models.Model):
 
 class RawCommitteesScraped(models.Model):
     name = models.TextField(blank=True, null=True)
-    committee_id = models.IntegerField(db_column='id', blank=True, null=False, default=0, primary_key=True)
+    committee_id = models.IntegerField(blank=True, null=False)  # , default=0, primary_key=True)
     acronym = models.TextField(blank=True, null=True)
     pac_type = models.TextField(blank=True, null=True)
     filing_effective_from = models.TextField(blank=True, null=True)
