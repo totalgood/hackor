@@ -585,7 +585,7 @@ class RawCommittees(models.Model):
 
 class RawCommitteesScraped(models.Model):
     name = models.TextField(blank=True, null=True)
-    id = models.IntegerField(primary_key=True, blank=True, null=False)
+    committee_id = models.IntegerField(blank=True, null=True)
     acronym = models.TextField(blank=True, null=True)
     pac_type = models.TextField(blank=True, null=True)
     filing_effective_from = models.TextField(blank=True, null=True)
