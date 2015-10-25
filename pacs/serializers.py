@@ -1,7 +1,6 @@
 from django.apps import apps
 from django.conf import settings
 
-from pacs.models import RawCommitteeTransactions, CommitteeTransactions
 from rest_framework import serializers
 
 from factory import create_class
