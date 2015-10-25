@@ -46,8 +46,12 @@ class AllOregonSum(models.Model):
 
 
 class CampaignDetail(models.Model):
-    candidate_name = models.TextField(blank=True, null=True)
-    committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
+    filer_id = models.IntegerField(primary_key=True, default=0,
+                                   help_text="2384 unique integers identifying each committee.")
+    candidate_name = models.TextField(blank=True, null=True,
+                                      help_text="Not unique_together (candidate_name, committee_name, race).")
+    committee_name = models.LongCharField(max_length=-1, blank=True, null=True,
+                                          help_text='Nonunique identifying name.')
     race = models.TextField(blank=True, null=True)
     website = models.TextField(blank=True, null=True)
     phone = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -55,7 +59,6 @@ class CampaignDetail(models.Model):
     total_spent = models.FloatField(blank=True, null=True)
     grassroots = models.FloatField(blank=True, null=True)
     instate = models.FloatField(blank=True, null=True)
-    filer_id = models.IntegerField(blank=True, null=True)
     election = models.TextField(blank=True, null=True)
     party = models.TextField(blank=True, null=True)
     num_transactions = models.BigIntegerField(blank=True, null=True)
@@ -241,54 +244,54 @@ class OregonCommitteeAgg(models.Model):
         db_table = 'oregon_committee_agg'
 
 
-class PacsCommitteetransactions(models.Model):
-    tran_id = models.IntegerField(primary_key=True)
-    original_id = models.IntegerField()
-    tran_date = models.DateField(blank=True, null=True)
-    tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
-    filer = models.LongCharField(max_length=-1, blank=True, null=True)
-    contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
-    sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
-    amount = models.FloatField(blank=True, null=True)
-    aggregate_amount = models.FloatField(blank=True, null=True)
-    contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
-    filer_id = models.IntegerField(blank=True, null=True)
-    attest_by_name = models.LongCharField(max_length=-1)
-    attest_date = models.DateField()
-    review_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
-    review_date = models.DateField(blank=True, null=True)
-    due_date = models.DateField(blank=True, null=True)
-    occptn_ltr_date = models.LongCharField(max_length=-1, blank=True, null=True)
-    pymt_sched_txt = models.LongCharField(max_length=-1, blank=True, null=True)
-    purp_desc = models.LongCharField(max_length=-1, blank=True, null=True)
-    intrst_rate = models.LongCharField(max_length=-1, blank=True, null=True)
-    check_nbr = models.LongCharField(max_length=-1, blank=True, null=True)
-    tran_stsfd_ind = models.NullBooleanField()
-    filed_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
-    filed_date = models.DateField(blank=True, null=True)
-    addr_book_agent_name = models.LongCharField(max_length=-1, blank=True, null=True)
-    book_type = models.LongCharField(max_length=-1, blank=True, null=True)
-    title_txt = models.LongCharField(max_length=-1, blank=True, null=True)
-    occptn_txt = models.LongCharField(max_length=-1, blank=True, null=True)
-    emp_name = models.LongCharField(max_length=-1, blank=True, null=True)
-    emp_city = models.LongCharField(max_length=-1, blank=True, null=True)
-    emp_state = models.LongCharField(max_length=-1, blank=True, null=True)
-    employ_ind = models.NullBooleanField()
-    self_employ_ind = models.NullBooleanField()
-    addr_line1 = models.LongCharField(max_length=-1, blank=True, null=True)
-    addr_line2 = models.LongCharField(max_length=-1, blank=True, null=True)
-    city = models.LongCharField(max_length=-1, blank=True, null=True)
-    state = models.LongCharField(max_length=-1, blank=True, null=True)
-    zip = models.IntegerField(blank=True, null=True)
-    zip_plus_four = models.IntegerField(blank=True, null=True)
-    county = models.LongCharField(max_length=-1, blank=True, null=True)
-    purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
-    exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
+# class PacsCommitteetransactions(models.Model):
+#     tran_id = models.IntegerField(primary_key=True)
+#     original_id = models.IntegerField()
+#     tran_date = models.DateField(blank=True, null=True)
+#     tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
+#     filer = models.LongCharField(max_length=-1, blank=True, null=True)
+#     contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
+#     sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
+#     amount = models.FloatField(blank=True, null=True)
+#     aggregate_amount = models.FloatField(blank=True, null=True)
+#     contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
+#     filer_id = models.IntegerField(blank=True, null=True)
+#     attest_by_name = models.LongCharField(max_length=-1)
+#     attest_date = models.DateField()
+#     review_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
+#     review_date = models.DateField(blank=True, null=True)
+#     due_date = models.DateField(blank=True, null=True)
+#     occptn_ltr_date = models.LongCharField(max_length=-1, blank=True, null=True)
+#     pymt_sched_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+#     purp_desc = models.LongCharField(max_length=-1, blank=True, null=True)
+#     intrst_rate = models.LongCharField(max_length=-1, blank=True, null=True)
+#     check_nbr = models.LongCharField(max_length=-1, blank=True, null=True)
+#     tran_stsfd_ind = models.NullBooleanField()
+#     filed_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
+#     filed_date = models.DateField(blank=True, null=True)
+#     addr_book_agent_name = models.LongCharField(max_length=-1, blank=True, null=True)
+#     book_type = models.LongCharField(max_length=-1, blank=True, null=True)
+#     title_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+#     occptn_txt = models.LongCharField(max_length=-1, blank=True, null=True)
+#     emp_name = models.LongCharField(max_length=-1, blank=True, null=True)
+#     emp_city = models.LongCharField(max_length=-1, blank=True, null=True)
+#     emp_state = models.LongCharField(max_length=-1, blank=True, null=True)
+#     employ_ind = models.NullBooleanField()
+#     self_employ_ind = models.NullBooleanField()
+#     addr_line1 = models.LongCharField(max_length=-1, blank=True, null=True)
+#     addr_line2 = models.LongCharField(max_length=-1, blank=True, null=True)
+#     city = models.LongCharField(max_length=-1, blank=True, null=True)
+#     state = models.LongCharField(max_length=-1, blank=True, null=True)
+#     zip = models.IntegerField(blank=True, null=True)
+#     zip_plus_four = models.IntegerField(blank=True, null=True)
+#     county = models.LongCharField(max_length=-1, blank=True, null=True)
+#     purpose_codes = models.LongCharField(max_length=-1, blank=True, null=True)
+#     exp_date = models.LongCharField(max_length=-1, blank=True, null=True)
 
-    class Meta:
-        managed = True
-        app_label = 'pacs'
-        db_table = 'pacs_committeetransactions'
+#     class Meta:
+#         managed = True
+#         app_label = 'pacs'
+#         db_table = 'pacs_committeetransactions'
 
 
 class RawCandidateFilings(models.Model):
@@ -352,8 +355,10 @@ class RawCandidateFilings(models.Model):
 
 
 class RawCommitteeTransactions(models.Model):
-    tran_id = models.IntegerField(blank=True, null=True)
-    original_id = models.IntegerField(blank=True, null=True)
+    tran_id = models.IntegerField(blank=True, null=True,
+        help_text='A single transaction can have multiple tran_ids due to revisions/corrections.')
+    original_id = models.IntegerField(blank=True, null=True,
+        help_text='Nonunique because amendments/corrections must refer to the same original_id.')
     tran_date = models.DateField(blank=True, null=True)
     tran_status = models.LongCharField(max_length=-1, blank=True, null=True)
     filer = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -362,7 +367,8 @@ class RawCommitteeTransactions(models.Model):
     amount = models.FloatField(blank=True, null=True)
     aggregate_amount = models.FloatField(blank=True, null=True)
     contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
-    filer_id = models.IntegerField(blank=True, null=True)
+    filer_id = models.IntegerField(blank=True, null=True,
+                                   help_text="Unique identifier of a Committee (CommitteeDetail FK)")
     attest_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
     attest_date = models.DateField(blank=True, null=True)
     review_by_name = models.LongCharField(max_length=-1, blank=True, null=True)
