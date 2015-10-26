@@ -16,14 +16,14 @@ from sklearn.feature_extraction.text import TfidfVectorizer  # equivalent to TFI
 # from sklearn.pipeline import Pipeline
 # from sklearn.cross_validation import train_test_split
 
-pacs_scraped = pd.DataFrame.from_csv('data/public.raw_committees_scraped.csv')  # id
-pacs = pd.DataFrame.from_csv('data/public.raw_committees.csv')  # no ID that I can find
-print(pacs_scraped.info())
+df = pd.DataFrame.from_csv('../data/public.working_committees.csv')  # id
+# pacs = pd.DataFrame.from_csv('../data/public.raw_committees.csv')  # no ID that I can find
+# print(pacs_scraped.info())
 # print(candidates.info())
 
-df = pacs_scraped
 names = df.index.values
-corpus = [' '.join(str(f) for f in fields if (not isinstance(f, (float, int, datetime, date, np.int_, np.float_)) and not f in (None, np.nan)))
+corpus = [' '.join(str(f) for f in fields if
+                   (not isinstance(f, (float, int, datetime, date, np.int_, np.float_)) and not f in (None, np.nan)))
           for fields in zip(*[df[col] for col in df.columns if df[col].dtype == pd.np.dtype('O')])]
 print(corpus[:3])
 
@@ -39,7 +39,8 @@ corpus = [' '.join(token for token in doc.split() if regex.match(token) and toke
           for doc in corpus]
 
 vectorizer = TfidfVectorizer(analyzer='word', ngram_range=(1, 2), stop_words='english')
-# rows should be documents, columns should be "words"
+
+# rows are "documents", columns are "words"
 vectors = vectorizer.fit(corpus)
 tfidf = vectors.transform(corpus)
 tfidf_df = pd.DataFrame(tfidf.todense(), index=names)
