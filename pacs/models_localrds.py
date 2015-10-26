@@ -766,15 +766,17 @@ class WorkingCommittees(models.Model):
 
 
 class WorkingTransactions(models.Model):
-    id = models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)
-    tran_id = models.IntegerField(blank=True, null=True)
+    # id = models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)
+    tran_id = models.IntegerField(primary_key=True, verbose_name='transaction ID', blank=False, null=False, default=0,
+                                  help_text="1.0 fraction unique")
     tran_date = models.DateField(blank=True, null=True)
     filer = models.LongCharField(max_length=-1, blank=True, null=True)
     contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
     sub_type = models.LongCharField(max_length=-1, blank=True, null=True)
     amount = models.FloatField(blank=True, null=True)
     contributor_payee_committee_id = models.IntegerField(blank=True, null=True)
-    filer_id = models.IntegerField(blank=True, null=True)
+    filer_id = models.ForeignKey(CampaignDetail, db_column='filer_id', blank=True, null=True,
+                              help_text="filer_id 17222 is not present in table working_committees")
     purp_desc = models.LongCharField(max_length=-1, blank=True, null=True)
     book_type = models.LongCharField(max_length=-1, blank=True, null=True)
     addr_line1 = models.LongCharField(max_length=-1, blank=True, null=True)
