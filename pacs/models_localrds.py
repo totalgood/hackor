@@ -39,7 +39,7 @@ from utils import models, representation
 
 
 # class AllOregonSum(models.Model):
-#     oregon_sum_id = models.AutoField()
+#     oregon_sum_id = models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)
 #     in_field = models.FloatField(db_column='in', blank=True, null=True)
 #     out = models.FloatField(blank=True, null=True)
 #     from_within = models.FloatField(blank=True, null=True)
@@ -171,8 +171,9 @@ class CampaignDetail(models.Model):
 
 
 class CcWorkingTransactions(models.Model):
-    id = models.AutoField(db_column='id')
-    tran_id = models.IntegerField(blank=True, null=True)
+    id = models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)
+    tran_id = models.IntegerField(blank=True, null=True,
+                                  help_text="Should be unique ID but isnt, e.g. 1171373 is duplicated.")
     tran_date = models.DateField(blank=True, null=True)
     filer = models.LongCharField(max_length=-1, blank=True, null=True)
     contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -660,9 +661,9 @@ class CcWorkingTransactions(models.Model):
 
 
 class WorkingCandidateCommittees(models.Model):
-    id = models.AutoField()
-    candidate_name = models.TextField(db_column=blank=True, null=True)
-    committee_id = models.IntegerField(blank=True, null=True)
+    # id = models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)
+    candidate_name = models.TextField(blank=True, null=True)
+    committee_id = models.IntegerField(primary_key=True, default=0)
     committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     election_office = models.TextField(blank=True, null=True)
     phone = models.TextField(blank=True, null=True)
@@ -670,16 +671,17 @@ class WorkingCandidateCommittees(models.Model):
     web_address = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'working_candidate_committees'
 
 
 class WorkingCandidateFilings(models.Model):
-    id = models.AutoField()
+    id = models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)
     election_txt = models.TextField(blank=True, null=True)
     election_year = models.IntegerField(blank=True, null=True)
     office_group = models.TextField(blank=True, null=True)
-    id_nbr = models.IntegerField(blank=True, null=True)
+    id_nbr = models.IntegerField(blank=True, null=True,
+                                 help_text="0.32 unique")
     office = models.TextField(blank=True, null=True)
     candidate_office = models.TextField(blank=True, null=True)
     candidate_file_rsn = models.IntegerField(blank=True, null=True)
@@ -730,14 +732,16 @@ class WorkingCandidateFilings(models.Model):
     web_address = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'working_candidate_filings'
 
 
 class WorkingCommittees(models.Model):
     # ALTER TABLE working_committees ADD COLUMN id SERIAL PRIMARY KEY;
-    id = models.AutoField()
-    committee_id = models.IntegerField(blank=True, null=True)
+    # Must initially have all these properities identical to the properties in the initial migration
+    # id = models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)
+    committee_id = models.IntegerField(primary_key=True, blank=True, null=False, default=0,
+                                       help_text='1.0 unique!')
     committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     committee_type = models.LongCharField(max_length=-1, blank=True, null=True)
     committee_subtype = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -757,12 +761,12 @@ class WorkingCommittees(models.Model):
     db_update_status = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'working_committees'
 
 
 class WorkingTransactions(models.Model):
-    # id = models.AutoField()
+    id = models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)
     tran_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
     filer = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -784,5 +788,5 @@ class WorkingTransactions(models.Model):
     contributor_payee_class = models.LongCharField(max_length=-1, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'working_transactions'
