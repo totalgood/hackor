@@ -65,7 +65,6 @@ from utils import models, representation
 
 
 class CampaignDetail(models.Model):
-    # id = models.AutoField(db_column='id')
     filer_id = models.IntegerField(primary_key=True, default=0,
                                    help_text="2384 unique integers identifying each committee.")
     candidate_name = models.TextField(blank=True, null=True,
@@ -172,8 +171,8 @@ class CampaignDetail(models.Model):
 
 
 class CcWorkingTransactions(models.Model):
-    # id = models.AutoField(db_column='id')
-    tran_id = models.IntegerField(primary_key=True)
+    id = models.AutoField(db_column='id')
+    tran_id = models.IntegerField(blank=True, null=True)
     tran_date = models.DateField(blank=True, null=True)
     filer = models.LongCharField(max_length=-1, blank=True, null=True)
     contributor_payee = models.LongCharField(max_length=-1, blank=True, null=True)
@@ -661,8 +660,8 @@ class CcWorkingTransactions(models.Model):
 
 
 class WorkingCandidateCommittees(models.Model):
-    # id = models.AutoField()
-    candidate_name = models.TextField(blank=True, null=True)
+    id = models.AutoField()
+    candidate_name = models.TextField(db_column=blank=True, null=True)
     committee_id = models.IntegerField(blank=True, null=True)
     committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     election_office = models.TextField(blank=True, null=True)
@@ -676,7 +675,7 @@ class WorkingCandidateCommittees(models.Model):
 
 
 class WorkingCandidateFilings(models.Model):
-    # id = models.AutoField()
+    id = models.AutoField()
     election_txt = models.TextField(blank=True, null=True)
     election_year = models.IntegerField(blank=True, null=True)
     office_group = models.TextField(blank=True, null=True)
@@ -736,7 +735,8 @@ class WorkingCandidateFilings(models.Model):
 
 
 class WorkingCommittees(models.Model):
-    # id = models.AutoField()
+    # ALTER TABLE working_committees ADD COLUMN id SERIAL PRIMARY KEY;
+    id = models.AutoField()
     committee_id = models.IntegerField(blank=True, null=True)
     committee_name = models.LongCharField(max_length=-1, blank=True, null=True)
     committee_type = models.LongCharField(max_length=-1, blank=True, null=True)
