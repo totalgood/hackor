@@ -44,12 +44,12 @@ df_pos = df.join(pd.DataFrame.from_records(qs_pos.values('pos_amount').all())['p
 df['pos_amount'] = pd.DataFrame.from_records(qs_pos.values('pos_amount').all())['pos_amount']
 
 # Did all the rows get inserted in the right place (are the indices still alligned)
-print((df == df2))
-print((df == df2.mean())
+print((df == df_pos))
+print((df == df_pos).mean())
 # it turns out that a NaN is not equal to a NaN
 # any operation involving a NaN returns a NaN
 # and NaN (like None) always evaluates to False
-print((df == df2.mean()) + df.isnull().mean())
+print((df == df_pos).mean() + df.isnull().mean())
 
 # get rid of rows without a committee name (from transactions with filer_id not in CampaignDetail)
 df = df[df.committee_name.astype(bool)].copy()
