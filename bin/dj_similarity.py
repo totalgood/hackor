@@ -25,19 +25,66 @@ from pacs.models import CampaignDetail
 # qs = CampaignDetail.objects.annotate(net_amount=Sum('workingtransactions__amount'))
 # df_no_net = read_frame(qs)
 
+# Django queries
+# this is how you do a join between the CampaignDetail table and WorkingTransactions table
+#   and aggregate only the "amount" on the Transactions table
 qs = CampaignDetail.objects.annotate(net_amount=Sum('workingtransactions__amount')).values().all()
-df = pd.DataFrame.from_records()
-df_amounts = pd.DataFrame(df['net_amount'], index=
 
-def df_cov_from_df(df, n=500, index_label='committee_name', value_label='net_amount'):
-    df = df[df[index_label].astype('bool')][[index_label, value_label]].dropna(how='all')
+# this is one easy way to convert a django queryset into a Pandas dataframe
+df = pd.DataFrame.from_records(qs)
+
+# What if you only want the positive transactions summed
+qs_pos = CampaignDetail.objects.filter(workingtransactions__amount__gt=0)
+qs_pos = qs_pos.annotate(pos_amount=Sum('workingtransactions__amount'))
+
+# this is how you do a join on a pandas dataframe
+df_pos = df.join(pd.DataFrame.from_records(qs_pos.values('pos_amount').all())['pos_amount'])
+
+# but what if I just inserted a new column into the dataframe with the values I want
+df['pos_amount'] = pd.DataFrame.from_records(qs_pos.values('pos_amount').all())['pos_amount']
+
+# Did all the rows get inserted in the right place (are the indices still alligned)
+print((df == df2))
+print((df == df2.mean())
+# it turns out that a NaN is not equal to a NaN
+# any operation involving a NaN returns a NaN
+# and NaN (like None) always evaluates to False
+print((df == df2.mean()) + df.isnull().mean())
+
+# get rid of rows without a committee name (from transactions with filer_id not in CampaignDetail)
+df = df[df.committee_name.astype(bool)].copy()
+df = df.set_index(df.committee_name)
+
+# lets do it all again for negative transaction amounts
+qs_neg = CampaignDetail.objects.filter(workingtransactions__amount__lt=0)
+qs_neg = qs_neg.annotate(neg_amount=Sum('workingtransactions__amount'))
+df = df.join(pd.DataFrame.from_records(qs_pos.values('neg_amount').all())['neg_amount'])
+
+
+# Can we create a directed graph of financial transactions between committees?
+# are the payee_committee_ids the same as "filer_id"?
+filer_id = set(pd.DataFrame.from_records(WorkingTransactions.objects.values(
+               'filer_id').all()).dropna().values.T[0])
+payee_id = set(pd.DataFrame.from_records(WorkingTransactions.objects.values(
+               'contributor_payee_committee_id').all()).dropna().values.T[0])
+print(len(payee_id.intersection(filer_id)) * 1. / len(filer_id))
+
+# That's good enough for government work
+
+
+def transaction_matrix():
+    pass
+
+
+def df_cov_from_df(df, n=500, index_label='committee_name', value_labels=['net_amount']):
+    value_labels = list(value_labels)
+    df = df[df[index_label].astype('bool')][[index_label] + list(value_labels)].dropna(how='all')
     names = df[index_label].values
-    values = df[value_label].values
-    cov = np.matrix(values).T * np.matrix(values)
-    diag = np.diag(np.sqrt(np.diagonal(cov)))
-    return pd.DataFrame(cov, columns=names, index=names)
+    values = df[value_labels].values
+    cov = np.matrix(values) * np.matrix(values).T
+    diag = np.diag(np.diagonal(cov) ** -.5)
+    return pd.DataFrame(diag * cov * diag, columns=names, index=names)
 
-json_from_cov_df(df=)
 
 #df = pd.DataFrame.from_csv('../data/public.working_committees.csv')  # id
 # pacs = pd.DataFrame.from_csv('../data/public.raw_committees.csv')  # no ID that I can find
