@@ -11,6 +11,7 @@ import os
 import re
 home = os.getenv('HOME')
 downloads = os.path.join(home, 'Downloads', 'dmps')
+extracted_emails = os.path.join(downloads, 'emails3gb.txt')
 mem_MB = 2000
 top_tlds = top_tlds or {
     '.com': ('Commercial', 4860000000),
@@ -37,7 +38,7 @@ top_tlds = top_tlds or {
 
 
 def extract_emails(top_tlds=top_tlds, colnum=1,
-                   dest=os.path.join(downloads, 'emails3gb.txt')):
+                   dest=os.path.join(downloads, extracted_emails)):
     tlds = set(top_tlds)
     email_regex = re.compile('[a-zA-Z0-9-.!#$%&*+-/=?^_`{|}~]+@[a-zA-Z0-9-.]+(' + '|'.join(tlds) + ')')
     emails = ''
@@ -54,15 +55,13 @@ def extract_emails(top_tlds=top_tlds, colnum=1,
     with open(dest, 'w') as f:
         f.write(emails)
     # return emails
-
 extract_emails()
 
 
 # emails = pd.Series(emails.split('\n'))
 
 # print(emails[:100])
-del emails
-emails = pd.DataFrame.from_csv('/home/hobs/Downloads/dmps/emails3gb.txt').index
+emails = pd.DataFrame.from_csv(extracted_emails).index
 # $ free -h
 #              total       used       free     shared    buffers     cached
 # Mem:          7.7G       6.4G       1.3G       139M       108M       2.6G
@@ -95,7 +94,7 @@ emails = pd.DataFrame.from_csv('/home/hobs/Downloads/dmps/emails3gb.txt').index
 
 intersection = []
 candidates = pd.DataFrame.from_csv(
-    '/home/hobs/src/totalgood/webapps/hackor/data/public.raw_candidate_filings.csv')  # id_nmbr
+    os.path.joint(data, 'public.raw_candidate_filings.csv')
 candidates = set(candidates['email'].unique())
 for i, em in enumerate(candidates):
     if str(em).lower().strip() in emails:
