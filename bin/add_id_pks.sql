@@ -1,0 +1,6 @@
+ALTER TABLE campaign_detail ADD COLUMN id SERIAL PRIMARY KEY;
+ALTER TABLE cc_working_transactions ADD COLUMN id SERIAL PRIMARY KEY;
+ALTER TABLE working_candidate_committees ADD COLUMN id SERIAL PRIMARY KEY;
+ALTER TABLE working_candidate_filings ADD COLUMN id SERIAL PRIMARY KEY;
+ALTER TABLE working_committees ADD COLUMN id SERIAL PRIMARY KEY;
+ALTER TABLE working_transactions ADD COLUMN id SERIAL PRIMARY KEY;
