@@ -1,0 +1,2946 @@
+{
+ "nodes": [
+  {
+   "group": 0, 
+   "name": "13 Enviros PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "19thofJune Green Chapter"
+  }, 
+  {
+   "group": 0, 
+   "name": "2020 Vision for Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "21st Century Veterans for Progress"
+  }, 
+  {
+   "group": 0, 
+   "name": "A Better Choice Political Action Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "A Better Oregon I"
+  }, 
+  {
+   "group": 0, 
+   "name": "A Better Oregon II"
+  }, 
+  {
+   "group": 0, 
+   "name": "A Better Oregon III"
+  }, 
+  {
+   "group": 0, 
+   "name": "A Better Oregon IV"
+  }, 
+  {
+   "group": 0, 
+   "name": "A Better Oregon V"
+  }, 
+  {
+   "group": 0, 
+   "name": "A Better Oregon VI"
+  }, 
+  {
+   "group": 0, 
+   "name": "A Better Oregon VII"
+  }, 
+  {
+   "group": 0, 
+   "name": "A Promise is a Promise, A Contract is a Contract Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "A.J. O'Connell Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "ABC Merit Shop Contractor PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "AG-PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "AGC Committee for Action"
+  }, 
+  {
+   "group": 0, 
+   "name": "ASK Damascus"
+  }, 
+  {
+   "group": 0, 
+   "name": "ASK Damascus Issues Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Aaron Baker For State Representative"
+  }, 
+  {
+   "group": 0, 
+   "name": "Achieving the American Dream Coalition"
+  }, 
+  {
+   "group": 0, 
+   "name": "Acree for Assessor"
+  }, 
+  {
+   "group": 0, 
+   "name": "Act Now for a Healthy Oregon Political Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Affordable Renewable Energy PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Against One Sided Measures"
+  }, 
+  {
+   "group": 0, 
+   "name": "Alan Leiman for Judge"
+  }, 
+  {
+   "group": 0, 
+   "name": "Alan Olsen for Oregon Senate Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Albany Friends of Sharon Konopa"
+  }, 
+  {
+   "group": 0, 
+   "name": "Albany's Right to Vote"
+  }, 
+  {
+   "group": 0, 
+   "name": "Alex Gardner for DA"
+  }, 
+  {
+   "group": 0, 
+   "name": "Allen Amabisca for Washington County"
+  }, 
+  {
+   "group": 0, 
+   "name": "Alliance - PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Alliance 4 Kids"
+  }, 
+  {
+   "group": 0, 
+   "name": "Alliance for Healthy Communities"
+  }, 
+  {
+   "group": 0, 
+   "name": "Alliance for Oregon's Elders"
+  }, 
+  {
+   "group": 0, 
+   "name": "Allman Campaign"
+  }, 
+  {
+   "group": 0, 
+   "name": "Amalgamated Transit Union 757 Political Fund"
+  }, 
+  {
+   "group": 0, 
+   "name": "Amanda for Portland 2012"
+  }, 
+  {
+   "group": 0, 
+   "name": "American College of Cardiology - Oregon Chapter PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "American Council of Engineering Companies - Oregon PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "American Federation of State, County and Municipal Employees Local 3580 PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "American Federation of Teachers-Oregon Candidate PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "American Federation of Teachers-Oregon Issue PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "American Victory Coalition PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Americans for Liberty PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Americans for Responsive Responsible Representative Government"
+  }, 
+  {
+   "group": 0, 
+   "name": "Americans for Responsive Responsible Representative Govt"
+  }, 
+  {
+   "group": 0, 
+   "name": "Ames for Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "An Independent Voice for Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "Andre for Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "Andrea Batchelor for MCFD 1 Director"
+  }, 
+  {
+   "group": 0, 
+   "name": "Andrew Petersen For Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "Andy Long for Sheriff Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Andy Stahl for Lane County Commission"
+  }, 
+  {
+   "group": 0, 
+   "name": "Anette Spickard for Assessor"
+  }, 
+  {
+   "group": 0, 
+   "name": "Animal Shelter Advocates"
+  }, 
+  {
+   "group": 0, 
+   "name": "Anita Yap for PCC Board"
+  }, 
+  {
+   "group": 0, 
+   "name": "Anna Peterson for Mayor"
+  }, 
+  {
+   "group": 0, 
+   "name": "Arleen Curths For County Commissioner"
+  }, 
+  {
+   "group": 0, 
+   "name": "Art Harvey for County Clerk"
+  }, 
+  {
+   "group": 0, 
+   "name": "ArtPAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Ashland Residents for a Great City Council"
+  }, 
+  {
+   "group": 0, 
+   "name": "Asian American Coalition"
+  }, 
+  {
+   "group": 0, 
+   "name": "Ask Damascus Issues Comm"
+  }, 
+  {
+   "group": 0, 
+   "name": "Ask Damascus Issues Comm"
+  }, 
+  {
+   "group": 0, 
+   "name": "Associated Builders and Contractors State PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Associated Oregon Industries PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Association of Engineering Employees of Or PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Audrey Monroe for LO Schools"
+  }, 
+  {
+   "group": 0, 
+   "name": "BOMA Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bagley for Judge Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bailey for School Board"
+  }, 
+  {
+   "group": 0, 
+   "name": "Baker 5J Local Option Tax Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Baker County Republican Central Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Balanced Approach to Oregon's Budget I"
+  }, 
+  {
+   "group": 0, 
+   "name": "Balanced Approach to Oregon's Budget II"
+  }, 
+  {
+   "group": 0, 
+   "name": "Balanced and Fair Representation Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Ballot Access Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bar Pilots of the Columbia River Political Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Barb for Bend"
+  }, 
+  {
+   "group": 0, 
+   "name": "Barreto for HD 58"
+  }, 
+  {
+   "group": 0, 
+   "name": "Barrett for Clatsop County Commission #5"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bartlett for Judge"
+  }, 
+  {
+   "group": 0, 
+   "name": "Basic Rights Oregon Equality PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Basic Rights Oregon Measure PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Batchelor for Board PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Beaver PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Beaverton Area Chamber of Commerce Political Action Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Beaverton Public Safety"
+  }, 
+  {
+   "group": 0, 
+   "name": "Beaverton Teachers Political Action Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Becky Tymchuk for Beaverton School Board"
+  }, 
+  {
+   "group": 0, 
+   "name": "Ben Unger for Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bend Business Political Action Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bend Fire Fighters Association PAC Fund"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bend Good Government Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bend Tourism, Arts, and Public Safety Initiative"
+  }, 
+  {
+   "group": 0, 
+   "name": "Benton County Citizens Opposed to Measure 2-89"
+  }, 
+  {
+   "group": 0, 
+   "name": "Benton County Democratic Central Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Benton County Republican Central Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Benton Food Freedom"
+  }, 
+  {
+   "group": 0, 
+   "name": "Better Roads for Bend"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bigger Government? No Way PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bike. Walk. Vote."
+  }, 
+  {
+   "group": 0, 
+   "name": "Bill Beckers for HD 49"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bill Burgess for County Clerk"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bill Dant For Mayor Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bill Fleenor"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bill Fuzia For Sheriff"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bill Marshall for Judge"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bill Middleton for Mayor"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bill Tierney for City Council"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bill Wehr For Mayor"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bill Wehr for Damascus City Council"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bill X. Sexton"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bill Young for House District 13"
+  }, 
+  {
+   "group": 0, 
+   "name": "Black PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Blackburn4Mayor"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bob Andrews for Mayor"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bob Hermann for Washington County District Attorney"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bob Niemeyer Campaign"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bob Sergi for Sheriff"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bobbie Regan for Portland School Board"
+  }, 
+  {
+   "group": 0, 
+   "name": "Boddie For Bend"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bond Vote PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Boone for State Representative"
+  }, 
+  {
+   "group": 0, 
+   "name": "Boquist Leadership Fund"
+  }, 
+  {
+   "group": 0, 
+   "name": "Brad Fudge For Reynolds School Board"
+  }, 
+  {
+   "group": 0, 
+   "name": "Brad Perkins for Metro"
+  }, 
+  {
+   "group": 0, 
+   "name": "Brad Witt for State Representative"
+  }, 
+  {
+   "group": 0, 
+   "name": "Braverman4judge.westlinn"
+  }, 
+  {
+   "group": 0, 
+   "name": "Brenden King for Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "Brian Shaw for Oregon City"
+  }, 
+  {
+   "group": 0, 
+   "name": "Brian Wolfe for Sheriff"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bridget Bailey for Wasco County Commissioner"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bruce Neal for Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bruce Riley for Sheriff"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bruce Starr for State Senate Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Buchal for Attorney General"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bud Pierce for a Better Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "Buddies for Kevin Cronin"
+  }, 
+  {
+   "group": 0, 
+   "name": "Buehler For a United Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "Buel for School Board"
+  }, 
+  {
+   "group": 0, 
+   "name": "Build Gladstone's Future Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Building A Better Beaverton"
+  }, 
+  {
+   "group": 0, 
+   "name": "Building Trades PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Building Tualatin's Future"
+  }, 
+  {
+   "group": 0, 
+   "name": "Building a Better Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "Building a New Molalla Middle School"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bull Mountain Residents for Incorporation"
+  }, 
+  {
+   "group": 0, 
+   "name": "Bus PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "CECRO PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "CFM State PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "CITIZENS FOR A SAFER LINN COUNTY"
+  }, 
+  {
+   "group": 0, 
+   "name": "Cable Operators Political Action Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Caddy McKeown for Representative"
+  }, 
+  {
+   "group": 0, 
+   "name": "Caitlin for Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "Cameron Whitten for Oregon State Treasurer"
+  }, 
+  {
+   "group": 0, 
+   "name": "Campaign for Mark Webb"
+  }, 
+  {
+   "group": 0, 
+   "name": "Campaign for the Restoration and Regulation of Hemp in Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "Campaign to Elect Annette Frank"
+  }, 
+  {
+   "group": 0, 
+   "name": "Campaign to Elect Steven P. Forster"
+  }, 
+  {
+   "group": 0, 
+   "name": "Campaign to elect Don Skundrick"
+  }, 
+  {
+   "group": 0, 
+   "name": "Campbell for Judge"
+  }, 
+  {
+   "group": 0, 
+   "name": "Canby - Support Our Students"
+  }, 
+  {
+   "group": 0, 
+   "name": "Candidate Committee For Terry Luttrell"
+  }, 
+  {
+   "group": 0, 
+   "name": "Cannabis Research Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Cannon for Sheriff"
+  }, 
+  {
+   "group": 0, 
+   "name": "Capitol Watch Issues Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Capitol Watch Political Action Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Carol Pauli for Oregon City"
+  }, 
+  {
+   "group": 0, 
+   "name": "Carolyn Tomei for State Representative"
+  }, 
+  {
+   "group": 0, 
+   "name": "Cascadian Public Trust Initiative"
+  }, 
+  {
+   "group": 0, 
+   "name": "Castle Doctrine Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Cemetery Association of Oregon PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Central Oregon Association of Realtors PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Central Oregon Patriots Political Action Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Central Oregon Small Business PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Central Oregon Tea Party PAC / DBA Bend Tea Party"
+  }, 
+  {
+   "group": 0, 
+   "name": "Central Oregonians for Affordable Housing"
+  }, 
+  {
+   "group": 0, 
+   "name": "CenturyLink Oregon Employees' Political Action Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "ChamberPAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Charlie Hales for Mayor"
+  }, 
+  {
+   "group": 0, 
+   "name": "Charlie Ringo for State Senate"
+  }, 
+  {
+   "group": 0, 
+   "name": "Charter for Circuit Court Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Chehalem Pool Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Cherryl Walker Recall Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Cherryl Walker for BCC3"
+  }, 
+  {
+   "group": 0, 
+   "name": "Children's Trust of Lincoln County"
+  }, 
+  {
+   "group": 0, 
+   "name": "ChiroPAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Chris Brantley for School Board"
+  }, 
+  {
+   "group": 0, 
+   "name": "Chris Humphreys for Sheriff"
+  }, 
+  {
+   "group": 0, 
+   "name": "Chris Kaber for Sheriff Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Chris Pryor for City Council"
+  }, 
+  {
+   "group": 0, 
+   "name": "Christian Victory PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Christopher 4 Keizer"
+  }, 
+  {
+   "group": 0, 
+   "name": "Christopher Cochran for State Senate"
+  }, 
+  {
+   "group": 0, 
+   "name": "Chuck Bennett for Mayor"
+  }, 
+  {
+   "group": 0, 
+   "name": "Chuck Burley for State Representative"
+  }, 
+  {
+   "group": 0, 
+   "name": "Chuck For Bend"
+  }, 
+  {
+   "group": 0, 
+   "name": "Chuck For Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "Chuck Lee Campaign Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Chuck Riley Recall"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizen Action for Political Education"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens Against Higher Beverage Taxes"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens Against New Telecom Taxes"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens Alliance for Responsible Education"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens Charter Political Action Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens Committee for Disincorporation"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens For Cj Mann"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens For Open Honest Government"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens For Public Safety"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens Opposed to Wasting Your Tax Dollars"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens Organized for Public Safety"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens Securing Our Safety"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens To Elect Irene Gilbert"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for \"Safe Schools for Our Community\""
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for 1,000,000. Building Vote"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for 13J Excellence"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for 911"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Better Schools - Elect Kim Wallan Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Brett Veatch"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Bruce McCain"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Continued Support of Schools"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Corbett Schools"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Dallas Schools"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Dave Dotterrer"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Fairness and Ethics in Government"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Good Education"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Good Government"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Healthy Teeth"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Hillsboro Schools"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Improved and Safer Streets"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Improving North Santiam Schools"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Jack Swift"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Jim Thompson"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Jim Weidner"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Jobs and Schools PAC"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Ken Strobeck"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Klamath County Schools"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Leslie Lewis"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Library Facilities"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Limited Government"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Local Land-Use Control"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Marion County Extension"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Millersburg City Power"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Moving Damascus Forward"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Neighborhood Livability"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Newberg and Education"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for OC Water"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Patrick Starnes"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Polk County"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Positive Government"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Private Property Preservation"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Public Bond Debt Vote"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Responsible Government"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Responsible Growth"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Ron Dodge"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Safe Reynolds Schools"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Safe and Sound Schools"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for School Renovation"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Schools"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Scio Rural Fire Protection District"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Sensible Law Enforcement"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Sisters"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Stayton"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Tony DeBone"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for Truth, Justice, and the American Way"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for West Linn Pool and Rec Center"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for a Better Oakridge"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for a Better Oregon City"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for a Healthy County"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for a Safe Community"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for a Safe Community"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for a Safe and Healthy Benton County"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for a Safe and Healthy Community"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for a Safer Albany"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for a Safer Bend"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for a Safer Clackamas County"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for a Safer Gresham"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens for a Safer Linn County"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens in Support of Ballot Measure 9-85"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens in Support of NC 12"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens to Elect Alton Harvey Sr"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens to Elect Carl Wilson"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens to Elect Dennis Richardson"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens to Elect John Cook"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens to Elect Tom Brian"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens to Re-Elect Marc Woodard"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens to Reelect Roy Rogers"
+  }, 
+  {
+   "group": 0, 
+   "name": "Citizens to Save Customer Parking"
+  }, 
+  {
+   "group": 0, 
+   "name": "City Leaders of Oregon"
+  }, 
+  {
+   "group": 0, 
+   "name": "Clackamas County Citizens for Jobs and Safety"
+  }, 
+  {
+   "group": 0, 
+   "name": "Clackamas County Democratic Central Committee"
+  }, 
+  {
+   "group": 0, 
+   "name": "Clackamas County First"
+  }, 
+  {
+   "group": 0, 
+   "name": "Clackamas County First"
+  }, 
+  {
+   "group": 0, 
+   "name": "Clackamas County Republican Party"
+  }, 
+  {
+   "group": 0, 
+   "name": "Clackamas Leadership Fund"
+  }, 
+  {
+   "group": 0, 
+   "name": "Clackamas Rail Vote"
+  }, 
+  {
+   "group": 0, 
+   "name": "Clackamas Rail Vote"
+  }, 
+  {
+   "group": 0, 
+   "name": "Claire Syrett for Eugene City Council"
+  }
+ ], 
+ "links": [
+  {
+   "source": 6, 
+   "target": 5, 
+   "value": 1.1129376574414407
+  }, 
+  {
+   "source": 7, 
+   "target": 5, 
+   "value": 1.0693284211536567
+  }, 
+  {
+   "source": 7, 
+   "target": 6, 
+   "value": 0.75027759537919103
+  }, 
+  {
+   "source": 8, 
+   "target": 5, 
+   "value": 1.038709109031156
+  }, 
+  {
+   "source": 8, 
+   "target": 6, 
+   "value": 0.72879403297031953
+  }, 
+  {
+   "source": 8, 
+   "target": 7, 
+   "value": 0.70023704150145805
+  }, 
+  {
+   "source": 9, 
+   "target": 5, 
+   "value": 2.0
+  }, 
+  {
+   "source": 9, 
+   "target": 6, 
+   "value": 1.1129376574414407
+  }, 
+  {
+   "source": 9, 
+   "target": 7, 
+   "value": 1.0693284211536567
+  }, 
+  {
+   "source": 9, 
+   "target": 8, 
+   "value": 1.038709109031156
+  }, 
+  {
+   "source": 10, 
+   "target": 5, 
+   "value": 1.038709109031156
+  }, 
+  {
+   "source": 10, 
+   "target": 6, 
+   "value": 0.72879403297031953
+  }, 
+  {
+   "source": 10, 
+   "target": 7, 
+   "value": 0.70023704150145805
+  }, 
+  {
+   "source": 10, 
+   "target": 8, 
+   "value": 0.68018634789851617
+  }, 
+  {
+   "source": 10, 
+   "target": 9, 
+   "value": 1.038709109031156
+  }, 
+  {
+   "source": 11, 
+   "target": 5, 
+   "value": 1.038709109031156
+  }, 
+  {
+   "source": 11, 
+   "target": 6, 
+   "value": 0.72879403297031953
+  }, 
+  {
+   "source": 11, 
+   "target": 7, 
+   "value": 0.70023704150145805
+  }, 
+  {
+   "source": 11, 
+   "target": 8, 
+   "value": 0.68018634789851617
+  }, 
+  {
+   "source": 11, 
+   "target": 9, 
+   "value": 1.038709109031156
+  }, 
+  {
+   "source": 11, 
+   "target": 10, 
+   "value": 0.68018634789851617
+  }, 
+  {
+   "source": 18, 
+   "target": 17, 
+   "value": 1.1607473055390485
+  }, 
+  {
+   "source": 32, 
+   "target": 31, 
+   "value": 0.57266759945400481
+  }, 
+  {
+   "source": 33, 
+   "target": 31, 
+   "value": 0.52183612223232356
+  }, 
+  {
+   "source": 34, 
+   "target": 31, 
+   "value": 0.5322870495642078
+  }, 
+  {
+   "source": 41, 
+   "target": 40, 
+   "value": 0.60304719283398334
+  }, 
+  {
+   "source": 42, 
+   "target": 40, 
+   "value": 0.56016537764757923
+  }, 
+  {
+   "source": 42, 
+   "target": 41, 
+   "value": 1.3153231576516895
+  }, 
+  {
+   "source": 46, 
+   "target": 45, 
+   "value": 1.4085844435292918
+  }, 
+  {
+   "source": 62, 
+   "target": 20, 
+   "value": 0.50912122066778587
+  }, 
+  {
+   "source": 62, 
+   "target": 43, 
+   "value": 0.50120904258477827
+  }, 
+  {
+   "source": 63, 
+   "target": 17, 
+   "value": 1.0731724442143364
+  }, 
+  {
+   "source": 63, 
+   "target": 18, 
+   "value": 1.3568796862960986
+  }, 
+  {
+   "source": 64, 
+   "target": 17, 
+   "value": 1.0731724442143364
+  }, 
+  {
+   "source": 64, 
+   "target": 18, 
+   "value": 1.3568796862960986
+  }, 
+  {
+   "source": 64, 
+   "target": 63, 
+   "value": 1.9999999999999996
+  }, 
+  {
+   "source": 70, 
+   "target": 25, 
+   "value": 0.61597604157342822
+  }, 
+  {
+   "source": 75, 
+   "target": 74, 
+   "value": 1.5626163599362792
+  }, 
+  {
+   "source": 79, 
+   "target": 37, 
+   "value": 0.76631047477989755
+  }, 
+  {
+   "source": 84, 
+   "target": 83, 
+   "value": 1.3799859892093278
+  }, 
+  {
+   "source": 85, 
+   "target": 50, 
+   "value": 0.90979700353329584
+  }, 
+  {
+   "source": 89, 
+   "target": 4, 
+   "value": 0.5042664464432749
+  }, 
+  {
+   "source": 89, 
+   "target": 87, 
+   "value": 0.63965204537744325
+  }, 
+  {
+   "source": 90, 
+   "target": 71, 
+   "value": 0.54690749340177047
+  }, 
+  {
+   "source": 91, 
+   "target": 49, 
+   "value": 0.76438117997670685
+  }, 
+  {
+   "source": 92, 
+   "target": 4, 
+   "value": 0.51058581149601434
+  }, 
+  {
+   "source": 92, 
+   "target": 89, 
+   "value": 0.58777938817111075
+  }, 
+  {
+   "source": 95, 
+   "target": 88, 
+   "value": 0.75420137440919099
+  }, 
+  {
+   "source": 97, 
+   "target": 73, 
+   "value": 0.60161833567036749
+  }, 
+  {
+   "source": 97, 
+   "target": 96, 
+   "value": 0.54327734594933708
+  }, 
+  {
+   "source": 98, 
+   "target": 73, 
+   "value": 1.2344902490817327
+  }, 
+  {
+   "source": 98, 
+   "target": 96, 
+   "value": 0.54734224081389982
+  }, 
+  {
+   "source": 98, 
+   "target": 97, 
+   "value": 1.3526227772768271
+  }, 
+  {
+   "source": 103, 
+   "target": 48, 
+   "value": 0.56380517321028822
+  }, 
+  {
+   "source": 103, 
+   "target": 80, 
+   "value": 0.74897194022239511
+  }, 
+  {
+   "source": 104, 
+   "target": 59, 
+   "value": 0.91315040978691586
+  }, 
+  {
+   "source": 107, 
+   "target": 81, 
+   "value": 0.57299401510325232
+  }, 
+  {
+   "source": 108, 
+   "target": 25, 
+   "value": 0.67535789587726414
+  }, 
+  {
+   "source": 108, 
+   "target": 70, 
+   "value": 1.1891290296231509
+  }, 
+  {
+   "source": 110, 
+   "target": 37, 
+   "value": 0.51584890151433349
+  }, 
+  {
+   "source": 110, 
+   "target": 79, 
+   "value": 0.53879408910198767
+  }, 
+  {
+   "source": 112, 
+   "target": 37, 
+   "value": 0.80319085544756563
+  }, 
+  {
+   "source": 112, 
+   "target": 79, 
+   "value": 0.82618962676829089
+  }, 
+  {
+   "source": 112, 
+   "target": 110, 
+   "value": 0.74030911837571567
+  }, 
+  {
+   "source": 112, 
+   "target": 111, 
+   "value": 1.1854113147778413
+  }, 
+  {
+   "source": 114, 
+   "target": 19, 
+   "value": 0.50443296830788531
+  }, 
+  {
+   "source": 114, 
+   "target": 49, 
+   "value": 0.7776164911992316
+  }, 
+  {
+   "source": 114, 
+   "target": 91, 
+   "value": 0.78287027416516386
+  }, 
+  {
+   "source": 117, 
+   "target": 105, 
+   "value": 0.58898513006657482
+  }, 
+  {
+   "source": 118, 
+   "target": 29, 
+   "value": 0.53772408947821493
+  }, 
+  {
+   "source": 119, 
+   "target": 47, 
+   "value": 0.63580007758387291
+  }, 
+  {
+   "source": 121, 
+   "target": 71, 
+   "value": 1.2007181538999894
+  }, 
+  {
+   "source": 122, 
+   "target": 37, 
+   "value": 0.7633672257861851
+  }, 
+  {
+   "source": 122, 
+   "target": 79, 
+   "value": 0.95956806432768682
+  }, 
+  {
+   "source": 122, 
+   "target": 110, 
+   "value": 0.5367246861474958
+  }, 
+  {
+   "source": 122, 
+   "target": 112, 
+   "value": 0.82301639363677204
+  }, 
+  {
+   "source": 124, 
+   "target": 19, 
+   "value": 0.56294473784291976
+  }, 
+  {
+   "source": 124, 
+   "target": 49, 
+   "value": 0.85766240338885902
+  }, 
+  {
+   "source": 124, 
+   "target": 91, 
+   "value": 0.78793693276183507
+  }, 
+  {
+   "source": 124, 
+   "target": 114, 
+   "value": 0.87904790196093685
+  }, 
+  {
+   "source": 128, 
+   "target": 19, 
+   "value": 0.53517094706647594
+  }, 
+  {
+   "source": 128, 
+   "target": 49, 
+   "value": 0.81534823905397402
+  }, 
+  {
+   "source": 128, 
+   "target": 91, 
+   "value": 0.74906278749596988
+  }, 
+  {
+   "source": 128, 
+   "target": 114, 
+   "value": 0.83567864940324199
+  }, 
+  {
+   "source": 128, 
+   "target": 124, 
+   "value": 1.0232111317963715
+  }, 
+  {
+   "source": 130, 
+   "target": 48, 
+   "value": 0.5346917655181519
+  }, 
+  {
+   "source": 131, 
+   "target": 37, 
+   "value": 0.52882384101990887
+  }, 
+  {
+   "source": 131, 
+   "target": 79, 
+   "value": 0.54914831119386642
+  }, 
+  {
+   "source": 131, 
+   "target": 112, 
+   "value": 0.59225846255516024
+  }, 
+  {
+   "source": 131, 
+   "target": 122, 
+   "value": 0.54703913969287066
+  }, 
+  {
+   "source": 132, 
+   "target": 107, 
+   "value": 0.59686073606697143
+  }, 
+  {
+   "source": 134, 
+   "target": 49, 
+   "value": 0.70023099578992087
+  }, 
+  {
+   "source": 134, 
+   "target": 91, 
+   "value": 0.63913273329941045
+  }, 
+  {
+   "source": 134, 
+   "target": 114, 
+   "value": 0.64918647676644869
+  }, 
+  {
+   "source": 134, 
+   "target": 124, 
+   "value": 0.72011975391148653
+  }, 
+  {
+   "source": 134, 
+   "target": 128, 
+   "value": 0.68459147904784878
+  }, 
+  {
+   "source": 136, 
+   "target": 125, 
+   "value": 0.7096601470495647
+  }, 
+  {
+   "source": 138, 
+   "target": 47, 
+   "value": 0.69032409146457829
+  }, 
+  {
+   "source": 138, 
+   "target": 119, 
+   "value": 0.64019180178309687
+  }, 
+  {
+   "source": 140, 
+   "target": 48, 
+   "value": 0.54976369634160305
+  }, 
+  {
+   "source": 141, 
+   "target": 71, 
+   "value": 1.3863281059223704
+  }, 
+  {
+   "source": 141, 
+   "target": 90, 
+   "value": 0.53665703641074602
+  }, 
+  {
+   "source": 141, 
+   "target": 121, 
+   "value": 1.1782135988456446
+  }, 
+  {
+   "source": 146, 
+   "target": 5, 
+   "value": 1.1000249617892615
+  }, 
+  {
+   "source": 146, 
+   "target": 6, 
+   "value": 0.77181534396880958
+  }, 
+  {
+   "source": 146, 
+   "target": 7, 
+   "value": 0.74157260981328554
+  }, 
+  {
+   "source": 146, 
+   "target": 8, 
+   "value": 0.72033830728079207
+  }, 
+  {
+   "source": 146, 
+   "target": 9, 
+   "value": 1.1000249617892615
+  }, 
+  {
+   "source": 146, 
+   "target": 10, 
+   "value": 0.72033830728079207
+  }, 
+  {
+   "source": 146, 
+   "target": 11, 
+   "value": 0.72033830728079207
+  }, 
+  {
+   "source": 146, 
+   "target": 143, 
+   "value": 1.1184793274538669
+  }, 
+  {
+   "source": 152, 
+   "target": 135, 
+   "value": 0.52514859521337942
+  }, 
+  {
+   "source": 153, 
+   "target": 89, 
+   "value": 0.51871077990105907
+  }, 
+  {
+   "source": 153, 
+   "target": 92, 
+   "value": 0.52521115841742883
+  }, 
+  {
+   "source": 154, 
+   "target": 49, 
+   "value": 0.71611222627419413
+  }, 
+  {
+   "source": 154, 
+   "target": 91, 
+   "value": 0.65352285305290203
+  }, 
+  {
+   "source": 154, 
+   "target": 114, 
+   "value": 0.73352827714356328
+  }, 
+  {
+   "source": 154, 
+   "target": 124, 
+   "value": 0.89477965443218355
+  }, 
+  {
+   "source": 154, 
+   "target": 128, 
+   "value": 0.85063425037628415
+  }, 
+  {
+   "source": 154, 
+   "target": 134, 
+   "value": 0.71911886775593126
+  }, 
+  {
+   "source": 155, 
+   "target": 48, 
+   "value": 0.54945638466966229
+  }, 
+  {
+   "source": 161, 
+   "target": 120, 
+   "value": 0.52958366197963758
+  }, 
+  {
+   "source": 162, 
+   "target": 25, 
+   "value": 0.70793457290888873
+  }, 
+  {
+   "source": 162, 
+   "target": 70, 
+   "value": 1.176929644437521
+  }, 
+  {
+   "source": 162, 
+   "target": 108, 
+   "value": 1.2553523208585242
+  }, 
+  {
+   "source": 166, 
+   "target": 107, 
+   "value": 0.66099947921764501
+  }, 
+  {
+   "source": 166, 
+   "target": 132, 
+   "value": 0.60095949881307498
+  }, 
+  {
+   "source": 167, 
+   "target": 18, 
+   "value": 0.63124850480416339
+  }, 
+  {
+   "source": 168, 
+   "target": 89, 
+   "value": 0.52941543242013767
+  }, 
+  {
+   "source": 168, 
+   "target": 92, 
+   "value": 0.53604995947545542
+  }, 
+  {
+   "source": 168, 
+   "target": 167, 
+   "value": 1.149164312377853
+  }, 
+  {
+   "source": 169, 
+   "target": 37, 
+   "value": 0.50871472728408673
+  }, 
+  {
+   "source": 169, 
+   "target": 79, 
+   "value": 0.52826633691234681
+  }, 
+  {
+   "source": 169, 
+   "target": 112, 
+   "value": 0.56973717690064973
+  }, 
+  {
+   "source": 169, 
+   "target": 122, 
+   "value": 0.52623736899960105
+  }, 
+  {
+   "source": 169, 
+   "target": 131, 
+   "value": 1.0536454709684522
+  }, 
+  {
+   "source": 170, 
+   "target": 49, 
+   "value": 0.7382974081217254
+  }, 
+  {
+   "source": 170, 
+   "target": 91, 
+   "value": 0.67827596607110607
+  }, 
+  {
+   "source": 170, 
+   "target": 114, 
+   "value": 0.75670658416205305
+  }, 
+  {
+   "source": 170, 
+   "target": 124, 
+   "value": 0.92651714982921562
+  }, 
+  {
+   "source": 170, 
+   "target": 128, 
+   "value": 0.88080592501388733
+  }, 
+  {
+   "source": 170, 
+   "target": 134, 
+   "value": 0.61989722966677896
+  }, 
+  {
+   "source": 170, 
+   "target": 154, 
+   "value": 0.77024887309630163
+  }, 
+  {
+   "source": 175, 
+   "target": 89, 
+   "value": 0.50846968204480913
+  }, 
+  {
+   "source": 175, 
+   "target": 92, 
+   "value": 0.51484172119545091
+  }, 
+  {
+   "source": 176, 
+   "target": 174, 
+   "value": 0.6149614084783408
+  }, 
+  {
+   "source": 179, 
+   "target": 4, 
+   "value": 0.53398174317236369
+  }, 
+  {
+   "source": 179, 
+   "target": 89, 
+   "value": 0.58230757955327317
+  }, 
+  {
+   "source": 179, 
+   "target": 92, 
+   "value": 0.58960494029208299
+  }, 
+  {
+   "source": 179, 
+   "target": 153, 
+   "value": 0.54927724897718666
+  }, 
+  {
+   "source": 179, 
+   "target": 168, 
+   "value": 0.56061270278837938
+  }, 
+  {
+   "source": 179, 
+   "target": 175, 
+   "value": 0.59506895773670609
+  }, 
+  {
+   "source": 181, 
+   "target": 105, 
+   "value": 0.62633170766687341
+  }, 
+  {
+   "source": 182, 
+   "target": 125, 
+   "value": 0.76932275982735399
+  }, 
+  {
+   "source": 182, 
+   "target": 136, 
+   "value": 0.8526410925806196
+  }, 
+  {
+   "source": 183, 
+   "target": 25, 
+   "value": 0.82282652421503288
+  }, 
+  {
+   "source": 183, 
+   "target": 70, 
+   "value": 0.90392927753447949
+  }, 
+  {
+   "source": 183, 
+   "target": 108, 
+   "value": 0.88034822474544328
+  }, 
+  {
+   "source": 183, 
+   "target": 162, 
+   "value": 0.91806032700823126
+  }, 
+  {
+   "source": 186, 
+   "target": 185, 
+   "value": 0.90575391447616904
+  }, 
+  {
+   "source": 189, 
+   "target": 71, 
+   "value": 0.71438352718372122
+  }, 
+  {
+   "source": 189, 
+   "target": 121, 
+   "value": 0.52219619145746776
+  }, 
+  {
+   "source": 189, 
+   "target": 141, 
+   "value": 0.70099413737129534
+  }, 
+  {
+   "source": 190, 
+   "target": 107, 
+   "value": 0.55713130481766637
+  }, 
+  {
+   "source": 190, 
+   "target": 132, 
+   "value": 0.50652589032684614
+  }, 
+  {
+   "source": 190, 
+   "target": 166, 
+   "value": 0.56095723756694083
+  }, 
+  {
+   "source": 192, 
+   "target": 35, 
+   "value": 0.63204080695755183
+  }, 
+  {
+   "source": 192, 
+   "target": 112, 
+   "value": 0.52916399976645345
+  }, 
+  {
+   "source": 195, 
+   "target": 125, 
+   "value": 0.68585155142439957
+  }, 
+  {
+   "source": 195, 
+   "target": 136, 
+   "value": 0.76333634380535165
+  }, 
+  {
+   "source": 195, 
+   "target": 182, 
+   "value": 0.88091160190282558
+  }, 
+  {
+   "source": 196, 
+   "target": 57, 
+   "value": 0.74740652353593384
+  }, 
+  {
+   "source": 196, 
+   "target": 105, 
+   "value": 0.64072680057717113
+  }, 
+  {
+   "source": 196, 
+   "target": 117, 
+   "value": 0.53679564957762982
+  }, 
+  {
+   "source": 197, 
+   "target": 19, 
+   "value": 0.57120883993751426
+  }, 
+  {
+   "source": 197, 
+   "target": 49, 
+   "value": 0.78925818924489244
+  }, 
+  {
+   "source": 197, 
+   "target": 91, 
+   "value": 0.78773394514216122
+  }, 
+  {
+   "source": 197, 
+   "target": 114, 
+   "value": 0.87750778824883258
+  }, 
+  {
+   "source": 197, 
+   "target": 124, 
+   "value": 1.0015517007664041
+  }, 
+  {
+   "source": 197, 
+   "target": 128, 
+   "value": 0.95213852480269268
+  }, 
+  {
+   "source": 197, 
+   "target": 134, 
+   "value": 0.66208525777812355
+  }, 
+  {
+   "source": 197, 
+   "target": 154, 
+   "value": 0.82855919926191401
+  }, 
+  {
+   "source": 197, 
+   "target": 170, 
+   "value": 0.86216094101128837
+  }, 
+  {
+   "source": 198, 
+   "target": 35, 
+   "value": 0.74346430081598558
+  }, 
+  {
+   "source": 198, 
+   "target": 37, 
+   "value": 0.61402094801821183
+  }, 
+  {
+   "source": 198, 
+   "target": 79, 
+   "value": 0.80341902236707641
+  }, 
+  {
+   "source": 198, 
+   "target": 112, 
+   "value": 0.67826927315665386
+  }, 
+  {
+   "source": 198, 
+   "target": 122, 
+   "value": 0.80033324668354477
+  }, 
+  {
+   "source": 198, 
+   "target": 192, 
+   "value": 0.76132828727049184
+  }, 
+  {
+   "source": 199, 
+   "target": 19, 
+   "value": 0.53439555422342566
+  }, 
+  {
+   "source": 199, 
+   "target": 48, 
+   "value": 0.73223438797583151
+  }, 
+  {
+   "source": 199, 
+   "target": 51, 
+   "value": 0.53732450405535115
+  }, 
+  {
+   "source": 199, 
+   "target": 80, 
+   "value": 0.51434317505459504
+  }, 
+  {
+   "source": 199, 
+   "target": 103, 
+   "value": 0.60858916243001027
+  }, 
+  {
+   "source": 199, 
+   "target": 130, 
+   "value": 0.57716322800313324
+  }, 
+  {
+   "source": 199, 
+   "target": 140, 
+   "value": 0.59343234753571672
+  }, 
+  {
+   "source": 199, 
+   "target": 155, 
+   "value": 0.59310062558296028
+  }, 
+  {
+   "source": 199, 
+   "target": 197, 
+   "value": 0.57908671873453599
+  }, 
+  {
+   "source": 200, 
+   "target": 49, 
+   "value": 0.71884461607028438
+  }, 
+  {
+   "source": 200, 
+   "target": 91, 
+   "value": 0.65384138867641017
+  }, 
+  {
+   "source": 200, 
+   "target": 114, 
+   "value": 0.73610822562101275
+  }, 
+  {
+   "source": 200, 
+   "target": 124, 
+   "value": 0.81188137994192044
+  }, 
+  {
+   "source": 200, 
+   "target": 128, 
+   "value": 0.77182589657742484
+  }, 
+  {
+   "source": 200, 
+   "target": 134, 
+   "value": 0.60019807707117101
+  }, 
+  {
+   "source": 200, 
+   "target": 154, 
+   "value": 0.67788698695840022
+  }, 
+  {
+   "source": 200, 
+   "target": 170, 
+   "value": 0.69888794955331734
+  }, 
+  {
+   "source": 200, 
+   "target": 197, 
+   "value": 0.89664522210622621
+  }, 
+  {
+   "source": 200, 
+   "target": 199, 
+   "value": 0.53875970084171143
+  }, 
+  {
+   "source": 206, 
+   "target": 4, 
+   "value": 0.50817261891473497
+  }, 
+  {
+   "source": 206, 
+   "target": 89, 
+   "value": 0.50208542078191654
+  }, 
+  {
+   "source": 206, 
+   "target": 92, 
+   "value": 0.50837745366246678
+  }, 
+  {
+   "source": 206, 
+   "target": 179, 
+   "value": 0.5316721945343964
+  }, 
+  {
+   "source": 208, 
+   "target": 35, 
+   "value": 0.57598184400178476
+  }, 
+  {
+   "source": 208, 
+   "target": 192, 
+   "value": 0.89504064312957521
+  }, 
+  {
+   "source": 208, 
+   "target": 198, 
+   "value": 0.69380215005995494
+  }, 
+  {
+   "source": 210, 
+   "target": 88, 
+   "value": 1.0899746764523062
+  }, 
+  {
+   "source": 210, 
+   "target": 95, 
+   "value": 0.80237843043957402
+  }, 
+  {
+   "source": 211, 
+   "target": 96, 
+   "value": 0.64212362159426206
+  }, 
+  {
+   "source": 212, 
+   "target": 88, 
+   "value": 0.72918536472309803
+  }, 
+  {
+   "source": 212, 
+   "target": 95, 
+   "value": 0.59132507539580248
+  }, 
+  {
+   "source": 212, 
+   "target": 210, 
+   "value": 1.0085165131464697
+  }, 
+  {
+   "source": 213, 
+   "target": 210, 
+   "value": 0.54156591995576853
+  }, 
+  {
+   "source": 218, 
+   "target": 215, 
+   "value": 0.52446917651819946
+  }, 
+  {
+   "source": 221, 
+   "target": 126, 
+   "value": 1.1877518579074617
+  }, 
+  {
+   "source": 222, 
+   "target": 215, 
+   "value": 0.6621795940968801
+  }, 
+  {
+   "source": 223, 
+   "target": 215, 
+   "value": 0.56915832475704853
+  }, 
+  {
+   "source": 224, 
+   "target": 215, 
+   "value": 0.73503556264624914
+  }, 
+  {
+   "source": 228, 
+   "target": 94, 
+   "value": 0.9609201489077176
+  }, 
+  {
+   "source": 228, 
+   "target": 209, 
+   "value": 0.55317593747534599
+  }, 
+  {
+   "source": 228, 
+   "target": 226, 
+   "value": 0.53586825698707663
+  }, 
+  {
+   "source": 228, 
+   "target": 227, 
+   "value": 1.0043095848121242
+  }, 
+  {
+   "source": 230, 
+   "target": 215, 
+   "value": 0.7558606022297385
+  }, 
+  {
+   "source": 230, 
+   "target": 224, 
+   "value": 0.57126040339270545
+  }, 
+  {
+   "source": 232, 
+   "target": 215, 
+   "value": 0.52460323408354759
+  }, 
+  {
+   "source": 234, 
+   "target": 199, 
+   "value": 0.51302641404843707
+  }, 
+  {
+   "source": 235, 
+   "target": 234, 
+   "value": 0.64974696301674806
+  }, 
+  {
+   "source": 236, 
+   "target": 215, 
+   "value": 0.50771500396558278
+  }, 
+  {
+   "source": 237, 
+   "target": 49, 
+   "value": 0.58122815249044535
+  }, 
+  {
+   "source": 237, 
+   "target": 91, 
+   "value": 0.58744409307714207
+  }, 
+  {
+   "source": 237, 
+   "target": 114, 
+   "value": 0.66059170937060085
+  }, 
+  {
+   "source": 237, 
+   "target": 124, 
+   "value": 0.66711273626573597
+  }, 
+  {
+   "source": 237, 
+   "target": 128, 
+   "value": 0.63419964850450827
+  }, 
+  {
+   "source": 237, 
+   "target": 134, 
+   "value": 0.59704127094722192
+  }, 
+  {
+   "source": 237, 
+   "target": 154, 
+   "value": 0.66688651823039058
+  }, 
+  {
+   "source": 237, 
+   "target": 170, 
+   "value": 0.57426745321221218
+  }, 
+  {
+   "source": 237, 
+   "target": 197, 
+   "value": 0.66760678189407685
+  }, 
+  {
+   "source": 237, 
+   "target": 200, 
+   "value": 0.55020286844855937
+  }, 
+  {
+   "source": 238, 
+   "target": 215, 
+   "value": 0.57489310857552212
+  }, 
+  {
+   "source": 238, 
+   "target": 223, 
+   "value": 0.54530441465010848
+  }, 
+  {
+   "source": 247, 
+   "target": 227, 
+   "value": 0.66185145781325949
+  }, 
+  {
+   "source": 253, 
+   "target": 123, 
+   "value": 0.64519101998163531
+  }, 
+  {
+   "source": 253, 
+   "target": 210, 
+   "value": 0.66664162617689027
+  }, 
+  {
+   "source": 254, 
+   "target": 209, 
+   "value": 0.55409710413510926
+  }, 
+  {
+   "source": 254, 
+   "target": 226, 
+   "value": 0.53676060233133516
+  }, 
+  {
+   "source": 254, 
+   "target": 228, 
+   "value": 0.71500889368527387
+  }, 
+  {
+   "source": 255, 
+   "target": 254, 
+   "value": 0.9238999743737778
+  }, 
+  {
+   "source": 257, 
+   "target": 215, 
+   "value": 0.6510396060985385
+  }, 
+  {
+   "source": 258, 
+   "target": 215, 
+   "value": 0.63630482185836112
+  }, 
+  {
+   "source": 258, 
+   "target": 257, 
+   "value": 0.86287185542521494
+  }, 
+  {
+   "source": 260, 
+   "target": 215, 
+   "value": 2.0
+  }, 
+  {
+   "source": 260, 
+   "target": 218, 
+   "value": 0.52446917651819946
+  }, 
+  {
+   "source": 260, 
+   "target": 222, 
+   "value": 0.6621795940968801
+  }, 
+  {
+   "source": 260, 
+   "target": 223, 
+   "value": 0.56915832475704853
+  }, 
+  {
+   "source": 260, 
+   "target": 224, 
+   "value": 0.73503556264624914
+  }, 
+  {
+   "source": 260, 
+   "target": 230, 
+   "value": 0.7558606022297385
+  }, 
+  {
+   "source": 260, 
+   "target": 232, 
+   "value": 0.52460323408354759
+  }, 
+  {
+   "source": 260, 
+   "target": 236, 
+   "value": 0.50771500396558278
+  }, 
+  {
+   "source": 260, 
+   "target": 238, 
+   "value": 0.57489310857552212
+  }, 
+  {
+   "source": 260, 
+   "target": 257, 
+   "value": 0.6510396060985385
+  }, 
+  {
+   "source": 260, 
+   "target": 258, 
+   "value": 0.63630482185836112
+  }, 
+  {
+   "source": 269, 
+   "target": 5, 
+   "value": 1.0420549850481138
+  }, 
+  {
+   "source": 269, 
+   "target": 6, 
+   "value": 0.73114161465128857
+  }, 
+  {
+   "source": 269, 
+   "target": 7, 
+   "value": 0.70249263577994714
+  }, 
+  {
+   "source": 269, 
+   "target": 8, 
+   "value": 0.68237735514848485
+  }, 
+  {
+   "source": 269, 
+   "target": 9, 
+   "value": 1.0420549850481138
+  }, 
+  {
+   "source": 269, 
+   "target": 10, 
+   "value": 0.68237735514848485
+  }, 
+  {
+   "source": 269, 
+   "target": 11, 
+   "value": 0.68237735514848485
+  }, 
+  {
+   "source": 269, 
+   "target": 146, 
+   "value": 0.72265865149022601
+  }, 
+  {
+   "source": 269, 
+   "target": 268, 
+   "value": 0.81633810777789373
+  }, 
+  {
+   "source": 270, 
+   "target": 229, 
+   "value": 0.94296269113788356
+  }, 
+  {
+   "source": 271, 
+   "target": 257, 
+   "value": 0.72415207485310185
+  }, 
+  {
+   "source": 271, 
+   "target": 258, 
+   "value": 0.74446019351107773
+  }, 
+  {
+   "source": 272, 
+   "target": 257, 
+   "value": 0.72415207485310185
+  }, 
+  {
+   "source": 272, 
+   "target": 258, 
+   "value": 0.74446019351107773
+  }, 
+  {
+   "source": 272, 
+   "target": 271, 
+   "value": 2.0
+  }, 
+  {
+   "source": 273, 
+   "target": 96, 
+   "value": 0.65620484532266365
+  }, 
+  {
+   "source": 273, 
+   "target": 97, 
+   "value": 0.58235247313794236
+  }, 
+  {
+   "source": 273, 
+   "target": 98, 
+   "value": 0.58670973484795774
+  }, 
+  {
+   "source": 273, 
+   "target": 257, 
+   "value": 0.54593377109040464
+  }, 
+  {
+   "source": 273, 
+   "target": 258, 
+   "value": 0.56124393616166968
+  }, 
+  {
+   "source": 273, 
+   "target": 270, 
+   "value": 0.50259159889689387
+  }, 
+  {
+   "source": 273, 
+   "target": 271, 
+   "value": 0.73223968035050546
+  }, 
+  {
+   "source": 273, 
+   "target": 272, 
+   "value": 0.73223968035050546
+  }, 
+  {
+   "source": 274, 
+   "target": 257, 
+   "value": 0.6222656383143309
+  }, 
+  {
+   "source": 274, 
+   "target": 258, 
+   "value": 0.60818208666133045
+  }, 
+  {
+   "source": 274, 
+   "target": 271, 
+   "value": 1.0394594139263387
+  }, 
+  {
+   "source": 274, 
+   "target": 272, 
+   "value": 1.0394594139263387
+  }, 
+  {
+   "source": 274, 
+   "target": 273, 
+   "value": 1.0975441781225017
+  }, 
+  {
+   "source": 275, 
+   "target": 152, 
+   "value": 0.84486488842912699
+  }, 
+  {
+   "source": 276, 
+   "target": 152, 
+   "value": 0.88452885472406861
+  }, 
+  {
+   "source": 276, 
+   "target": 275, 
+   "value": 0.89617756368676582
+  }, 
+  {
+   "source": 277, 
+   "target": 152, 
+   "value": 0.91618639816966185
+  }, 
+  {
+   "source": 277, 
+   "target": 275, 
+   "value": 0.81057131229103863
+  }, 
+  {
+   "source": 277, 
+   "target": 276, 
+   "value": 0.84862529423617095
+  }, 
+  {
+   "source": 278, 
+   "target": 152, 
+   "value": 0.85541542146237304
+  }, 
+  {
+   "source": 278, 
+   "target": 275, 
+   "value": 0.86668072415272646
+  }, 
+  {
+   "source": 278, 
+   "target": 276, 
+   "value": 0.90736888092437917
+  }, 
+  {
+   "source": 278, 
+   "target": 277, 
+   "value": 0.85701231764963792
+  }, 
+  {
+   "source": 279, 
+   "target": 135, 
+   "value": 0.52514859521337942
+  }, 
+  {
+   "source": 279, 
+   "target": 152, 
+   "value": 2.0
+  }, 
+  {
+   "source": 279, 
+   "target": 275, 
+   "value": 0.84486488842912699
+  }, 
+  {
+   "source": 279, 
+   "target": 276, 
+   "value": 0.88452885472406861
+  }, 
+  {
+   "source": 279, 
+   "target": 277, 
+   "value": 0.91618639816966185
+  }, 
+  {
+   "source": 279, 
+   "target": 278, 
+   "value": 0.85541542146237304
+  }, 
+  {
+   "source": 281, 
+   "target": 280, 
+   "value": 0.7567323420503429
+  }, 
+  {
+   "source": 282, 
+   "target": 37, 
+   "value": 0.57909154278576702
+  }, 
+  {
+   "source": 282, 
+   "target": 79, 
+   "value": 0.54600340104788314
+  }, 
+  {
+   "source": 282, 
+   "target": 112, 
+   "value": 0.5722810182007364
+  }, 
+  {
+   "source": 282, 
+   "target": 122, 
+   "value": 0.54390630853305177
+  }, 
+  {
+   "source": 284, 
+   "target": 47, 
+   "value": 0.51344393142878086
+  }, 
+  {
+   "source": 284, 
+   "target": 119, 
+   "value": 0.65576845251043314
+  }, 
+  {
+   "source": 284, 
+   "target": 138, 
+   "value": 0.51699049302589395
+  }, 
+  {
+   "source": 286, 
+   "target": 30, 
+   "value": 0.65306335445785102
+  }, 
+  {
+   "source": 288, 
+   "target": 286, 
+   "value": 0.60164148523749683
+  }, 
+  {
+   "source": 291, 
+   "target": 236, 
+   "value": 0.74677338817584671
+  }, 
+  {
+   "source": 291, 
+   "target": 277, 
+   "value": 0.68695993311042813
+  }, 
+  {
+   "source": 292, 
+   "target": 73, 
+   "value": 0.62967487521674037
+  }, 
+  {
+   "source": 292, 
+   "target": 97, 
+   "value": 1.3219186047606941
+  }, 
+  {
+   "source": 292, 
+   "target": 98, 
+   "value": 0.63857948561953426
+  }, 
+  {
+   "source": 292, 
+   "target": 277, 
+   "value": 0.51801761770884402
+  }, 
+  {
+   "source": 293, 
+   "target": 277, 
+   "value": 0.82006213478087409
+  }, 
+  {
+   "source": 293, 
+   "target": 291, 
+   "value": 0.76910315234068327
+  }, 
+  {
+   "source": 293, 
+   "target": 292, 
+   "value": 0.85730717426779668
+  }, 
+  {
+   "source": 294, 
+   "target": 277, 
+   "value": 0.6140157432402219
+  }, 
+  {
+   "source": 294, 
+   "target": 291, 
+   "value": 0.55468004699194073
+  }, 
+  {
+   "source": 294, 
+   "target": 292, 
+   "value": 0.64190270403580241
+  }, 
+  {
+   "source": 294, 
+   "target": 293, 
+   "value": 1.1877751373805951
+  }, 
+  {
+   "source": 295, 
+   "target": 73, 
+   "value": 0.67800128054184994
+  }, 
+  {
+   "source": 295, 
+   "target": 98, 
+   "value": 0.72491261331298895
+  }, 
+  {
+   "source": 295, 
+   "target": 277, 
+   "value": 0.5103087171289018
+  }, 
+  {
+   "source": 295, 
+   "target": 292, 
+   "value": 0.75272031360672331
+  }, 
+  {
+   "source": 295, 
+   "target": 293, 
+   "value": 0.90593101940204201
+  }, 
+  {
+   "source": 295, 
+   "target": 294, 
+   "value": 0.65336081237486898
+  }, 
+  {
+   "source": 298, 
+   "target": 297, 
+   "value": 1.8545861494038651
+  }, 
+  {
+   "source": 299, 
+   "target": 110, 
+   "value": 0.55785018026420952
+  }, 
+  {
+   "source": 299, 
+   "target": 112, 
+   "value": 0.63830180062640696
+  }, 
+  {
+   "source": 299, 
+   "target": 192, 
+   "value": 0.69145131519856895
+  }, 
+  {
+   "source": 299, 
+   "target": 208, 
+   "value": 0.54890180496574636
+  }
+ ]
+}
