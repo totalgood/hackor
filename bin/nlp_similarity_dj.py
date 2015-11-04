@@ -45,7 +45,7 @@ json_from_cov_df(df=)
 
 names = df.index.values
 corpus = [' '.join(str(f) for f in fields if
-                   (not isinstance(f, (float, int, datetime, date, np.int_, np.float_)) and not f in (None, np.nan)))
+          (not isinstance(f, (float, int, datetime, date, np.int_, np.float_)) and not f in (None, np.nan)))
           for fields in zip(*[df[col] for col in df.columns if df[col].dtype == pd.np.dtype('O')])]
 print(corpus[:3])
 
