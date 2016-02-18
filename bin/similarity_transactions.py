@@ -9,6 +9,8 @@ np.norm = np.linalg.norm
 from datetime import datetime, date
 import json
 
+# see data/*.ipynb for more recent, working code
+
 # import matplotlib
 # import sklearn
 # from sklearn.feature_extraction.text import CountVectorizer

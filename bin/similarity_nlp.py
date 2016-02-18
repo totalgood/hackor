@@ -12,7 +12,7 @@ import json
 # from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer  # equivalent to TFIDFTransformer(CountVectorizer())
 
-# typical linear classifier
+# # typical linear classifier
 # from sklearn.linear_model import SGDClassifier
 # from sklearn.grid_search import GridSearchCV
 # from sklearn.pipeline import Pipeline
