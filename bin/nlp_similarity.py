@@ -5,6 +5,8 @@ np.norm = np.linalg.norm
 from datetime import datetime, date
 import json
 
+# see data/*.ipynb for more recent, working code
+
 # import matplotlib
 # import sklearn
 # from sklearn.feature_extraction.text import CountVectorizer
@@ -16,36 +18,36 @@ from sklearn.feature_extraction.text import TfidfVectorizer  # equivalent to TFI
 # from sklearn.pipeline import Pipeline
 # from sklearn.cross_validation import train_test_split
 
-from django.db.models import Sum
+# from django.db.models import Sum
 
-from pacs.models import CampaignDetail
+# from pacs.models import CampaignDetail
 
 # the net_amount column doesn't appear in the df unless you use the plain old df.from_records method
 # from django_pandas.io import read_frame
 # qs = CampaignDetail.objects.annotate(net_amount=Sum('workingtransactions__amount'))
 # df_no_net = read_frame(qs)
 
-qs = CampaignDetail.objects.annotate(net_amount=Sum('workingtransactions__amount')).values().all()
-df = pd.DataFrame.from_records()
-df_amounts = pd.DataFrame(df['net_amount'], index=
+# # WIP
+#
+# qs = CampaignDetail.objects.annotate(net_amount=Sum('workingtransactions__amount')).values().all()
+# df = pd.DataFrame.from_records()
+# df_amounts = pd.DataFrame(df['net_amount'], index=
 
-def df_cov_from_df(df, n=500, index_label='committee_name', value_label='net_amount'):
-    df = df[df[index_label].astype('bool')][[index_label, value_label]].dropna(how='all')
-    index = df[index_label]
-    values = df[value_label]
-    cov = values * values.T
-    return pd.DataFrame(cov.todense(), columns=names, index=names)
+# def df_cov_from_df(df, n=500, index_label='committee_name', value_label='net_amount'):
+#     df = df[df[index_label].astype('bool')][[index_label, value_label]].dropna(how='all')
+#     index = df[index_label]
+#     values = df[value_label]
+#     cov = values * values.T
+#     return pd.DataFrame(cov.todense(), columns=names, index=names)
 
-json_from_cov_df(df=)
+# json_from_cov_df(df=df)
 
-#df = pd.DataFrame.from_csv('../data/public.working_committees.csv')  # id
+df = pd.DataFrame.from_csv('../data/public.working_committees.csv')  # id
 # pacs = pd.DataFrame.from_csv('../data/public.raw_committees.csv')  # no ID that I can find
-# print(pacs_scraped.info())
-# print(candidates.info())
 
 names = df.index.values
 corpus = [' '.join(str(f) for f in fields if
-                   (not isinstance(f, (float, int, datetime, date, np.int_, np.float_)) and not f in (None, np.nan)))
+                   (not isinstance(f, (float, int, datetime, date, np.int_, np.float_)) and f not in (None, np.nan)))
           for fields in zip(*[df[col] for col in df.columns if df[col].dtype == pd.np.dtype('O')])]
 print(corpus[:3])
 
@@ -76,7 +78,6 @@ groups = {"": 0, "Whig": 1, "Dem": 2, "Rep": 3, "Dem-Rep": 4, "Fed": 5, "Indie":
 
 def graph_from_cov_df(df=cov_df, threshold=.5, gain=2., n=300):
     """Compose pair of lists of dicts (nodes, edges) for the graph described by a DataFrame"""
-
     nodes = [{'group': 0, "name": name} for name in df.index.values][:n]
     edges = []
     for i, (row_name, row) in enumerate(df.iterrows()):
@@ -89,12 +90,12 @@ def graph_from_cov_df(df=cov_df, threshold=.5, gain=2., n=300):
 def json_from_cov_df(df=cov_df, threshold=.5, gain=2., n=300, indent=1):
     """Produce a json string describing the graph (list of edges) from a square auto-correlation/covariance matrix
 
-       { "nodes": [{"group": 1, "name": "the"},
-                {"group": 1, "name": "and"},
-                {"group": 1, "name": "our"},
-                {"group": 2, "name": "that"},...
-         "links": [{"source": 0, "target": 0, "value": 2.637520131294177},
-                   {"source": 0, "target": 1, "value": 1.343999676850537}, ...
+    { "nodes": [{"group": 1, "name": "the"},
+            {"group": 1, "name": "and"},
+            {"group": 1, "name": "our"},
+            {"group": 2, "name": "that"},...
+    "links": [{"source": 0, "target": 0, "value": 2.637520131294177},
+               {"source": 0, "target": 1, "value": 1.343999676850537}, ...
     """
     nodes, edges = graph_from_cov_df(df=df, threshold=threshold, gain=gain, n=n)
     return json.dumps({'nodes': nodes, 'links': edges}, indent=indent)
