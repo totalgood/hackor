@@ -16,7 +16,29 @@ from sklearn.feature_extraction.text import TfidfVectorizer  # equivalent to TFI
 # from sklearn.pipeline import Pipeline
 # from sklearn.cross_validation import train_test_split
 
-df = pd.DataFrame.from_csv('../data/public.working_committees.csv')  # id
+from django.db.models import Sum
+
+from pacs.models import CampaignDetail
+
+# the net_amount column doesn't appear in the df unless you use the plain old df.from_records method
+# from django_pandas.io import read_frame
+# qs = CampaignDetail.objects.annotate(net_amount=Sum('workingtransactions__amount'))
+# df_no_net = read_frame(qs)
+
+qs = CampaignDetail.objects.annotate(net_amount=Sum('workingtransactions__amount')).values().all()
+df = pd.DataFrame.from_records()
+df_amounts = pd.DataFrame(df['net_amount'], index=
+
+def df_cov_from_df(df, n=500, index_label='committee_name', value_label='net_amount'):
+    df = df[df[index_label].astype('bool')][[index_label, value_label]].dropna(how='all')
+    index = df[index_label]
+    values = df[value_label]
+    cov = values * values.T
+    return pd.DataFrame(cov.todense(), columns=names, index=names)
+
+json_from_cov_df(df=)
+
+#df = pd.DataFrame.from_csv('../data/public.working_committees.csv')  # id
 # pacs = pd.DataFrame.from_csv('../data/public.raw_committees.csv')  # no ID that I can find
 # print(pacs_scraped.info())
 # print(candidates.info())
