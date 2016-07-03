@@ -10,12 +10,13 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 import os
 import random
+import string
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def random_str(n=50):
-    import string
     chars = ''.join([string.ascii_letters, string.digits, string.punctuation]
                     ).replace('\'', '').replace('"', '').replace('\\', '')
     return ''.join([random.SystemRandom().choice(chars) for i in range(n)])
@@ -35,7 +36,6 @@ DEBUG = False
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['totalgood.org', 'localhost', '127.0.0.1']
-
 
 # Application definition
 
@@ -109,8 +109,7 @@ STATIC_URL = '/static/'
 REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
     'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-        ),
+        'rest_framework.renderers.JSONRenderer', ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',),
     'DEFAULT_FILTER_BACKENDS': (

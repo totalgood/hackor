@@ -44,7 +44,7 @@ urlpatterns = [
     url(r'^uglyboxer/about/', gviews.about, name='about'),
     url(r'^uglyboxer/contact/', gviews.contact, name='contact'),
     url(r'^uglyboxer/stats/', gviews.stats_work, name='stats_work'),
-    url(r'^$', views.home_page, name='home'),
+    # url(r'^$', views.home_page, name='home'),
     url(r'^/$', include(router.urls)),
-    url(r'^$', include(router.urls)),
+    # url(r'^$', include(router.urls)),
 ]

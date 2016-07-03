@@ -1,3 +1,10 @@
+pacs/
+collected-static/
+hackor/
+.ipynb_checkpoints/
+*.gz
+*.tgz
+
 # Temporary and binary files
 *~
 *.py[cod]
@@ -38,6 +45,7 @@ sdist/*
 data/*.csv
 data/*.gz
 data/*.sql
+data/*.psql
 docs/_rst/*
 docs/_build/*
 cover/*
