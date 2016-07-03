@@ -1,0 +1,93 @@
+[
+{
+    "model": "guess.stats",
+    "pk": 1,
+    "fields": {
+    "digit":0,
+    "correctly_guessed":0,
+    "incorrectly_guessed":0
+    }
+    },
+
+{
+    "model": "guess.stats",
+    "pk": 2,
+    "fields": {
+    "digit":1,
+    "correctly_guessed":0,
+    "incorrectly_guessed":0
+    }
+    },
+{
+    "model": "guess.stats",
+    "pk": 3,
+    "fields": {
+    "digit":2,
+    "correctly_guessed":0,
+    "incorrectly_guessed":0
+    }
+    },
+{
+    "model": "guess.stats",
+    "pk": 4,
+    "fields": {
+    "digit":3,
+    "correctly_guessed":0,
+    "incorrectly_guessed":0
+    }
+    },
+{
+    "model": "guess.stats",
+    "pk": 5,
+    "fields": {
+    "digit":4,
+    "correctly_guessed":0,
+    "incorrectly_guessed":0
+    }
+    },
+{
+    "model": "guess.stats",
+    "pk": 6,
+    "fields": {
+    "digit":5,
+    "correctly_guessed":0,
+    "incorrectly_guessed":0
+    }
+    },
+{
+    "model": "guess.stats",
+    "pk": 7,
+    "fields": {
+    "digit":6,
+    "correctly_guessed":0,
+    "incorrectly_guessed":0
+    }
+    },
+{
+    "model": "guess.stats",
+    "pk": 8,
+    "fields": {
+    "digit":7,
+    "correctly_guessed":0,
+    "incorrectly_guessed":0
+    }
+    },
+{
+    "model": "guess.stats",
+    "pk": 9,
+    "fields": {
+    "digit":8,
+    "correctly_guessed":0,
+    "incorrectly_guessed":0
+    }
+    },
+{
+    "model": "guess.stats",
+    "pk": 10,
+    "fields": {
+    "digit":9,
+    "correctly_guessed":0,
+    "incorrectly_guessed":0
+    }
+    }
+    ]
