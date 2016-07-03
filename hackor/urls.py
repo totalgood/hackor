@@ -7,6 +7,7 @@ from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 
 from pacs import views
+from guess import views as gviews 
 admin.autodiscover()
 
 '''urlpatterns = patterns('',
@@ -36,5 +37,14 @@ for app_name in settings.APPS_TO_REST:
 # The API URLs are now determined automatically by the router.
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', include(router.urls)),
+    url(r'^uglyboxer/sketch/', gviews.parse_data, name='parse_data'),
+    url(r'^uglyboxer/report/', gviews.show_data, name='show_data'),
+    url(r'^uglyboxer/$', gviews.home_page, name='home'),
+    url(r'^uglyboxer/validate/', gviews.valid_info, name='valid'),
+    url(r'^uglyboxer/about/', gviews.about, name='about'),
+    url(r'^uglyboxer/contact/', gviews.contact, name='contact'),
+    url(r'^uglyboxer/stats/', gviews.stats_work, name='stats_work'),
+    url(r'^$', views.home_page, name='home'),
+    url(r'^/$', include(router.urls)),
+    url(r'^$', include(router.urls)),
 ]
