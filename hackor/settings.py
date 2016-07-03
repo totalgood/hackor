@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'url_filter',
     'pacs',
+    'guess',
 )
 
 MIDDLEWARE_CLASSES = (
