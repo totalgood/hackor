@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+      <div class="starter-template">
+        <h1>Neural Net Digit Recognizer</h1>
+        <h2>Now with convolutions!</h2>
+        <p class="lead"></p>
+      </div>
+
+    <canvas id='repo1' width="174" height="174"></canvas>
+
+    <h5 class='answer'>I think you're messing with me.</h5>
+    <h5 class='answer'>It doesn't look like much, but I'll GUESS: {{ drawing_obj.guess }}</h5>
+    <h5 class='answer'>Judge me, if you must.</h5>
+    <form action='/uglyboxer/validate/' method='post'>
+      {% csrf_token %}
+      <input type="radio" name="valid" value="correct" checked> Right
+      <br>
+      <input type="radio" name="valid" value="wrong"> Wrong,
+       Actual Answer Should Be: <input type="text" name="actual" size='1'>
+      <br>
+      <input type="submit" value="Submit">
+    </form>
+    <a href="/uglyboxer/" data-download="png"><button>Or Return Home</button></a>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+    <script type="text/javascript">
+
+      var large_img = {{ drawing_obj.values_array }};
+      var canvas = document.getElementById('repo1');
+      var ctx = canvas.getContext('2d');
+      var imgData=ctx.createImageData(174,174);
+      for (var j=0; j<imgData.length; j++) {
+        imgData.data[j] = 0;
+      }
+      for (var i=0; i < large_img.length; i++) {
+        imgData.data[(i*4)+3] = large_img[i];
+      }
+      ctx.putImageData(imgData, 0, 0);
+
+    </script>
+{% endblock %}
