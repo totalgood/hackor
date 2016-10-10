@@ -31,7 +31,7 @@ if not SECRET_KEY:
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = False 
 
 TEMPLATE_DEBUG = True
 
@@ -46,12 +46,15 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
 
     'rest_framework',
+    'rest_framework_gis',
     'django_extensions',
     'url_filter',
     'pacs',
     'guess',
+    'bicycle_theft',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -75,14 +78,15 @@ WSGI_APPLICATION = 'hackor.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': os.getenv('DATABASE_NAME'),
         'HOST': 'localhost',
         'PORT': '5432',
         'USER': os.getenv('DATABASE_USER'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD')
-    }
+    },
 }
+
 
 TEST = {}
 
@@ -109,6 +113,7 @@ STATIC_URL = '/static/'
 REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
     'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.BrowsableAPIRenderer',
         'rest_framework.renderers.JSONRenderer', ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',),

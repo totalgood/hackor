@@ -1,3 +1,4 @@
+
 from django.conf.urls import include
 from django.conf.urls import url
 from django.apps import apps
@@ -7,7 +8,7 @@ from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 
 from pacs import views
-from guess import views as gviews 
+from guess import views as gviews
 admin.autodiscover()
 
 '''urlpatterns = patterns('',
@@ -18,13 +19,14 @@ admin.autodiscover()
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(pacs.urls)),
     # url(r'^$', pacs.views.RawCommitteeTransactionsViewSet.as_view({'get':'list'})),
+
 )
 '''
 
 # Create a router and register our viewsets with it.
 router = DefaultRouter()
 # router.register(r'pacs', RawCommitteeTransactionsViewSet)
-
+# router.register(r'bicycle', bviews.ListRacks)
 
 for app_name in settings.APPS_TO_REST:
     app = apps.get_app_config(app_name)
@@ -47,4 +49,5 @@ urlpatterns = [
     # url(r'^$', views.home_page, name='home'),
     url(r'^/$', include(router.urls)),
     # url(r'^$', include(router.urls)),
+    url(r'^bicycle/', include('bicycle_theft.urls', namespace='bicycle_theft')),
 ]
