@@ -6,11 +6,11 @@ from django.db.models import Sum
 from guess.models import Drawing, Stats
 from guess.predict import parse_to_test_sample
 
-# import logging
+import logging
 
 
-# logging.basicConfig(filename='badness.log', level=logging.DEBUG)
-# logger = logging.getLogger(__name__)
+logging.basicConfig(filename='badness.log', level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 
 def home_page(request):
@@ -34,7 +34,7 @@ def parse_data(request):
         parse_to_test_sample(info)
         return HttpResponse()
     except:
-        # logger.exception('New way')
+        logger.exception('New way')
         return render(request, 'home.html')
 
 
@@ -48,8 +48,12 @@ def show_data(request):
       The last line from the database (specifically the most recent entry).
 
     """
-    drawing_obj = Drawing.objects.all().order_by('-id')[0]
-    if drawing_obj.confidence < 89:
+    try:
+        drawing_obj = Drawing.objects.order_by('-id').first()
+    except:
+        logger.exception('No model.')
+        return HttpResponse("Oops.  Something went wrong.")
+    if drawing_obj.confidence < 85:
         return render(request, 'messing.html', {'drawing_obj': drawing_obj})
     else:
         return render(request, 'report.html', {'drawing_obj': drawing_obj})
