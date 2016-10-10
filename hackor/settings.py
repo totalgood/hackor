@@ -26,7 +26,7 @@ def random_str(n=50):
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 if not SECRET_KEY:
     # need to store the new key somehwere that the other gunicorn instances can find it too!
-    os.environ["SECRET_KEY"] = random_str()
+    os.environ["DJANGO_SECRET_KEY"] = random_str()
     SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 
