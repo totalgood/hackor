@@ -33,7 +33,7 @@ for app_name in settings.APPS_TO_REST:
     for lowercase_model_name, Model in app.models.iteritems():
         model_name = Model._meta.object_name
         viewset_class_name = model_name + 'ViewSet'
-        router.register(app_name + '/' + model_name, getattr(views, viewset_class_name))
+        router.register('hackor/' + app_name + '/' + model_name, getattr(views, viewset_class_name))
 
 
 # The API URLs are now determined automatically by the router.
