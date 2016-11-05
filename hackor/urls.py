@@ -52,4 +52,5 @@ urlpatterns = [
     url(r'^hackor/', include(router.urls)),  # for hackor and pacs API?
     # url(r'^$', include(router.urls)),
     url(r'^bicycle/', include('bicycle_theft.urls', namespace='bicycle_theft')),
+    url(r'^year/', include('predict_year.urls', namespace='predict_year')),
 ]
