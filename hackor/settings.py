@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'pacs',
     'guess',
     'bicycle_theft',
+    'predict_year',
 )
 
 MIDDLEWARE_CLASSES = (

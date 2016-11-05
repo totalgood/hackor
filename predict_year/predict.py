@@ -2,7 +2,6 @@ import gensim
 import pickle
 from sklearn.externals import joblib
 
-# need to import a hard coded dict object because django can't use a pickled obj during testing
 from lyrics_helper_funcs import convert_dict, matrix_func
 
 # imports stemming script used on all lyrics in model 
