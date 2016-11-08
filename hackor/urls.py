@@ -9,6 +9,7 @@ from rest_framework.routers import DefaultRouter
 
 from pacs import views
 from guess import views as gviews
+from predict_year import views as pviews
 admin.autodiscover()
 
 '''urlpatterns = patterns('',
@@ -52,5 +53,5 @@ urlpatterns = [
     url(r'^hackor/', include(router.urls)),  # for hackor and pacs API?
     # url(r'^$', include(router.urls)),
     url(r'^bicycle/', include('bicycle_theft.urls', namespace='bicycle_theft')),
-    url(r'^year/', include('predict_year.urls', namespace='predict_year')),
+    url(r'^year/', pviews.lyrics_prediction, name='predict_year'),
 ]
