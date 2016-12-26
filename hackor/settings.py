@@ -12,6 +12,8 @@ import os
 import random
 import string
 
+from .local_settings import SECRET_KEY, DATABASES
+assert(len(DATABASES))
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,7 +25,7 @@ def random_str(n=50):
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+SECRET_KEY = SECRET_KEY or os.getenv('DJANGO_SECRET_KEY')
 if not SECRET_KEY:
     # need to store the new key somehwere that the other gunicorn instances can find it too!
     os.environ["DJANGO_SECRET_KEY"] = random_str()
@@ -56,6 +58,7 @@ INSTALLED_APPS = (
     'guess',
     'bicycle_theft',
     'predict_year',
+    'twitterbot',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -77,7 +80,7 @@ WSGI_APPLICATION = 'hackor.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-DATABASES = {
+DATABASES = DATABASES if len(DATABASES) else {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': os.getenv('DATABASE_NAME'),
@@ -122,6 +125,3 @@ REST_FRAMEWORK = {
         'rest_framework.filters.DjangoFilterBackend',)
 }
 APPS_TO_REST = ('pacs',)
-
-
-from local_settings import SECRET_KEY, DATABASES

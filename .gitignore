@@ -56,5 +56,6 @@ collected-static/
 
 # SECRETS!
 # hackor/settings.py
-local_settings.py
-
+local_settings.py*
+secret*.py
+secret*
