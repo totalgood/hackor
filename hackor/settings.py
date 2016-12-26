@@ -59,6 +59,7 @@ INSTALLED_APPS = (
     'bicycle_theft',
     'predict_year',
     'twitterbot',
+    'twote',
 )
 
 MIDDLEWARE_CLASSES = (
