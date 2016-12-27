@@ -1,4 +1,12 @@
-#!/usr/bin/env python3
+#!python
+"""Script and Bot class for interracting with Twitter continuously logging activity to postgresql db
+
+python 2.7-3.5 compatible
+
+python manage.py shell_plus
+>>> run twote/bot python machinelearning ai nlp happy sad depressed angry upset joy bliss unhappy
+"""
+
 from __future__ import print_function, unicode_literals, division, absolute_import
 from builtins import int, round, str
 from future import standard_library
