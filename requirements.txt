@@ -1,6 +1,6 @@
-pip==7.1.2
+pip>=9.0.1
 django==1.8.5
-cffi==1.2.1
+# cffi==1.2.1
 chardet==2.3.0
 # these 4 packages prevent InsecurePlatformWarnings about broken SSL with pip
 cryptography
@@ -45,7 +45,7 @@ xlrd==0.9.4
 djangorestframework-gis==0.11
 django-filter==0.11.0
 django-url-filter==0.2.0
-enum34==1.0.4
+# enum34==1.0.4
 
 # finnegan
 scikit-image==0.12.3
