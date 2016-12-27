@@ -12,8 +12,8 @@ def dict_to_model(d, cls):
 
 
 class Place(models.Model):
-    id = models.IntegerField(primary_key=True)  # AutoField?
-    id_str = models.CharField(max_length=255)
+    id = models.AutoField(primary_key=True)
+    id_str = models.CharField(max_length=255, db_index=True, default='')
     place_type = models.CharField(max_length=255, blank=True, null=True)
     country_code = models.CharField(max_length=255, blank=True, null=True)
     country = models.CharField(max_length=255, blank=True, null=True)
@@ -22,11 +22,14 @@ class Place(models.Model):
     url = models.CharField(max_length=255, blank=True, null=True)
     bounding_box_coordinates = models.CharField(max_length=255, blank=True, null=True)
 
+    class Meta:
+        db_table = 'twote_place'
+
 
 class Tweet(models.Model):
-    id = models.IntegerField(primary_key=True)  # AutoField?
-    id_str = models.CharField(max_length=255, blank=True, null=True)
-    in_reply_to_id_str = models.CharField(max_length=255, blank=True, null=True)
+    id = models.AutoField(primary_key=True)
+    id_str = models.CharField(max_length=255, db_index=True, default='')
+    in_reply_to_id_str = models.CharField(max_length=255, blank=True, null=True, db_index=True)
     in_reply_to = models.ForeignKey('self', blank=True, null=True)
     user = models.ForeignKey('User', blank=True, null=True)
     source = models.CharField(max_length=255, blank=True, null=True)
@@ -37,10 +40,13 @@ class Tweet(models.Model):
     place = models.ForeignKey(Place, blank=True, null=True)
     favorite_count = models.IntegerField()
 
+    class Meta:
+        db_table = 'twote_tweet'
+
 
 class User(models.Model):
-    id = models.IntegerField(primary_key=True)  # AutoField?
-    id_str = models.CharField(max_length=255, blank=True, null=True)
+    id = models.AutoField(primary_key=True)
+    id_str = models.CharField(max_length=255, db_index=True, default='')
     screen_name = models.CharField(max_length=255, blank=True, null=True)
     verified = models.IntegerField(blank=True, null=True)
     time_zone = models.CharField(max_length=255, blank=True, null=True)
@@ -53,6 +59,9 @@ class User(models.Model):
     statuses_count = models.IntegerField(blank=True, null=True)
     friends_count = models.IntegerField(blank=True, null=True)
     favourites_count = models.IntegerField()
+
+    class Meta:
+        db_table = 'twote_user'
 
 
 class Serializer(object):
