@@ -1,5 +1,7 @@
 pip>=9.0.1
+future>=0.16.0
 django==1.8.5
+gunicorn==19.6.0
 # cffi==1.2.1
 chardet==2.3.0
 # these 4 packages prevent InsecurePlatformWarnings about broken SSL with pip
