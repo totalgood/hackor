@@ -2,6 +2,7 @@ from __future__ import division, print_function, unicode_literals
 
 import datetime
 from collections import Mapping
+from hackor.model_utils import representation
 
 from django.contrib.gis.db import models
 from django.forms.models import model_to_dict  # this will miss out on ManyToMany fields since they aren't actually database fields
@@ -32,6 +33,7 @@ class Tweet(models.Model):
 
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     modified_date = models.DateTimeField(auto_now=True, null=True)
+    created_at = models.DateTimeField(null=True)
 
     in_reply_to_id_str = models.CharField(max_length=255, blank=True, null=True, db_index=True)
     in_reply_to = models.ForeignKey('self', blank=True, null=True)
@@ -42,6 +44,9 @@ class Tweet(models.Model):
     location = models.CharField(max_length=255, blank=True, null=True)
     place = models.ForeignKey(Place, blank=True, null=True)
     favorite_count = models.IntegerField(default=-1, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         db_table = 'twote_tweet'
@@ -62,6 +67,9 @@ class User(models.Model):
     statuses_count = models.IntegerField(blank=True, null=True)
     friends_count = models.IntegerField(blank=True, null=True)
     favourites_count = models.IntegerField(default=-1, null=True)
+
+    def __str__(self):
+        return representation(self)
 
     class Meta:
         db_table = 'twote_user'
