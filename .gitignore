@@ -1,7 +1,6 @@
 pacs/
 collected-static/
 hackor/fixtures/
-hackor/wsgi.py
 
 .ipynb_checkpoints/
 *.gz
