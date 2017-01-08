@@ -139,6 +139,7 @@ class Bot:
         tweet_record.in_reply_to_id_str = in_reply_to_id_str
         tweet_record.in_reply_to = in_reply_to
         tweet_record.id_str = tweet.id_str
+        tweet_record.created_at = tweet.created_at
         tweet_record.place = place
         tweet_record.user = user
         tweet_record.favorite_count = tweet.favorite_count
