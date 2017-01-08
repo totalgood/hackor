@@ -1,6 +1,6 @@
 pacs/
 collected-static/
-# hackor/
+hackor/fixtures/
 
 .ipynb_checkpoints/
 *.gz
