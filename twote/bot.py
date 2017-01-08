@@ -118,8 +118,8 @@ class Bot(object):
         if in_reply_to_id_str:
             in_reply_to, created = models.Tweet.objects.get_or_create(id_str=in_reply_to_id_str)
             print("Tweet that this was a reply to: {}".format(in_reply_to_id_str))
-            print("Prompt: " + in_reply_to.text)
-            print(" Reply: " + tweet.text)
+            print("Prompt: {}".format(getattr(in_reply_to, 'text', None)))
+            print(" Reply: {}".format(getattr(tweet, 'text', None)))
         else:
             in_reply_to = None
 
@@ -212,8 +212,37 @@ if __name__ == '__main__':
                 for tweet in bot.tag_search(ht, args['num_tweets']):
                     acceptable_tweet = bot._is_acceptable(tweet, ht, picky=args['picky'])
                     if acceptable_tweet:
-                        last_tweets += [bot.save_tweet(acceptable_tweet)]
-                # print(json.dumps(last_tweets, default=models.Serializer(), indent=2))
+                        try:
+                            last_tweets += [bot.save_tweet(acceptable_tweet)]
+                        # print(json.dumps(last_tweets, default=models.Serializer(), indent=2))
+                        except TypeError:
+                            # Traceback (most recent call last):
+                            #   File "/webapps/hackor/hackor/twote/bot.py", line 215, in <module>
+                            #     last_tweets += [bot.save_tweet(acceptable_tweet)]
+                            #   File "/webapps/hackor/hackor/twote/bot.py", line 121, in save_tweet
+                            #     print("Prompt: " + in_reply_to.text)
+                            # TypeError: coercing to Unicode: need string or buffer, NoneType found
+
+                            # Search Rate Limit Status
+                            # {
+                            #   "/search/tweets": {
+                            #     "reset": 1483911729,
+                            #     "limit": 180,
+                            #     "remaining": 180
+                            #   }
+                            # }
+                            # Application Rate Limit Status
+                            # {
+                            #   "/application/rate_limit_status": {
+                            #     "reset": 1483911729,
+                            #     "limit": 180,
+                            #     "remaining": 179
+                            #   }
+                            # }
+                            print('!' * 80)
+                            print(format_exc())
+                            print()
+                            print('Unable to save this tweet: {}'.format(acceptable_tweet))
             except:
                 print('!' * 80)
                 print(format_exc())
