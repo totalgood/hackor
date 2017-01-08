@@ -1,6 +1,7 @@
 pacs/
 collected-static/
-hackor/
+# hackor/
+
 .ipynb_checkpoints/
 *.gz
 *.tgz
