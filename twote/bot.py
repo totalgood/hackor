@@ -222,7 +222,9 @@ if __name__ == '__main__':
             last_tweets = []
             try:
                 for tweet in bot.search(ht, args['num_tweets']):
-                    acceptable_tweet = bot._is_acceptable(tweet, ht, picky=args['picky'])
+                    acceptable_tweet = bot._is_acceptable(tweet,
+                                                          tag=None if not ht.startswith('#') or not args['picky'] else ht.lstrip('#'),
+                                                          picky=args['picky'])
                     if acceptable_tweet:
                         try:
                             last_tweets += [bot.save_tweet(acceptable_tweet)]
