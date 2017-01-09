@@ -117,7 +117,7 @@ class Bot(object):
         in_reply_to_id_str = tweet.in_reply_to_status_id_str
         if in_reply_to_id_str:
             in_reply_to, created = models.Tweet.objects.get_or_create(id_str=in_reply_to_id_str)
-            print("Tweet that this was a reply to: {}".format(in_reply_to_id_str))
+            print("This was reply to: {}".format(in_reply_to_id_str))
             print("Prompt: {}".format(getattr(in_reply_to, 'text', None)))
             print(" Reply: {}".format(getattr(tweet, 'text', None)))
         else:

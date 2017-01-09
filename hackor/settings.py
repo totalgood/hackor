@@ -12,7 +12,7 @@ import os
 import random
 import string
 
-from .local_settings import SECRET_KEY, DATABASES
+from .local_settings import SECRET_KEY, DATABASES, DEBUG
 assert(len(DATABASES))
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -33,7 +33,7 @@ if not SECRET_KEY:
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = DEBUG or False
 
 TEMPLATE_DEBUG = True
 
