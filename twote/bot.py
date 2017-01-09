@@ -280,8 +280,6 @@ if __name__ == '__main__':
             print("Retrieved {} new tweets with the hash tag {} for a total of {}".format(
                 num_after - num_before, repr(ht), num_after))
             num_before = num_after
-            if len(bot.tweet_id_queue) > 200:
-                bot.process_queue()
             time.sleep(sleep_seconds)
         bot.process_queue()
 
