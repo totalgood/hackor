@@ -138,7 +138,7 @@ class Bot(object):
             print("This was reply to: {}".format(in_reply_to_id_str))
             print("Prompt: {}".format(getattr(in_reply_to, 'text', None)))
             print(" Reply: {}".format(getattr(tweet, 'text', None)))
-            bot.tweet_id_queue += [in_reply_to_id_str]
+            self.tweet_id_queue += [in_reply_to_id_str]
         else:
             in_reply_to = None
 
@@ -183,15 +183,18 @@ class Bot(object):
 
     def process_queue(self, ids=None):
         self.tweet_id_queue += list(ids) if isinstance(ids, (list, tuple)) else []
+        original_queue = list(self.tweet_id_queue)
         tweets = self.get_tweets(self.tweet_id_queue)
         processed_ids = []
         for tw in tweets:
             processed_ids += [getattr(self.save_tweet(tw), 'id_str', None)]
         print('Retrieved {} prompts out of {}'.format(sum([1 for i in processed_ids if i is not None]),
                                                       len(tweets)))
+        leftovers = [i for i in original_queue if i not in processed_ids]
+        print('Unable to retrieve these IDs: {}'.format(leftovers))
         self.tweet_id_queue = [i for i in self.tweet_id_queue if i not in processed_ids]
-        print('Unable to retrieve these IDs: {}'.format(self.tweet_id_queue))
-        return len(self.tweet_id_queue)
+        print('New reply_to ID queue: {}'.format(self.tweet_id_queue))
+        return len(leftovers)
 
 
 # FIXME: use builtin argparse module instead
