@@ -205,7 +205,7 @@ if __name__ == '__main__':
         # TODO: hashtags attribute of Bot
         #       if more than 15 hashtags just search for them in pairs, tripplets, etc
         for ht in args['hashtags']:
-            print('Looking for #{}'.format(ht))
+            print('Looking for {}'.format(ht))
             last_tweets = []
             try:
                 for tweet in bot.search(ht, args['num_tweets']):
@@ -255,8 +255,8 @@ if __name__ == '__main__':
             sleep_seconds = max(random.gauss(args['delay'], delay_std), min_delay)
             print('sleeping for {} s ...'.format(round(sleep_seconds, 2)))
             num_after = bot.count()
-            print("Retrieved {} new tweets with the hash tag #{} for a total of {}".format(
-                num_after - num_before, ht, num_after))
+            print("Retrieved {} new tweets with the hash tag {} for a total of {}".format(
+                num_after - num_before, repr(ht), num_after))
             num_before = num_after
             time.sleep(sleep_seconds)
 
