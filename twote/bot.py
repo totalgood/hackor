@@ -138,7 +138,7 @@ class Bot(object):
             print("This was reply to: {}".format(in_reply_to_id_str))
             print("Prompt: {}".format(getattr(in_reply_to, 'text', None)))
             print(" Reply: {}".format(getattr(tweet, 'text', None)))
-            bot.prompt_id_queue += [in_reply_to_id_str]
+            bot.tweet_id_queue += [in_reply_to_id_str]
         else:
             in_reply_to = None
 
