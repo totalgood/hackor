@@ -33,7 +33,7 @@ class Bot:
         tags = ' '.join(tags) if isinstance(tags, (list, tuple)) else tags
         return model.Tweet.select().count() if tags is None else model.db.filter(tags=' '.join(sorted(tags.split())))
 
-    def tag_search(self, string, quantity=1):
+    def search(self, string, quantity=1):
         search_tag = '#{}'.format(string)
         tweet_list = self.api.search(q=search_tag,
                                      count=quantity,
