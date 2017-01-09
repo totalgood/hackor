@@ -52,6 +52,7 @@ from twote import models  # NOQA
 class Bot(object):
 
     def __init__(self):
+        self.tweet_id_queue = []
         self.auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
         self.auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
         self.api = tweepy.API(self.auth)
@@ -104,6 +105,14 @@ class Bot(object):
                 return False
         return tweet
 
+    def get_tweets(self, ids):
+        ids = [str(ids)] if isinstance(ids, (basestring, int)) else list(ids)
+        tweets = []
+        for i in range(int(len(ids) / 100.) + 1):
+            if i * 100 < len(ids):
+                tweets += list(self.api.statuses_lookup(ids[i * 100:min((i + 1) * 100, len(ids))]))
+        return tweets
+
     def save_tweet(self, tweet):
         tag_list = [d['text'] for d in tweet.entities.get('hashtags', [])]
 
@@ -129,6 +138,7 @@ class Bot(object):
             print("This was reply to: {}".format(in_reply_to_id_str))
             print("Prompt: {}".format(getattr(in_reply_to, 'text', None)))
             print(" Reply: {}".format(getattr(tweet, 'text', None)))
+            bot.prompt_id_queue += [in_reply_to_id_str]
         else:
             in_reply_to = None
 
@@ -158,7 +168,7 @@ class Bot(object):
         tweet_record.source = tweet.source
         tweet_record.tags = ' '.join(sorted(tag_list))
         tweet_record.save()
-        print(tweet_record.user.screen_name + ': ' + tweet_record.text)
+        print('SAVED   ' + tweet_record.user.screen_name + ': ' + tweet_record.text)
         return tweet_record
 
     def clean_tweet(self, tweet):
@@ -170,6 +180,18 @@ class Bot(object):
             if word[0] != '@' and 'http' not in word:
                 filter_list.append(word)
         return " ".join(filter_list)
+
+    def process_queue(self, ids=None):
+        self.tweet_id_queue += list(ids) if isinstance(ids, (list, tuple)) else []
+        tweets = self.get_tweets(self.tweet_id_queue)
+        processed_ids = []
+        for tweet in tweets:
+            processed_ids += [getattr(self.save_tweet(tweets), 'id_str', None)]
+        print('Retrieved {} prompts out of {}'.format(sum([1 for i in processed_ids if i is not None]),
+                                                      len(tweets)))
+        self.tweet_id_queue = [i for i in self.tweet_id_queue if i not in processed_ids]
+        print('Unable to retrieve these IDs: {}'.format(self.tweet_id_queue))
+        return len(self.tweet_id_queue)
 
 
 # FIXME: use builtin argparse module instead
@@ -230,34 +252,16 @@ if __name__ == '__main__':
                             last_tweets += [bot.save_tweet(acceptable_tweet)]
                         # print(json.dumps(last_tweets, default=models.Serializer(), indent=2))
                         except TypeError:
-                            # Traceback (most recent call last):
-                            #   File "/webapps/hackor/hackor/twote/bot.py", line 215, in <module>
-                            #     last_tweets += [bot.save_tweet(acceptable_tweet)]
-                            #   File "/webapps/hackor/hackor/twote/bot.py", line 121, in save_tweet
-                            #     print("Prompt: " + in_reply_to.text)
-                            # TypeError: coercing to Unicode: need string or buffer, NoneType found
-
-                            # Search Rate Limit Status
-                            # {
-                            #   "/search/tweets": {
-                            #     "reset": 1483911729,
-                            #     "limit": 180,
-                            #     "remaining": 180
-                            #   }
-                            # }
-                            # Application Rate Limit Status
-                            # {
-                            #   "/application/rate_limit_status": {
-                            #     "reset": 1483911729,
-                            #     "limit": 180,
-                            #     "remaining": 179
-                            #   }
-                            # }
                             print('!' * 80)
                             print(format_exc())
                             print()
                             print('Unable to save this tweet: {}'.format(acceptable_tweet))
             except:
+                # typical Application Rate Limit Status
+                # { "/application/rate_limit_status": {
+                #     "reset": 1483911729,
+                #     "limit": 180,
+                #     "remaining": 179 } }
                 print('!' * 80)
                 print(format_exc())
                 bot.rate_limit_status = bot.api.rate_limit_status()
@@ -273,6 +277,9 @@ if __name__ == '__main__':
             print("Retrieved {} new tweets with the hash tag {} for a total of {}".format(
                 num_after - num_before, repr(ht), num_after))
             num_before = num_after
+            if len(bot.tweet_id_queue) > 200:
+                bot.process_queue()
             time.sleep(sleep_seconds)
+        bot.process_queue()
 
         # bot.tweet(m[:140])
