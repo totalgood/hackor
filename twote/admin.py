@@ -18,8 +18,12 @@ class TweetAdmin(admin.ModelAdmin):
         }),
     )
     date_hierarchy = 'created_date'
-    list_display = ('id_str', 'user', 'created_at', 'created_date', 'text')
+    list_display = ('id_str', 'user', 'created_at', 'created_date', 'favorite_count', 'text')
     select_related = True
+    search_fields = ['text', 'source', 'tags', 'location',
+                     'user__screen_name',
+                     'place__place_type', 'place__country_code', 'place__name', 'place__country', 'place__url',
+                     ]
 
     def get_readonly_fields(self, request, obj=None):
         '''Override to make certain fields readonly if this is a change request'''
