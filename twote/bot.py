@@ -185,8 +185,8 @@ class Bot(object):
         self.tweet_id_queue += list(ids) if isinstance(ids, (list, tuple)) else []
         tweets = self.get_tweets(self.tweet_id_queue)
         processed_ids = []
-        for tweet in tweets:
-            processed_ids += [getattr(self.save_tweet(tweets), 'id_str', None)]
+        for tw in tweets:
+            processed_ids += [getattr(self.save_tweet(tw), 'id_str', None)]
         print('Retrieved {} prompts out of {}'.format(sum([1 for i in processed_ids if i is not None]),
                                                       len(tweets)))
         self.tweet_id_queue = [i for i in self.tweet_id_queue if i not in processed_ids]
