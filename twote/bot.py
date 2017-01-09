@@ -72,7 +72,7 @@ class Bot(object):
         print("Retrieved {} candidate tweets.".format(len(tweet_list)))
         return tweet_list
 
-    def _is_acceptable(self, tweet, tag, picky=False):
+    def _is_acceptable(self, tweet, tag=None, picky=False):
         """
         @brief     This will pull off hash tags just at the end of
                    tweet.  If your tag is not in the ending list
@@ -100,7 +100,7 @@ class Bot(object):
                         break
             else:
                 tag_list = [d['text'].lower() for d in tweet.entities.get('hashtags', [])]
-            if tag not in tag_list:
+            if tag is not None and tag not in tag_list:
                 return False
         return tweet
 
