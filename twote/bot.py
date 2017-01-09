@@ -171,7 +171,7 @@ def parse_args(args):
         del args[args.index('--picky')]
         picky = True
     hashtags = []
-    # the first float found on the command line is the delay in seconds between twitter search queries
+    # the first float found on the command line is the delay in seconds between twitter search queries (default 1 minute)
     # the first int after the first float is the number of tweets to retrieve with each twitter search query
     for arg in args[1:]:
         try:
@@ -181,7 +181,7 @@ def parse_args(args):
                 delay = float(arg) if delay is None else float('unfloatable')
             except ValueError:
                 hashtags += [arg.lstrip('#')]
-    delay = 60 * 15 if delay is None else delay
+    delay = 5.0 if delay is None else delay
     num_tweets = num_tweets or 100
     arg_dict = {
         'num_tweets': num_tweets,
@@ -200,8 +200,8 @@ if __name__ == '__main__':
     min_delay = 0.5
     delay_std = args['delay'] * 0.1
 
+    num_before = bot.count()
     while True:
-        num_before = bot.count()
         print('=' * 80)
         # TODO: hashtags attribute of Bot
         #       if more than 15 hashtags just search for them in pairs, tripplets, etc
@@ -255,9 +255,10 @@ if __name__ == '__main__':
             print('--' * 80)
             sleep_seconds = max(random.gauss(args['delay'], delay_std), min_delay)
             print('sleeping for {} s ...'.format(round(sleep_seconds, 2)))
+            num_after = bot.count()
+            print("Retrieved {} tweets with the hash tag #{} for a total of {}".format(
+                num_after - num_before, ht, num_after))
+            num_before = num_after
             time.sleep(sleep_seconds)
 
-        num_after = bot.count()
-        print("Retrieved {} tweets with the hash tags {} for a total of {}".format(
-            num_after - num_before, args['hashtags'], num_after))
         # bot.tweet(m[:140])
