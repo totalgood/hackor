@@ -129,8 +129,20 @@ class Bot(object):
         ids = [str(ids)] if isinstance(ids, (basestring, int)) else list(ids)
         tweets = []
         for i in range(int(len(ids) / 100.) + 1):
-            if i * 100 < len(ids):
-                tweets += list(self.api.statuses_lookup(ids[i * 100:min((i + 1) * 100, len(ids))]))
+            try:
+                if i * 100 < len(ids):
+                    tweets += list(self.api.statuses_lookup(ids[i * 100:min((i + 1) * 100, len(ids))]))
+                # sort-of exponential backoff
+                if not i % 2:
+                    bot.rate_limit_status = bot.api.rate_limit_status()
+                    if bot.rate_limit_status['resources']['application']['remaining'] < 12:
+                        time.sleep(8.)
+                    if bot.rate_limit_status['resources']['application']['remaining'] < 6:
+                        time.sleep(60.)
+                    if bot.rate_limit_status['resources']['application']['remaining'] < 2:
+                        time.sleep(240.)
+            except:
+                print(format_exc())
         return tweets
 
     def save_tweet(self, tweet):
