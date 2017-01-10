@@ -25,19 +25,19 @@ import tweepy  # NOQA
 
 from twote.secrets import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET  # NOQA
 
-DEFAULT_QUERIES = ('#python #pycon #portland #pyconopenspaces #pycon2017 #pycon2016' +
-                   '#sarcastic #sarcasm #happy #sad #angry #mad #epic #cool #notcool ' +
-                   '#calagator #pdxevents #events #portlandevents #techevents ' +
-                   '#javascript #ruby #rubyonrails #django #java #clojure #nodejs #lisp #golang ' +
-                   '#dataviz #d3js #datascience #machinelearning #ai #neuralnet #deeplearning #iot ' +
-                   '#hack #hacking #hackathon #compsci #coding #coder ' +
-                   '#depressed #depressing #gross #crude #mean ' +
-                   '#kind #nice #peace #inspired #inspiration #inspiring #quote #beawesome ' +
-                   '#thankful #gratitude #healthy #yoga #bliss ' +
-                   '@pycon @calagator @portlandevents @PDX_TechEvents ' +
-                   '"good people" "good times" "mean people" ' +
-                   'portland pdx pycon "portland or" "portland oregon" pycon2017'
-                   ).split()
+DEFAULT_QUERIES = ('#python,#pycon,#portland,#pyconopenspaces,#pycon2017,#pycon2016,' +
+                   '#sarcastic,#sarcasm,#happy,#sad,#angry,#mad,#epic,#cool,#notcool,' +
+                   '#calagator,#pdxevents,#events,#portlandevents,#techevents,' +
+                   '#javascript,#ruby,#rubyonrails,#django,#java,#clojure,#nodejs,#lisp,#golang,' +
+                   '#dataviz,#d3js,#datascience,#machinelearning,#ai,#neuralnet,#deeplearning,#iot,' +
+                   '#hack,#hacking,#hackathon,#compsci,#coding,#coder,' +
+                   '#depressed,#depressing,#gross,#crude,#mean,' +
+                   '#kind,#bekind,#nice,#peace,#inspired,#inspiration,#inspiring,#quote,#awesome,#beawesome,' +
+                   '#thankful,#gratitude,#healthy,#yoga,#positivity,#meditation,#bliss,' +
+                   '@pycon,@calagator,@portlandevents,@PDX_TechEvents,' +
+                   'good people,good times,mean people,' +
+                   'portland,pdx,pycon,"portland or","portland oregon",pycon2017,"pycon 2017"'
+                   ).split(',')
 
 try:
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
