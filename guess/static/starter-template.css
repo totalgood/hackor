@@ -1,0 +1,53 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+canvas {
+    display: block;
+    border-style: solid;
+    margin: 0 auto;
+}
+
+#sub_button {
+    display: block;
+    width: 65px;
+    margin: 1em auto;
+}
+
+.answer {
+    display: block;
+    height: 2em;
+    text-align: center;
+    margin: 10px;
+}
+
+.table-wrapper {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.table-responsive {
+    display: inline-table;
+    width: 49.5%;
+    padding: 0 5%;
+    min-width: 200px;
+}
+
+caption {
+    text-align: center;
+}
+
+th, td {
+    text-align: center;
+    padding: 0 6px;
+    width: 10%;
+}
+
+.stats_button {
+    display: block;
+    margin: 1em auto;
+}

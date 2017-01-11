@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+      <div class="starter-template">
+        <h1>Neural Net Digit Recognizer</h1>
+      </div>
+
+    <!-- Stats display -->
+
+    <div class='table-wrapper'>
+    <div class='table-responsive'>
+    <table class="table-striped">
+    <caption>Drawn Number - Correctly Guessed</caption>
+      <tbody>
+      <tr>
+        <th>Digit</th>
+        <th>Times Correct</th>
+      </tr>
+      {% for digit in digits %}
+      <tr>
+        <td>{{ digit.number }}</td>
+        <td>{{ digit.correct }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td>Total</td><td>{{ tot_correct }}</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+
+    
+    <div class='table-responsive'>
+    <table class="table-striped">
+    <caption>Digits That Were Misclassified</caption>
+      <tbody>
+        <tr>
+          <th>Digit</th>
+          <th>Occurances</th>
+        </tr>
+        {% for digit in digits %}
+        <tr>
+          <td>{{ digit.number }}</td>
+          <td>{{ digit.incorrect }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td>Total</td><td>{{ tot_inc }}</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+
+
+   <button class='stats_button'><a href="/uglyboxer/">Return Home</a></button>
+
+{% endblock %}
