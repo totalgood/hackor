@@ -1,0 +1,5 @@
+Neuron Counts: [100, 10]
+Test Report: Successes: 1585  Out of total: 5000
+For a success rate of: 0.317
+Validation Report: Successes: 4949  Out of total: 15000
+For a success rate of: 0.32993333333333336
