@@ -20,28 +20,32 @@ def name_similarity():
 
 
 class LongCharField(models.CharField):
-    "An unlimited-length CharField to satisfy by Django and postgreSQL varchar."
+    "Unlimited-length CharField to satisfy Django `CharField` and postgreSQL `varchar` expectations."
     description = _("Unlimited-length string")
 
     def __init__(self, *args, **kwargs):
-        kwargs['max_length'] = int(1e9)  # Satisfy management validation.
+        """Like CharField constructor, but without max_length validation"""
+        kwargs['max_length'] = int(1e9)  # Satisfy Django `manage.py validate`
         super(models.CharField, self).__init__(*args, **kwargs)
-        # Don't add max-length validator like CharField does.
 
     def get_internal_type(self):
-        # This has no function, since this value is used as a lookup in
-        # db_type().  Put something that isn't known by django so it
-        # raises an error if it is ever used.
+        """Return a string (type) representing the field data type
+
+        'LongCharField' is unrecognized by Django as a valid field type
+        So Django will raise an Exception if it looks for this string within its db_type() dict
+        """
         return 'LongCharField'
 
     def db_type(self, connection):
-        # *** This is probably only compatible with Postgres.
-        # 'varchar' with no max length is equivalent to 'text' in Postgres,
-        # but put 'varchar' so we can tell LongCharFields from TextFields
-        # when we're looking at the db.
+        """A 'varchar' database field type without a max_length attribute
+
+        In Postgres a 'varchar' with no max length is equivalent to 'text'
+        But 'varchar' without max_length wont usually work in other DBs
+        but 'varchar' used here so devs can tell LongCharFields from TextFields in psql
+        """
         return 'varchar'
 
     def formfield(self, **kwargs):
-        # Don't pass max_length to form field like CharField does.
+        """Run parent CharField's formfield method without passing along a max_length."""
         return super(models.CharField, self).formfield(**kwargs)
 models.LongCharField = LongCharField
