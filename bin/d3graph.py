@@ -51,7 +51,8 @@ def cov_from_column(df=CampaignDetail, n=500, index='committee_name', values='ne
     return pd.DataFrame(cov.todense(), columns=index, index=index)
 
 
-def df_from_table(table=None, verbosity=0):
+def make_dataframe(table=None, verbosity=0):
+    """see make_dataframe()"""
     if table is None:
         table = '../data/public.working_committees.csv'
     if hasattr(table, 'objects'):
@@ -73,7 +74,7 @@ def corpus_from_table(table=None,
     """Return a list of strings/documents from concatenated + stringified table rows"""
     word_regex, split_regex = [re.compile(regex) if isinstance(regex, basestring) else regex
                                for regex in (word_regex, split_regex)]
-    df = df_from_table(table, verbosity=verbosity)
+    df = make_dataframe(table, verbosity=verbosity)
     corpus = [' '.join(str(f) for f in fields if
               (not isinstance(f, (float, int, datetime, date, np.int_, np.float_))
                and f is not None and f is not np.nan))
@@ -101,9 +102,10 @@ def cov_from_table(table=None, verbosity=0):
     vectors = vectorizer.fit(corpus)
     tfidf = vectors.transform(corpus)
     # tfidf_df = pd.DataFrame(tfidf.todense(), index=names)
-    cov = tfidf * tfidf.T
+    cov = (tfidf * tfidf.T).todense()
     # FIXME: is todense() required?
-    return pd.DataFrame(cov.todense(), columns=df.index, index=df.index)
+    labels = tfidf.get_feature_names().values()
+    return pd.DataFrame(cov, columns=labels, index=labels)
 
 
 CLASSES = ["", "Whig", "Dem", "Rep", "Dem-Rep", "Fed", "Indie"]
@@ -138,7 +140,7 @@ def json_from_cov_df(df, threshold=.5, gain=2., n=None, indent=1):
 
 
 def main(filename='nlp_similarity_graph.json', verbosity=1):
-    js = json_from_cov_df(df=)
+    js = json_from_cov_df(df=make_dataframe())
     if verbosity:
         print(js[:1000] + '\n...\n' + js[-1000:])
     with open(filename, 'w') as f:
