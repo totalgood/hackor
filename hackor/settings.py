@@ -116,7 +116,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'collected-static')
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 10,
+    'PAGE_SIZE': 30,
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.BrowsableAPIRenderer',
         'rest_framework.renderers.JSONRenderer', ),
