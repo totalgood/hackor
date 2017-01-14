@@ -10,6 +10,7 @@ from rest_framework.routers import DefaultRouter
 from pacs import views
 from guess import views as gviews
 from predict_year import views as pviews
+from twote import views as tviews
 admin.autodiscover()
 
 '''urlpatterns = patterns('',
@@ -54,4 +55,7 @@ urlpatterns = [
     # url(r'^$', include(router.urls)),
     url(r'^bicycle/', include('bicycle_theft.urls', namespace='bicycle_theft')),
     url(r'^year/', pviews.lyrics_prediction, name='predict_year'),
+    url(r'^twote/$', tviews.api_root),
+    url(r'^twote/tags/$', tviews.HashtagList.as_view(), name='hashtag-list'),
+    url(r'^twote/usertweets/$', tviews.UserTweetsList.as_view(), name='user-tweet-list'),
 ]

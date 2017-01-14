@@ -57,12 +57,10 @@ collected-static/
 
 # SECRETS!
 # hackor/settings.py
-local_settings.py
-secrets.py
-local_settings.pyc
-secrets.pyc
+local_settings.py*
+secrets.py*
 
-#bin
+# bin
 bin/
 include/
 lib/
