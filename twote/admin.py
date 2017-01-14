@@ -18,7 +18,7 @@ class TweetAdmin(admin.ModelAdmin):
         }),
     )
     date_hierarchy = 'created_date'
-    list_display = ('id_str', 'user', 'created_at', 'created_date', 'favorite_count', 'text', 'tags')
+    list_display = ('id_str', 'user', 'created_at', 'created_date', 'favorite_count', 'text')
     select_related = True
     search_fields = ['text', 'source', 'tags', 'location',
                      'user__screen_name',
