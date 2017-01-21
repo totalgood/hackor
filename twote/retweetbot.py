@@ -34,7 +34,7 @@ class RetweetBot:
 		self.stopwords = list(stopwords.words('english'))
 
 		# sutime
-		jar_files = os.environ.get('JAR_FILES','../python_sutime/jars')
+		jar_files = os.environ.get('JAR_FILES','../python-sutime/jars')
 		self.sutime = SUTime(jars=jar_files, mark_time_ranges=True)
 
 		# nltk data append
