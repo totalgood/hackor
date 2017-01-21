@@ -3,7 +3,6 @@ import tweepy
 import os
 import requests
 import re
-<<<<<<< HEAD
 import nltk
 from nltk import word_tokenize
 from nltk.corpus import stopwords
