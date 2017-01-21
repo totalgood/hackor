@@ -3,6 +3,7 @@ import tweepy
 import os
 import requests
 import re
+<<<<<<< HEAD
 import nltk
 from nltk import word_tokenize
 from nltk.corpus import stopwords
@@ -152,5 +153,6 @@ class RetweetBot:
 if __name__ == '__main__':
 	bot = RetweetBot()
 	print bot.get_time_and_room('#importantigravity (acro yoga: poses for pair programmers) @ 5pm in open space B114! #pycon #pyconopenspaces :-)')
+
         
 
