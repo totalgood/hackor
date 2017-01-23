@@ -7,7 +7,7 @@ from django.contrib import admin
 # from pacs.views import CommitteeTransactionsViewSet, RawCommitteeTransactionsViewSet
 from rest_framework.routers import DefaultRouter
 
-from pacs import views
+#from pacs import views
 from guess import views as gviews
 from predict_year import views as pviews
 
