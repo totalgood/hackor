@@ -54,7 +54,7 @@ INSTALLED_APPS = (
     'rest_framework_gis',
     'django_extensions',
     'url_filter',
-    'pacs',
+    #'pacs',
     'guess',
     'bicycle_theft',
     'predict_year',
@@ -125,4 +125,4 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'rest_framework.filters.DjangoFilterBackend',)
 }
-APPS_TO_REST = ('pacs',)
+APPS_TO_REST = [] #('pacs',)
