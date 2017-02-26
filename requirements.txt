@@ -66,6 +66,7 @@ pandas==0.19.2
 
 # twote
 tweepy==3.5.0
+ipdb==0.10.2
 
 #slack
 slackclient==1.0.4
