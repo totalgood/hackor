@@ -1,7 +1,7 @@
 #!python
 """Script and Bot class for interracting with Twitter continuously logging activity to postgresql db
 
-python 2.7-3.5 compatible
+python 2.7 or 3.5
 
 python manage.py shell_plus
 >>> run twote/bot python machinelearning ai nlp happy sad depressed angry upset joy bliss unhappy
@@ -27,15 +27,15 @@ import tweepy  # NOQA
 from twote.secrets import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET  # NOQA
 
 # 220 unique tags (approximately 20 minutes worth) and 6 repeated tags for pycon2017
-DEFAULT_QUERIES = ('#python,#pycon,#portland,#pyconopenspaces,#pycon2017,#pycon2016,#pythonic' +
+DEFAULT_QUERIES = ('#python,#pycon,#portland,#pyconopenspaces,#pycon2017,#pycon2016,' +
                    '#sarcastic,#sarcasm,#happy,#sad,#angry,#mad,#epic,#cool,#notcool,' +
                    '#jobs,#career,#techwomen,' +
-                   '#angularjs,#reactjs,#framework,#pinax,#security,#pentest,#bug,#programming,#bot,#robot,' +
-                   '#calagator,#pdxevents,#events,#portlandevents,#techevents,' +
+                   '#iot,#vr,' +
+                   '#angularjs,#reactsjs,#framework,#pinax,#security,#pentest,#bug,#programming,#bot,#robot,' +
+                   '#pdxevents,#events,#portlandevents,#techevents,' +
                    '#r,#matlab,#octave,#javascript,#ruby,#rubyonrails,#django,#java,#clojure,#nodejs,#lisp,#golang,' +
-                   '#science,#astronomy,#math,#physics,#chemistry,#biology,#medicine,#statistics,#computerscience,#complexity,' +
                    '#informationtheory,#knowledge,#philosophy,#space,#nasa,' +
-                   '#social,#economics,#prosocial,#peaceandcookies,#hugs,#humility,#shoutout,' +
+                   '#social,#life,#economics,#prosocial,#peaceandcookies,#hugs,#humility,#shoutout,' +
                    '#opendata,#openscience,#openai,#opensource,' +
                    '#data,#dataviz,#d3js,#datascience,#machinelearning,#ai,#neuralnet,#deeplearning,#iot,' +
                    '#hack,#hacking,#hackathon,#compsci,#coding,#coder,#qs,' +
@@ -49,18 +49,29 @@ DEFAULT_QUERIES = ('#python,#pycon,#portland,#pyconopenspaces,#pycon2017,#pycon2
                    '@hackoregon,' +
                    '@potus,@peotus,' +
                    '@pycon,@calagator,@portlandevents,@PDX_TechEvents,' +
-                   '"good people","good times","mean people","not good","not bad","pretty good",' +
+                   '"good people","good times","mean people","not good","not bad","pretty good",ok,"not ok",' +
                    'portland,pdx,' +
-                   'singularity,"machine intelligence","control problem",future,planet,ecology,"global warming",' +
+                   'singularity,"machine intelligence","control problem",future,planet,ecology,"global warming","virtual reality"' +
+                   'linguistics,grammar,spelling,language,nlp,natural,tfidf,binomial,multinomial,multivariate,stochastic,' +
+                   'semantic,semantics,SVD,PCA,LSI,LDA,SVM,linear,quadratic,"support vector",' +
+                   '"infinite series",embedding,polynomial,"hidden layer","visible layer",graph,network,cosine,cos,sine,tangent,' +
+                   'einstein,hinton,euler,euclid,bernouli,jung,hobbes,locke,"mark twain",shakespeare,plato,socrates,socratic,' +
+                   'sociology,prosocial,antisocial,altruism,"social science","political science",polysci,' +
+                   'evolution,genetics,"natural selection",neuroscience,brain,' +
                    'classifier,regression,bayes,' +
                    'pdxpython,pdxruby,pdxdata,quantifiedself,' +
                    '"greater good","total good","common good",totalgood,utilitarianism,generous,commons,friends,family,' +
-                   'scikit-learn,scipy,pandas,tensorflow,pythonic,' +
+                   'scikit-learn,scipy,pandas,tensorflow,theano,pythonic,scipy,gensim,sklearn,' +
                    'tired,frustrated,upset,automation,robotics,database,' +
                    'flower,insect,fish,animal,forest,garden,' +
+                   'psychology,linguistic,science,astronomy,math,physics,chemistry,biology,medicine,statistics,"computer science",complexity,' +
+                   '"deep learning","machine learning","artificial intelligence",' +
+                   'quantum,computing,artificial,intelligence,' +
+                   'context,clearly,arguably,understanding,learn,abstract,curriculum,studies,study,'
                    'coursera,udacity,udemy,codecademy,codepen,kaggle,khanacademy,"khan academy",' +
                    ':),;),:-),:(,:-(,<3,xoxo,#lol,#rofl,' +
                    'happy,grateful,excited,' +
+                   'calagator,' +
                    '"convention center",repl,' +
                    # 6 important tags worth repeating
                    '"portland oregon","portland oregon",' +
@@ -76,7 +87,7 @@ try:
     sys.path.append(BASE_DIR)
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hackor.settings")
 except:
-    pass
+    print(format_exc())
 
 from twote import models  # NOQA
 
@@ -84,7 +95,9 @@ from twote import models  # NOQA
 class Bot(object):
 
     def __init__(self):
-        self.tweet_id_queue = []
+        self.tweet_id_queue = set()
+        self.min_queue_len = 1000
+        self.max_queue_len = 2000
         self.auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
         self.auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
         self.api = tweepy.API(self.auth)
@@ -147,11 +160,12 @@ class Bot(object):
                 # sort-of exponential backoff
                 if not i % 2:
                     bot.rate_limit_status = bot.api.rate_limit_status()
-                    if bot.rate_limit_status['resources']['application']['remaining'] < 12:
+                    bot.remaining = bot.rate_limit_status['resources']['application']['/application/rate_limit_status']['remaining']
+                    if bot.remaining < 12:
                         time.sleep(8.)
-                    if bot.rate_limit_status['resources']['application']['remaining'] < 6:
+                    if bot.remaining < 6:
                         time.sleep(60.)
-                    if bot.rate_limit_status['resources']['application']['remaining'] < 2:
+                    if bot.remaining < 2:
                         time.sleep(240.)
             except:
                 print(format_exc())
@@ -182,7 +196,7 @@ class Bot(object):
             print("This was reply to: {}".format(in_reply_to_id_str))
             print("Prompt: {}".format(getattr(in_reply_to, 'text', None)))
             print(" Reply: {}".format(getattr(tweet, 'text', None)))
-            self.tweet_id_queue += [in_reply_to_id_str]
+            self.tweet_id_queue = self.tweet_id_queue.union(set([in_reply_to_id_str]))
         else:
             in_reply_to = None
 
@@ -226,19 +240,27 @@ class Bot(object):
         return " ".join(filter_list)
 
     def process_queue(self, ids=None):
-        self.tweet_id_queue += sorted(set([str(i) for i in ids])) if isinstance(ids, (list, tuple, set)) else []
-        original_queue = sorted(set(self.tweet_id_queue))
-        tweets = self.get_tweets(self.tweet_id_queue)
-        processed_ids = []
-        for tw in tweets:
-            processed_ids += [getattr(self.save_tweet(tw), 'id_str', None)]
-        print('Retrieved {} prompts out of {}'.format(sum([1 for i in processed_ids if i is not None]),
-                                                      len(tweets)))
-        leftovers = sorted(set([i for i in original_queue if i not in processed_ids]))
-        print('Unable to retrieve these IDs: {}'.format(leftovers))
-        self.tweet_id_queue = sorted(set([i for i in self.tweet_id_queue if i not in processed_ids]))
-        print('New reply_to ID queue: {}'.format(self.tweet_id_queue))
-        return len(leftovers)
+        print('Q' * 100)
+        print('Q' * 100)
+        self.tweet_id_queue = set(self.tweet_id_queue).union(
+            set([str(i) for i in ids]) if isinstance(ids, (list, tuple, set)) else set())
+        original_queue = set(self.tweet_id_queue)
+        tweets = self.get_tweets(original_queue)
+        print('Trying to save {} prompting tweets.'.format(len(tweets)))
+        processed_ids = set([getattr(self.save_tweet(tw), 'id_str', None) for tw in tweets])
+        print('Retrieved {} prompts out of {} ({} unique)'.format(sum([1 for i in processed_ids if i is not None]),
+                                                      len(tweets), len(original_queue)))
+        self.tweet_id_queue = original_queue - original_queue.intersection(processed_ids)
+        # import ipdb
+        # ipdb.set_trace()
+        print('Unable to retrieve these {} IDs: {}'.format(len(self.tweet_id_queue), self.tweet_id_queue))
+        if len(self.tweet_id_queue) > self.max_queue_len:
+            print('There were {} unretrievable tweets (> max_queue_len=={})'.format(
+                  len(self.tweet_id_queue), self.max_queue_len))
+            self.tweet_id_queue = set(sorted(self.tweet_id_queue)[-self.min_queue_len:])
+            print('The newest {} unretrievable tweets were retrained in the queue, the rest deleted, leaving {}.'.format(
+                  self.min_queue_len, len(self.tweet_id_queue)))
+        return self.tweet_id_queue
 
 
 # FIXME: use builtin argparse module instead
@@ -286,9 +308,11 @@ if __name__ == '__main__':
         print('=' * 80)
         # TODO: hashtags attribute of Bot
         #       if more than 15 hashtags just search for them in pairs, tripplets, etc
-        shuffle(args['hashtags'])
-        for ht in args['hashtags']:
-            print('Looking for {}'.format(ht))
+        hashtags = args['hashtags']
+        shuffle(hashtags)
+        num_queries = len(hashtags)
+        for qid, ht in enumerate(hashtags):
+            print('{:03d}/{} Looking for {}'.format(qid, num_queries, ht))
             last_tweets = []
             try:
                 for tweet in bot.search(ht, args['num_tweets']):
@@ -310,7 +334,9 @@ if __name__ == '__main__':
                 #     "reset": 1483911729,
                 #     "limit": 180,
                 #     "remaining": 179 } }
-                print('!' * 80)
+                print('!' * 120)
+                print(format_exc())
+                print('!' * 120)
                 print(format_exc())
                 bot.rate_limit_status = bot.api.rate_limit_status()
                 print('Search Rate Limit Status')
@@ -318,14 +344,30 @@ if __name__ == '__main__':
                 print('Application Rate Limit Status')
                 print(json.dumps(bot.rate_limit_status['resources']['application'], default=models.Serializer(), indent=2))
                 print("Unable to retrieve any tweets! Will try again later.")
-            print('--' * 80)
+            print('-' * 120)
+            if not (qid % 2):
+                bot.rate_limit_status = bot.api.rate_limit_status()
+                print('{} ({}) queries allowed within this 15 min window'.format(
+                    bot.rate_limit_status['resources']['search']["/search/tweets"]['remaining'],
+                    bot.rate_limit_status['resources']['application']['/application/rate_limit_status']['remaining']))
             sleep_seconds = max(random.gauss(args['delay'], delay_std), min_delay)
             print('sleeping for {} s ...'.format(round(sleep_seconds, 2)))
             num_after = bot.count()
-            print("Retrieved {} new tweets with the hash tag {} for a total of {}".format(
-                num_after - num_before, repr(ht), num_after))
+            sorted_tweet_id_queue = sorted(bot.tweet_id_queue)
+            if len(sorted_tweet_id_queue) > 10:
+                print("Missed {} prompts: {}, ... {}".format(
+                    len(bot.tweet_id_queue),
+                    repr(sorted_tweet_id_queue[:3]).rstrip(']'),
+                    repr(sorted_tweet_id_queue[-3:]).lstrip('[')))
+            else:
+                print("Missed {} prompts: {}".format(
+                    len(bot.tweet_id_queue), sorted_tweet_id_queue))
+
+            print("Retrieved {} new tweets with for query {:03d}/{} {} for a total of {} in DB".format(
+                num_after - num_before, qid, num_queries, repr(ht), num_after))
             num_before = num_after
             time.sleep(sleep_seconds)
         bot.process_queue()
+        time.sleep(30.)
 
         # bot.tweet(m[:140])
