@@ -60,7 +60,7 @@ _message = {
 
                     "type": "button",
                     "value": "war",
-                    
+
                 }
             ]
         }
@@ -81,16 +81,16 @@ def send_slack_messages(messages):
 
 if __name__ == '__main__':
   bot = RetweetBot()
+  print bot.is_relevant('Learn IPhython w/ Scikit-learn, Dr. Andrew Ng, Research Computing Meetup, Theano, ISLR Python, and more')
 
-  for topic in topic_list[0:2]:
-  	if topic.startswith('#'):
-  		print topic
-  		bot.get_tweets(topic + " filter:safe filter:media")
-  		bot.compute_relevance_scores()
-  		messages = bot.compose_relevant_slack_messages(1)
-  		# print messages
-  		send_slack_messages(messages)
-  		bot.clear_tweets()
-  		time.sleep(60)
-
-
+  # for topic in topic_list[0:2]:
+  # 	if topic.startswith('#'):
+  # 		print topic
+  # 		bot.get_tweets(topic + " filter:safe filter:media")
+  # 		bot.compute_relevance_scores()
+  # 		messages = bot.compose_relevant_slack_messages(1)
+  # 		# print messages
+  # 		send_slack_messages(messages)
+  # 		bot.clear_tweets()
+  # 		time.sleep(60)
+  #

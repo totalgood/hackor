@@ -11,3 +11,15 @@
 secrets.py*
 local_settings.py*
 
+#virtualenv and requirements
+bin/
+include/
+lib/
+man/
+share/
+
+# requirements
+requirements.txt
+.Python
+*.json
+.ipynb_checkpoints/

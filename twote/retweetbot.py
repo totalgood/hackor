@@ -8,6 +8,10 @@ from nltk import word_tokenize
 from nltk.corpus import stopwords
 from sutime import SUTime
 import json
+import pickle
+from django.conf import settings
+import sklearn
+from hackor.settings import BASE_DIR
 
 
 BAD_WORDS_URL='https://raw.githubusercontent.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/en'
@@ -25,6 +29,17 @@ class RetweetBot:
 		self.api = tweepy.API(auth)
 		self.tweet_list = []
 		self.relevance_scores = []
+		# if settings.BASE_DIR:
+			# relevant_tweet_model = os.path.join(settings.BASE_DIR,'twote/relevance_tweet_model.pkl')
+		# else:
+		relevant_tweet_model = 'relevant_tweet_model.pkl'
+		self.clf = None
+		try:
+			with open(relevant_tweet_model) as fp:
+				self.clf = pickle.load(fp)
+		except:
+			print('Relevant tweet model is not present\n')
+
 
 		# bad words
 		response = requests.get(BAD_WORDS_URL)
@@ -34,7 +49,7 @@ class RetweetBot:
 		self.stopwords = list(stopwords.words('english'))
 
 		# sutime
-		jar_files = os.environ.get('JAR_FILES','../python-sutime/jars')
+                jar_files = os.path.join(BASE_DIR, "python-sutime/jars")
 		self.sutime = SUTime(jars=jar_files, mark_time_ranges=True)
 
 		# nltk data append
@@ -104,7 +119,7 @@ class RetweetBot:
 				tweet_score = score[1]
 				print tweet_score
 				tweet = self.tweet_list[score[0]]
-				message = "RT <https://twitter.com/"+tweet.user.screen_name+"|"+tweet.user.screen_name +">" + " " + tweet.text 
+				message = "RT <https://twitter.com/"+tweet.user.screen_name+"|"+tweet.user.screen_name +">" + " " + tweet.text
 				message += "\n <https://twitter.com/"+tweet.user.screen_name+"/status/"+str(tweet.id)+"|Original Tweet>"
 				messages.append(message)
 		return messages
@@ -128,14 +143,14 @@ class RetweetBot:
 		result['date'] = []
 		result['room'] = []
 
-		
+
 		time_slots = self.sutime.parse(tweet)
 		tweet_without_time = tweet
 
 		for time_slot in time_slots:
 			tweet_without_time = tweet_without_time.replace(time_slot.get('text'),'')
 			result['date'].append(time_slot.get('value'))
-		
+
 		filter_known_words = [word.lower() for word in word_tokenize(tweet_without_time) if word.lower() not in (self.stopwords + nltk.corpus.words.words())]
 
 		# regular expression for room
@@ -147,11 +162,17 @@ class RetweetBot:
 
 		return result
 
+	'''
+	 	check if the tweet is relevant
+	'''
+	def is_relevant(self,tweet):
+		if self.clf:
+			if self.clf.predict([tweet])[0] == 'relevant':
+				return True
+
+		return False
 
 
 if __name__ == '__main__':
 	bot = RetweetBot()
 	print bot.get_time_and_room('#importantigravity (acro yoga: poses for pair programmers) @ 5pm in open space B114! #pycon #pyconopenspaces :-)')
-
-        
-
