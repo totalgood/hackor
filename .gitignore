@@ -2,6 +2,12 @@ pacs/
 collected-static/
 hackor/fixtures/
 
+
+# databases
+*.db
+*.sql
+*.sqlite
+
 .ipynb_checkpoints/
 *.gz
 *.tgz
