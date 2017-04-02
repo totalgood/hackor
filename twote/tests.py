@@ -1,8 +1,14 @@
 from django.test import TestCase, Client
+
+
+import sys
 import json
 import re
+import doctest
+
 from freezegun import freeze_time
 
+import twote
 from twote.models import OutgoingTweet, OutgoingConfig
 from twote.tasks import beat_tweet_scheduler, tweeter
 from twote.models_calendar import Event
@@ -225,3 +231,35 @@ class TestEventModel(TestCase):
         new_time = self.e_norm.last_updated
         self.assertNotEqual(old_time, new_time)
 
+
+class test_label_strict_tweets(TestCase):
+
+    def test_is_strict(self):
+        from label_strict_tweets import cre_hashtag, cre_hashtag_at_end, is_strict
+        self.assertTrue(cre_hashtag_at_end.match("There's a hashtag at the end #here. "))
+        self.assertTrue(cre_hashtag_at_end.match("There's a #hashtag at the end #here  --?--  "))
+        self.assertTrue(cre_hashtag_at_end.match("There's a #hashtag at the end #here  -- ? --  "))
+        self.assertIsNone(cre_hashtag_at_end.match("There's not a #hashtag at the end in this one  -- ? --  "))
+        self.assertIsNone(cre_hashtag_at_end.match("There's not a #hashtag at the end or this #1"))
+        self.assertTrue(cre_hashtag_at_end.match("There's is a smart #hashtag at at the end of tweets about #ai"))
+        self.assertEqual(len(cre_hashtag.findall("There's not a #hashtag at the end or this #1")), 1)
+        self.assertEqual(len(cre_hashtag.findall("There's a #hashtag at the end #here  -- ? --  ")), 2)
+        self.assertEqual(is_strict("This has a url.example.com so it's not strict"), 0)
+        self.assertEqual(is_strict("This has a #hasher in middle."), 0)
+        self.assertEqual(is_strict("This has an ending #hasher."), 1)
+        self.assertEqual(is_strict("This has two ending #hasher #hashers."), 0)
+
+
+def load_tests(loader, tests, ignore):
+    """Run doctests for the clayton.nlp module"""
+
+    # doctests only verified on Python >= 3.5
+    if (sys.version_info >= (3, 5)):
+        print('Running doctests for version {}'.format(sys.version_info))
+        for name in dir(twote):
+            if not name[0] == '_' and not name[-1] == '_':
+                tests.addTests(doctest.DocTestSuite(getattr(twote, name),
+                               optionflags=doctest.ELLIPSIS | doctest.NORMALIZE_WHITESPACE))
+    else:
+        print('NOT running doctests for version {}'.format(sys.version_info))
+    return tests

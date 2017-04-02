@@ -46,7 +46,7 @@ class RetweetBot:
 		self.bad_words = response.text.split('\n')
 
 		# stop words
-		self.stopwords = list(stopwords.words('english'))
+		#self.stopwords = list(stopwords.words('english'))
 
 		# sutime
                 jar_files = os.path.join(BASE_DIR, "python-sutime/jars")
@@ -151,8 +151,8 @@ class RetweetBot:
 			tweet_without_time = tweet_without_time.replace(time_slot.get('text'),'')
 			result['date'].append(time_slot.get('value'))
 
-		filter_known_words = [word.lower() for word in word_tokenize(tweet_without_time) if word.lower() not in (self.stopwords + nltk.corpus.words.words())]
-
+		#filter_known_words = [word.lower() for word in word_tokenize(tweet_without_time) if word.lower() not in (self.stopwords + nltk.corpus.words.words())]
+                filter_known_words = [word.lower() for word in word_tokenize(tweet_without_time)]
 		# regular expression for room
 		room_re = re.compile('([a-zA-Z](\d{3})[-+]?(\d{3})?)')
 
