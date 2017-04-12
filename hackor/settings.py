@@ -33,7 +33,7 @@ if not SECRET_KEY:
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #DEBUG or False
+DEBUG = DEBUG or False
 
 TEMPLATE_DEBUG = True
 
