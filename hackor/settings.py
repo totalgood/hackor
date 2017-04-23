@@ -40,8 +40,10 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = ['totalgood.org', 'localhost', '127.0.0.1']
 
 # Application definition
+print('RUNNING: {}'.format(__file__))
 
-INSTALLED_APPS = (
+
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,15 +56,16 @@ INSTALLED_APPS = (
     'rest_framework_gis',
     'django_extensions',
     'url_filter',
-    # 'pacs',
-    'guess',
+    # # 'pacs',
+    # 'guess',
     'bicycle_theft',
-    'predict_year',
+    # 'predict_year',
     'twitterbot',
     'twote',
-)
+]
 
-MIDDLEWARE_CLASSES = (
+
+MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -71,7 +74,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-)
+]
 
 ROOT_URLCONF = 'hackor.urls'
 
@@ -134,6 +137,9 @@ LOGGING = {
         'django': {
             'format': 'django: %(message)s',
         },
+        u'basic': {
+            u'format': u'%(asctime)s | %(name)15s:%(lineno)3s:%(funcName)15s | %(levelname)7s | %(message)s',
+        }
     },
 
     'handlers': {
@@ -144,21 +150,26 @@ LOGGING = {
             'formatter': 'django',
             'address': '/dev/log',
         },
+        u'console': {
+            u'class': u'logging.StreamHandler',
+            u'level': u'DEBUG',
+            u'formatter': u'basic',
+            u'stream': u'ext://sys.stdout',
+        },
     },
-
     'loggers': {
         'loggly': {
-            'handlers': ['logging.handlers.SysLogHandler'],
+            'handlers': [u'console', 'logging.handlers.SysLogHandler'],
             'propagate': True,
             'format': 'django: %(message)s',
             'level': 'DEBUG',
         },
-    }
+    },
 }
 
 # settings for celery tasks
 CELERY_BROKER_HOST = "127.0.0.1"
-CELERY_BROKER_PORT = 5672 # default RabbitMQ listening port
+CELERY_BROKER_PORT = 5672  # default RabbitMQ listening port
 CELERY_BROKER_USER = "hackor"
 CELERY_BROKER_PASSWORD = "hackor"
 CELERY_BROKER_VHOST = "hackor"
