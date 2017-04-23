@@ -137,6 +137,9 @@ LOGGING = {
         'django': {
             'format': 'django: %(message)s',
         },
+        u'basic': {
+            u'format': u'%(asctime)s | %(name)15s:%(lineno)3s:%(funcName)15s | %(levelname)7s | %(message)s',
+        }
     },
 
     'handlers': {
@@ -147,16 +150,21 @@ LOGGING = {
             'formatter': 'django',
             'address': '/dev/log',
         },
+        u'console': {
+            u'class': u'logging.StreamHandler',
+            u'level': u'DEBUG',
+            u'formatter': u'basic',
+            u'stream': u'ext://sys.stdout',
+        },
     },
-
     'loggers': {
         'loggly': {
-            'handlers': ['logging.handlers.SysLogHandler'],
+            'handlers': [u'console', 'logging.handlers.SysLogHandler'],
             'propagate': True,
             'format': 'django: %(message)s',
             'level': 'DEBUG',
         },
-    }
+    },
 }
 
 # settings for celery tasks
