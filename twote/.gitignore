@@ -6,6 +6,7 @@
 
 # binary
 *.pyc
+*.swp
 
 # secrets
 secrets.py*
